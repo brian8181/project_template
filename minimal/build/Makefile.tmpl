@@ -1,0 +1,41 @@
+# MAKE TEMPLATE 06-02-2020 1
+# MAKE TEMPLATE 03-11-2021 1.1
+# MAKE TEMPLATE 05-22-2021 1.2
+# MAKE TEMPLATE 07-07-2021 1.3
+
+# RUN BEFORE autoreconf -ivfm
+# RUN BEFORE autoreconf -i
+
+MAKE_TEMPLATE = 1.3;
+BUILD_VERSION = 0.1.0
+prefix = /usr/local
+
+# Compiler settings - Can be customized.
+CXX = g++
+CXXFLAGS = -Wall -std=c++11
+CXXFLAGS += -DDEBUG -g
+
+# Makefile settings - Can be customized.
+APPNAME = @@APP_NAME@@
+EXT = cpp
+ROOTDIR  = ~/src/$(APPNAME)
+BUILDDIR = ~/src/$(APPNAME)/build
+SRCDIR = ~/src/$(APPNAME)/src
+OBJDIR = ~/src/$(APPNAME)/build
+
+# compile & link for debug
+#debug:
+#	CXXFLAGS += -DDEBUG -g
+#debug: all
+	 
+# compile & link for debug GDBversion variable
+# debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
+all: $(APPNAME)
+
+# link
+$(APPNAME): $(APPNAME).o
+	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o -o $(BUILDDIR)/$(APPNAME)
+
+# compile only
+$(APPNAME).o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).cpp -o $(BUILDDIR)/$(APPNAME).o

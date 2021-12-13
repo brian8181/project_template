@@ -1,0 +1,28 @@
+#ifndef _@@APP_NAME@@_TEST_H
+#define _@@APP_NAME@@_TEST_H
+
+#include <cppunit/Test.h> 
+
+class @@APP_NAME@@Test : public CppUnit::TestFixture
+{
+private:
+    CPPUNIT_TEST_SUITE(@@APP_NAME@@Test);
+    CPPUNIT_TEST_SUITE_END();
+
+public:
+    void setUp();
+    void tearDown();    
+
+    // agregate test functions
+    void execute();
+    void execute(int argc, char* argv[]);
+
+protected:
+    
+private:
+    int m_argc;
+    char* m_argv[10];
+    
+};
+
+#endif

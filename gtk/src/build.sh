@@ -1,0 +1,1 @@
+gcc -o hello-world-gtk main.c `pkg-config --cflags --libs gtk4`
