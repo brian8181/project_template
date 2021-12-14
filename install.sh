@@ -64,8 +64,8 @@ PRINT_DEBUG "remove exsisting class templates ..."
 rm ~/bin/ccl ~/bin/create.class.sh ~/bin/class.?pp.tmpl
 PRINT_DEBUG "install exsisting class templates ..."
 # copy scripts
-cp -f ../class_template/*.sh ~/bin
-cp -f ../class_template/*.tmpl ~/bin
+cp -f ./class_tmpl/*.sh ~/bin
+cp -f ./class_tmpl/*.tmpl ~/bin
 # create easy name soft link
 ln -s ~/bin/create.class.sh ~/bin/ccl
 
