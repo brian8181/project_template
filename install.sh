@@ -68,6 +68,8 @@ cp -f ./class_tmpl/*.sh ~/bin
 cp -f ./class_tmpl/*.tmpl ~/bin
 # create easy name soft link
 ln -s ~/bin/create.class.sh ~/bin/ccl
+# create new link with multi name option built into script
+ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 
 ##{ END YOUR CODE  }##
 
