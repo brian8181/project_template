@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE='create.class.sh'
-VERSION='0.1'
-FILE_DATE='November, 9 2021'
+VERSION='0.1.1'
+FILE_DATE='Jnauary 1, 2022'
 AUTHOR='Brian K. Preston'
 EMAIL='brian8181@gamil.com'
 WWW='https://github.com/brian8181'

@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE='install.sh'
-VERSION='0.0.1'
-FILE_DATE='November, 20, 2021'
+VERSION='0.0.2'
+FILE_DATE='January 1, 2022'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'

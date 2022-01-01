@@ -1,8 +1,8 @@
 #!/bin/bash
 
 FILE='skel.sh'
-VERSION='0.1'
-FILE_DATE='October 30, 2021'
+VERSION='0.1.1'
+FILE_DATE='January 1, 2022'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
