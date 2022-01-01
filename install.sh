@@ -37,19 +37,19 @@ PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
-PRINT_DEBUG "remove exsisting project templates ..."
+PRINT_DEBUG "remove existing project templates ..."
 # remove "project_templates" before update
 rm -rf ~/bin/project_templates
 PRINT_DEBUG "install project templates ..."
 # copy templates
 mkdir ~/bin/project_templates
 cp -r ./basic ~/bin/project_templates
-cp -rf ./basic/.* ~/bin/project_templates
+#cp -rf ./basic/.* ~/bin/project_templates
 cp -r ./minimal ~/bin/project_templates
 cp -r ./gtk ~/bin/project_templates
 
 
-PRINT_DEBUG "remove exsisting project scripts ..."
+PRINT_DEBUG "remove existing project scripts ..."
 # remove old scripts & links
 rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk ~/bin/ccl ~/bin/ccl2
 PRINT_DEBUG "install exsisting project scripts ..."
@@ -59,10 +59,10 @@ cp -f ./csk.sh ~/bin
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
 
-PRINT_DEBUG "remove exsisting class templates ..."
+PRINT_DEBUG "remove existing class templates ..."
 # remove old scripts
 rm ~/bin/ccl ~/bin/create.class.sh ~/bin/class.?pp.tmpl
-PRINT_DEBUG "install exsisting class templates ..."
+PRINT_DEBUG "install existing class templates ..."
 # copy scripts
 cp -f ./class_tmpl/*.sh ~/bin
 cp -f ./class_tmpl/*.tmpl ~/bin
