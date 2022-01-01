@@ -50,8 +50,8 @@ cp -r ./gtk ~/bin/project_templates
 
 
 PRINT_DEBUG "remove exsisting project scripts ..."
-# remove old scripts
-rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk
+# remove old scripts & links
+rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk ~/bin/ccl ~/bin/ccl2
 PRINT_DEBUG "install exsisting project scripts ..."
 # copy scripts
 cp -f ./skel.sh ~/bin
