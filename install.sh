@@ -48,7 +48,6 @@ cp -r ./basic ~/bin/project_templates
 cp -r ./minimal ~/bin/project_templates
 cp -r ./gtk ~/bin/project_templates
 
-
 PRINT_DEBUG "remove existing project scripts ..."
 # remove old scripts & links
 rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk ~/bin/ccl ~/bin/ccl2
@@ -61,7 +60,7 @@ ln -s ~/bin/csk.sh ~/bin/csk
 
 PRINT_DEBUG "remove existing class templates ..."
 # remove old scripts
-rm ~/bin/ccl ~/bin/create.class.sh ~/bin/class.?pp.tmpl
+rm ~/bin/create.class.sh ~/bin/class.?pp.tmpl
 PRINT_DEBUG "install existing class templates ..."
 # copy scripts
 cp -f ./class_tmpl/*.sh ~/bin
