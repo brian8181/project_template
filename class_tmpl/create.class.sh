@@ -40,25 +40,28 @@ CLASS_NAME=$1
 INPUT_PATH=$2
 OUTPUT_PATH=$3
 
-# is this a project folder
-if [ -f "./.project" ]
+if [ ! -z $CLASS_NAME ]
 then
-	pushd ./build
-	rm Makefile.tmp Makefile.tmp2
-	PRINT_DEBUG ${INPUT_PATH:-"~/bin"}
-	cat ${INPUT_PATH:-"/home/brian/bin"}/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
-	cat ${INPUT_PATH:-"/home/brian/bin"}/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp	
-	cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}.o  @@CLASS_NAME@@/g" > Makefile.tmp
-	# try to update Makefile with new rule
-	MAKE_RULE=$(cat ${INPUT_PATH:-"/home/brian/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
-	# make a backup of Makefile for now
-	cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
-	cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
-	rm  Makefile.tmp
-	popd
+	# is this a project folder
+	if [ -f "./.project" ]
+	then
+		pushd ./build
+		rm Makefile.tmp Makefile.tmp2
+		PRINT_DEBUG ${INPUT_PATH:-"~/bin"}
+		cat ${INPUT_PATH:-"/home/brian/bin"}/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
+		cat ${INPUT_PATH:-"/home/brian/bin"}/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp	
+		cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}.o  @@CLASS_NAME@@/g" > Makefile.tmp
+		# try to update Makefile with new rule
+		MAKE_RULE=$(cat ${INPUT_PATH:-"/home/brian/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
+		# make a backup of Makefile for now
+		cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
+		cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
+		rm  Makefile.tmp
+		popd
 
-else
-	echo "This is not a project dirctory"
+	else
+		echo "This is not a project dirctory"
+	fi
 fi
 		
 ##{ END YOUR CODE  }##
