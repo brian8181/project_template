@@ -63,7 +63,6 @@ then
 		echo "This is not a project dirctory"
 	fi
 fi
-		
 ##{ END YOUR CODE  }##
 
 PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"
