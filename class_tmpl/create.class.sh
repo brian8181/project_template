@@ -60,10 +60,10 @@ then
 		popd
 
 	else
-		echo "Error: This is not a project directory"
+		echo "Error: This is not a project directory."
 	fi
 else
-		echo "Error: No class name"
+		echo "Error: No class name."
 fi
 ##{ END YOUR CODE  }##
 
