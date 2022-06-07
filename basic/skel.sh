@@ -1,8 +1,8 @@
 #!/bin/bash
 
 FILE='skel.sh'
-VERSION='0.1'
-FILE_DATE='October 30, 2021'
+VERSION='0.1.2'
+FILE_DATE='June 7, 2022'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
@@ -37,7 +37,7 @@ PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
 # YOUR CODE HERE
 APP_NAME=$1 
-TEMPLATE_PATH=$2cd build
+TEMPLATE_PATH=$2
 PROJECT_PATH=$3/$APP_NAME
 #INPUT_TEMPLATE_PATH=$3
 #TEMPLATE_PATH=${INPUT_PROJECT_PATH:-.}
@@ -59,6 +59,10 @@ cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
 rm Makefile.tmp
 chmod 644 Makefile 
 popd
+
+pushd $PROJECT_PATH/src
+cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
+rm ./app.cpp.tmpl 
 
 # get dir name, aka template name
 # TEMPLATE_NAME=${TEMPLATE_PATH##/*/}
@@ -88,15 +92,16 @@ rm *.tmpl
 chmod 644 install.sh Makefile* ${APP_NAME}.1
 popd
 
+# move to project root, and stay
 pushd $PROJECT_PATH
 mv gitignore_template .gitignore
 rm *skel.sh
 git init
 git add '*'
 git commit -m 'initial commit'
-#popd
+popd
 # add to git hub
-gh --repo @@APP_NAME@@
+# gh --repo @@APP_NAME@@
 
 PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"
 
