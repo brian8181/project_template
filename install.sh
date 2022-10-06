@@ -44,7 +44,6 @@ PRINT_DEBUG "install project templates ..."
 # copy templates
 mkdir ~/bin/project_templates
 cp -r ./basic ~/bin/project_templates
-#cp -rf ./basic/.* ~/bin/project_templates
 cp -r ./minimal ~/bin/project_templates
 cp -r ./gtk ~/bin/project_templates
 
