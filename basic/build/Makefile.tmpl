@@ -94,8 +94,20 @@ install: man
 # delete object files & app executable
 .PHONY: clean
 clean:
-	rm -f $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/*.o $(BUILDDIR)/$(APPNAME)_test $(BUILDDIR)/bash_color_test
-	rm -f $(BUILDDIR)/*.xml $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz
+	@if [ -f $(BUILDDIR)/$(APPNAME) ]; then\
+		rm $(BUILDDIR)/$(APPNAME);\
+	fi
+
+	@if [ -f $(BUILDDIR)/$(APPNAME)_test -a -f $(BUILDDIR)/bash_color_test ]; then\
+		rm $(BUILDDIR)/$(APPNAME)_test $(BUILDDIR)/bash_color_test;\
+	fi
+
+	rm -$(BUILDDIR)/*.o
+	rm -f $(BUILDDIR)/*.xml 
+	
+	@if [ -f $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz ]; then\
+		rm $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz;\
+	fi
 
 # delete all auto generated files
 .PHONY: distclean
