@@ -39,3 +39,10 @@ $(APPNAME): $(APPNAME).o
 # compile only
 $(APPNAME).o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).cpp -o $(BUILDDIR)/$(APPNAME).o
+
+# delete object files & app executable
+.PHONY: clean
+clean:
+	@if [ -f $(BUILDDIR)/$(APPNAME) ]; then\
+		rm $(BUILDDIR)/$(APPNAME);\
+	fi
