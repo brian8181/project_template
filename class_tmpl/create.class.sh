@@ -46,7 +46,12 @@ then
 	if [ -f "./.project" ]
 	then
 		pushd ./build
-		rm Makefile.tmp Makefile.tmp2
+		if [ -f Makefile.tmp ]; then
+			rm Makefile.tmp
+		fi
+		if [ -f Makefile.tmp2 ]; then
+			rm Makefile.tmp2
+		fi
 		PRINT_DEBUG ${INPUT_PATH:-"~/bin"}
 		cat ${INPUT_PATH:-"/home/brian/bin"}/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
 		cat ${INPUT_PATH:-"/home/brian/bin"}/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp	

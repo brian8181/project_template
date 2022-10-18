@@ -49,17 +49,56 @@ cp -r ./gtk ~/bin/project_templates
 
 PRINT_DEBUG "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk 
+if [ -f ~/bin/skel.sh ] 
+then
+	rm ~/bin/skel.sh
+fi
+
+if [ -f ~/bin/csk.sh ]
+then
+	rm ~/bin/csk.sh
+fi
+
+if [ -f ~/bin/csk ]
+then
+	rm ~/bin/csk
+fi
+
+#rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk 
 PRINT_DEBUG "install exsisting project scripts ..."
 # copy scripts
-cp -f ./skel.sh ~/bin
-cp -f ./csk.sh ~/bin
+cp -f ./basic/skel.sh ~/bin
+cp -f ./basic/csk.sh ~/bin
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
 
 PRINT_DEBUG "remove existing class templates ..."
 # remove old scripts
-rm ~/bin/ccl ~/bin/ccl2 ~/bin/create.class.sh ~/bin/class.?pp.tmpl
+if [ -f ~/bin/ccl ] 
+then
+	rm ~/bin/ccl
+fi
+
+if [ -f ~/bin/ccl2 ] 
+then
+	rm ~/bin/ccl2
+fi
+
+if [ -f ~/bin/create.class.sh ] 
+then
+	rm ~/bin/create.class.sh
+fi
+
+if [ -f ~/bin/run.create.class.sh ] 
+then
+	rm ~/bin/run.create.class.sh
+fi
+
+if [ -f ~/bin/~/bin/class.?pp.tmpl ] 
+then
+	rm ~/bin/~/bin/class.?pp.tmpl
+fi
+#rm ~/bin/ccl ~/bin/ccl2 ~/bin/create.class.sh ~/bin/class.?pp.tmpl
 PRINT_DEBUG "install existing class templates ..."
 # copy scripts
 cp -f ./class_tmpl/*.sh ~/bin
