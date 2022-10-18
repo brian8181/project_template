@@ -44,7 +44,8 @@ PROJECT_PATH=$3/$APP_NAME
 
 mkdir -p $PROJECT_PATH
 cp -rf $TEMPLATE_PATH/* $PROJECT_PATH 
-cp -rf $TEMPLATE_PATH/.project $PROJECT_PATH
+touch $PROJECT_PATH/.project # create file that marks this a project folder
+#cp -rf $TEMPLATE_PATH/.project $PROJECT_PATH
 
 pushd $PROJECT_PATH
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
@@ -54,15 +55,12 @@ popd
 
 pushd $PROJECT_PATH/build
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
-mv Makefile.tmp Makefile.tpml
+rm Makefile.tmpl
+mv Makefile.tmp Makefile.tmpl
 cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
-rm Makefile.tmp
+#rm *.tmpl
 chmod 644 Makefile 
 popd
-
-pushd $PROJECT_PATH/src
-cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
-rm ./app.cpp.tmpl 
 
 # get dir name, aka template name
 # TEMPLATE_NAME=${TEMPLATE_PATH##/*/}
@@ -80,8 +78,8 @@ cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 cat  ./app_test.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.cpp
 cat  ./@app@_test.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.hpp
-chmod 644 *.cpp *.hpp Makefile*
 rm *.tmpl
+chmod 644 *.cpp *.hpp Makefile*
 popd
 
 pushd $PROJECT_PATH/man
