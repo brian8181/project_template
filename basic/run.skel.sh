@@ -1,14 +1,12 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 APP_NAME=$1 
-TEMPLATE_NAME=$2
-# TEMPLATE_PATH=$3
-# PROJECT_PATH=$4
-
+TEMPLATE_PATH=$2
+PROJECT_PATH=$3
 
 # defaults
-DEFAULT_APP_NAME='NoName'
-DEFAULT_TEMPLATE_PATH='/home/brian/src/templates/project_templates/${TEMPLATE_NAME}'
-DEFAULT_PROJECT_PATH="/home/brian/src"
+echo ${APP_NAME:='NoName'}
+echo ${TEMPLATE_PATH:='/home/brian/src/templates/project_templates/gtk'}
+echo ${PROJECT_PATH:="/home/brian/src/${APP_NAME}"}
 
-./skel.sh ${APP_NAME:-$DEFAULT_APP_NAME} ${TEMPLATE_NAME:-$DEFAULT_TEMPLATE_PATH} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH}
+./skel.sh "${APP_NAME}" "${TEMPLATE_PATH}" "${PROJECT_PATH}"

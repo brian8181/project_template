@@ -11,4 +11,4 @@ DEFAULT_APP_NAME='NoName'
 DEFAULT_TEMPLATE_PATH="/home/brian/src/templates/project_templates/${TEMPLATE_NAME}"
 DEFAULT_PROJECT_PATH=.
 
-/home/brian/src/templates/project_templates/skel.sh ${APP_NAME:-$DEFAULT_APP_NAME} ${TEMPLATE_PATH:-$DEFAULT_TEMPLATE_PATH} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH}
+/home/brian/src/templates/project_templates/${TEMPLATE_NAME}/skel.sh ${APP_NAME:-$DEFAULT_APP_NAME} ${TEMPLATE_PATH:-$DEFAULT_TEMPLATE_PATH} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH}
