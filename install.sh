@@ -63,7 +63,6 @@ if [ -f ~/bin/csk ]
 then
 	rm ~/bin/csk
 fi
-
 #rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk 
 PRINT_DEBUG "install exsisting project scripts ..."
 # copy scripts
