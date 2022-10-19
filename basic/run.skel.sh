@@ -6,7 +6,7 @@ PROJECT_PATH=$3
 
 # defaults
 echo ${APP_NAME:='NoName'}
-echo ${TEMPLATE_PATH:='/home/brian/src/templates/project_templates/gtk'}
+echo ${TEMPLATE_PATH:='/home/brian/src/templates/project_templates/basic'}
 echo ${PROJECT_PATH:="/home/brian/src/${APP_NAME}"}
 
 ./skel.sh "${APP_NAME}" "${TEMPLATE_PATH}" "${PROJECT_PATH}"

@@ -26,10 +26,10 @@ INCLUDES = -I/usr/local/include/cppunit/
 # Makefile settings - Can be customized.
 APPNAME = @@APP_NAME@@
 EXT = cpp
-ROOTDIR  = ~/src/$(APPNAME)
-BUILDDIR = ~/src/$(APPNAME)/build
-SRCDIR = ~/src/$(APPNAME)/src
-OBJDIR = ~/src/$(APPNAME)/build
+ROOTDIR  = ..
+BUILDDIR = .
+SRCDIR = ../src
+OBJDIR = .
 
 # compile & link for debug
 debug: CXXFLAGS += -DDEBUG -g
