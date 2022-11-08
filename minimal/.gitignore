@@ -47,12 +47,7 @@ m4/lt~obsolete.m4
 # can automatically generate from config.status script
 # (which is called by configure script))
 # Makefile
-<<<<<<< HEAD
-*.o
-
-=======
 
 # build output
 build
 !build/Makefile
->>>>>>> c987ea32a5809fcf9bffe4c829b48f41054f6f04
