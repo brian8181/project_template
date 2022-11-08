@@ -59,10 +59,12 @@ then
 	rm ~/bin/csk.sh
 fi
 
-if [ -f ~/bin/csk ]
-then
-	rm ~/bin/csk
-fi
+# if [ -e ~/bin/csk ]
+# then
+# 	rm ~/bin/csk
+# fi
+# HACK
+rm ~/bin/csk
 #rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk 
 PRINT_DEBUG "install exsisting project scripts ..."
 # copy scripts
