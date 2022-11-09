@@ -1,49 +1,80 @@
-# MAKE TEMPLATE 06-02-2020 1
-# MAKE TEMPLATE 03-11-2021 1.1
-# MAKE TEMPLATE 05-22-2021 1.2
-# MAKE TEMPLATE 07-07-2021 1.3
+# MAKE_TEMPLATE = 0.l.o
+# BUILD_VERSION = 0.l.o
 
-# RUN BEFORE autoreconf -ivfm
-# RUN BEFORE autoreconf -i
-
-MAKE_TEMPLATE = 1.3;
-BUILD_VERSION = 0.1.0
 prefix = /usr/local
+mandir = $(prefix)/share/man
+man1dir = $(mandir)/man1
 
 # Compiler settings - Can be customized.
 CXX = g++
-CXXFLAGS = -Wall -std=c++11
-CXXFLAGS += -DDEBUG -g
+CXXFLAGS = -Wall -std=c++17 -DDEBUG -ggdb
 
+# lib settings
+LDFLAGS = -static -lcppunit -L/usr/local/lib/
+INCLUDES = -I/usr/local/include/cppunit/
+# add addtional libs here
 
 # Makefile settings - Can be customized.
 APPNAME = @@APP_NAME@@
 EXT = cpp
-ROOTDIR  = ..
-BUILDDIR = .
-SRCDIR = $(ROOTDIR)/src
-OBJDIR = .
+ROOTDIR  = .
+BUILDDIR = ./build
+OBJDIR = ../build
+SRCDIR = ./src
 
 # compile & link for debug
-#debug:
-#	CXXFLAGS += -DDEBUG -g
-#debug: all
-	 
+#debug: CXXFLAGS += -DDEBUG -g
+debug: all
+
 # compile & link for debug GDBversion variable
-# debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
-all: $(APPNAME)
+#debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
+all: $(APPNAME) bash_color_test $(APPNAME)_test
 
 # link
-$(APPNAME): $(APPNAME).o
-	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o -o $(BUILDDIR)/$(APPNAME)
+$(APPNAME): $(APPNAME).o main.o @@CLASS_NAME@@ #END
+	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o @@CLASS_NAME@@ -o $(BUILDDIR)/$(APPNAME)
 
 # compile only
 $(APPNAME).o:
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).cpp -o $(BUILDDIR)/$(APPNAME).o
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
+	
+main.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
+	# $(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
+
+## auto gernerated here ##
+
+# install man pages
+.PHONY: man
+man:
+	cp ../man/$(APPNAME).1 $(man1dir)
+	# gzip $(man1dir)/$(APPNAME).1
+	mandb
+
+.PHONY: unman
+unman:
+	rm $(man1dir)/$(APPNAME).1.gz
+	mandb
+
+# install 
+.PHONY: install
+install: man
+	cp $(BUILDDIR)/$(APPNAME) $(prefix)/bin/$(APPNAME)
+	rm $(prefix)/bin/$(APPNAME)
 
 # delete object files & app executable
 .PHONY: clean
 clean:
-	@if [ -f $(BUILDDIR)/$(APPNAME) ]; then\
-		rm $(BUILDDIR)/$(APPNAME);\
-	fi
+	-rm -f $(OBJS)/*.o 
+	-rm -f $(BUILD)/$(APPNAME) 
+	
+clean-local:
+	-rm -f config.status configure config.log
+	-rm -rf autom4te.cache/
+	-rm =-f aclocal.m4
+	-rm -f compile install-sh missing Makefile.in
+	
+dist: 
+	git archive HEAD | gzip > $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
+
+dist-gz: dist

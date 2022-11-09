@@ -1,28 +1,13 @@
-# MAKE TEMPLATE 06-02-2020 1
-# MAKE TEMPLATE 03-11-2021 1.1
-# MAKE TEMPLATE 05-22-2021 1.2
-# MAKE TEMPLATE 07-07-2021 1.3
+# MAKE_TEMPLATE = 0.l.o
+# BUILD_VERSION = 0.l.o
 
-# RUN BEFORE autoreconf -ivfm
-# RUN BEFORE autoreconf -i
-
-MAKE_TEMPLATE = 1.3;
-BUILD_VERSION = 0.1.0
-
-prefix = /usr/local
 prefix = /usr/local
 mandir = $(prefix)/share/man
 man1dir = $(mandir)/man1
 
 # Compiler settings - Can be customized.
 CXX = g++
-#CXXFLAGS = -Wall -std=c++11 -DDEBUG -g
-
-# HACK!
-CXXFLAGS = -Wall -std=c++11 -std=gnu++17
-#CXXFLAGS += -DDEBUG -g
-CXXFLAGS += -DDEBUG -ggdb
-
+CXXFLAGS = -Wall -std=c++17 -DDEBUG -ggdb
 
 # lib settings
 LDFLAGS = -static -lcppunit -L/usr/local/lib/
@@ -32,10 +17,10 @@ INCLUDES = -I/usr/local/include/cppunit/
 # Makefile settings - Can be customized.
 APPNAME = @@APP_NAME@@
 EXT = cpp
-ROOTDIR  = ..
-BUILDDIR = .
-SRCDIR = ../src
-OBJDIR = .
+ROOTDIR  = .
+BUILDDIR = ./build
+OBJDIR = ../build
+SRCDIR = ./src
 
 # compile & link for debug
 #debug: CXXFLAGS += -DDEBUG -g
@@ -94,32 +79,28 @@ install: man
 # delete object files & app executable
 .PHONY: clean
 clean:
-	@if [ -f $(BUILDDIR)/$(APPNAME) ]; then\
-		rm $(BUILDDIR)/$(APPNAME);\
-	fi
+	-rm -f $(OBJS)/*.o 
+	-rm -f $(BUILD)/$(APPNAME) 
+	-rm -f $(BUILD)/$(APPNAME)_test 
+	-rm -f $(BUILD)/bash_color_test
+	-rm -f $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
+	-rm -f $(BUILD)/$(APPNAME).core
 
-	@if [ -f $(BUILDDIR)/$(APPNAME)_test -a -f $(BUILDDIR)/bash_color_test -a -f $(BUILDDIR)/*.o -a -f $(BUILDDIR)/*.xml ]; then\
-		rm $(BUILDDIR)/$(APPNAME)_test $(BUILDDIR)/bash_color_test;\
-		rm $(BUILDDIR)/*.o
-		rm $(BUILDDIR)/*.xml  
-	fi
-	
-	@if [ -f $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz ]; then\
-		rm $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz;\
-	fi
-
-	#rm -f $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/*.o $(BUILDDIR)/$(APPNAME)_test $(BUILDDIR)/bash_color_test
-	#rm -f $(BUILDDIR)/*.xml $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz
-
-
-# delete all auto generated files
+# delete object files, app, executables, & all automake/autoconf generated files
 .PHONY: distclean
 distclean: clean
-	rm -f $(SRCDIR)/config.* $(SRCDIR)/Makefile $(SRCDIR)/Makefile.in $(SRCDIR)/INSTALL $(SRCDIR)/configure 
-	# rm ../stamp-h1 ../aclocal.m4 ../compile ../install-sh ../libtool ../ltmain.sh ../stamp-h1 ../missing ../depcomp
-	# rm ../src/Makefile ../src/Makefile.in
-	# rm -rf ../autom4te.cache ../src/.deps ../src/.libs
-	# rm ../src/.o
+	-rm -f $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
+	-rm -f $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
+	-rm -f $(SRCS)/Makefile $(SRCS)/Makefile.in
+	-rm -rf $(ROOT)/autom4te.cache $(SRCS)/.deps $(SRCS)/.libs
 
+clean-local:
+	-rm -f config.status configure config.log
+	-rm -rf autom4te.cache/
+	-rm =-f aclocal.m4
+	-rm -f compile install-sh missing Makefile.in
+	
 dist: 
-	git archive HEAD | gzip > $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz
+	git archive HEAD | gzip > $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
+
+dist-gz: dist
