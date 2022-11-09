@@ -1,13 +1,11 @@
 #!/bin/bash
 
+USER_NAME=brian
 APP_NAME=$1
 TEMPLATE_NAME=$2
 
-# TEMPLATE_PATH=$3 # Deduced from name!
-# PROJECT_PATH=$4  # Deduced from pwd!
-
 # defaults
-USER_ROOT="/home/brian"
+USER_ROOT="/home/${USER_NAME}"
 SRC_ROOT="${USER_ROOT}/src"
 BIN="${USER_ROOT}/bin"
 TMP="$USER_ROOT/tmp"
