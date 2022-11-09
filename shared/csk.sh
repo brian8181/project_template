@@ -7,8 +7,12 @@ TEMPLATE_NAME=$2
 # PROJECT_PATH=$4  # Deduced from pwd!
 
 # defaults
+USER_ROOT="/home/brian"
+SRC_ROOT="${USER_ROOT}/src"
+BIN="${USER_ROOT}/bin"
+TMP="$USER_ROOT/tmp"
 DEFAULT_APP_NAME='NoName'
-DEFAULT_TEMPLATE_PATH="/home/brian/bin/project_templates/${TEMPLATE_NAME}"
-DEFAULT_PROJECT_PATH=$(pwd)
+DEFAULT_TEMPLATE_PATH="${BIN}/project_templates/basic"
+DEFAULT_PROJECT_PATH="${USER_ROOT}/tmp"
 
-/home/brian/bin/project_templates/${TEMPLATE_NAME}/skel.sh ${APP_NAME:-$DEFAULT_APP_NAME} ${TEMPLATE_PATH:-$DEFAULT_TEMPLATE_PATH} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH}
+${BIN}/project_templates/basic/skel.sh ${APP_NAME:-$DEFAULT_APP_NAME} ${TEMPLATE_PATH:-$DEFAULT_TEMPLATE_PATH} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH}
