@@ -2,16 +2,13 @@
 FILE='create.class.sh'
 VERSION='0.1.1'
 FILE_DATE='Jnauary 1, 2022'
-AUTHOR='Brian K. Preston'
-EMAIL='brian8181@gamil.com'
-WWW='https://github.com/brian8181'
-
 FMT_FG_RED='\e[31m'
 FMT_RESET='\e[0m'
 PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
 # USER SETTING
+USER_NAME=brian
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 VERBOSE=1
 DEBUG=1
@@ -22,9 +19,6 @@ then
 	echo ${VERBOSE:+"File - $FILE"}.
 	echo ${VERBOSE:+"Version - $VERSION"}.
 	echo ${VERBOSE:+"Date - $FILE_DATE"}.
-	echo ${VERBOSE:+"Author - $AUTHOR"}.
-	echo ${VERBOSE:+"Email - $EMAIL"}.
-	echo ${VERBOSE:+"www - $WWW"}.
 fi
 
 function PRINT_DEBUG
@@ -57,24 +51,29 @@ then
 		
 		if [ -z $BASE_CLASS_NAME ]; then
 
-			cat ${INPUT_PATH:-"/home/brian/bin"}/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
-			cat ${INPUT_PATH:-"/home/brian/bin"}/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp	
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp
+			# now remove base class tag
+			# no need if using correct templates
+			# cat ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
+			# cat ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp	
 			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}.o  @@CLASS_NAME@@/g" > Makefile.tmp
 			# try to update Makefile with new rule
-			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/brian/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
+			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 			# make a backup of Makefile for now
 			cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
 			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
 			rm  Makefile.tmp
 			
 		else
-				cat ${INPUT_PATH:-"/home/brian/bin"}/class.base.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl
-				cat ${INPUT_PATH:-"/home/brian/bin"}/class.base.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp.tmpl	
+				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl
+				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp.tmpl	
+				# now replace base class tag
 				cat ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
 				cat ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp	
 				cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}.o  @@CLASS_NAME@@/g" > Makefile.tmp
 				# try to update Makefile with new rule
-				MAKE_RULE=$(cat ${INPUT_PATH:-"/home/brian/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
+				MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 				# make a backup of Makefile for now
 				cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
 				cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
