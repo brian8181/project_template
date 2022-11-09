@@ -66,9 +66,9 @@ fi
 # HACK
 rm ~/bin/csk
 #rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk 
+
 PRINT_DEBUG "install exsisting project scripts ..."
 # copy scripts
-# cp -f ./basic/skel.sh ~/bin
 cp -f ./shared/csk.sh ~/bin
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
