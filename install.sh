@@ -2,9 +2,7 @@
 FILE='install.sh'
 VERSION='0.0.2'
 FILE_DATE='January 1, 2022'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
+
 
 FMT_FG_RED='\e[31m'
 FMT_RESET='\e[0m'
@@ -22,9 +20,6 @@ then
 	echo ${VERBOSE:+"File - $FILE"}.
 	echo ${VERBOSE:+"Version - $VERSION"}.
 	echo ${VERBOSE:+"Date - $FILE_DATE"}.
-	echo ${VERBOSE:+"Author - $AUTHOR"}.
-	echo ${VERBOSE:+"Email - $EMAIL"}.
-	echo ${VERBOSE:+"www - $WWW"}.
 fi
 
 function PRINT_DEBUG
@@ -46,6 +41,7 @@ mkdir ~/bin/project_templates
 cp -r ./basic ~/bin/project_templates
 cp -r ./minimal ~/bin/project_templates
 cp -r ./gtk ~/bin/project_templates
+cp -r ./shared ~/bin/project_templates
 
 PRINT_DEBUG "remove existing project scripts ..."
 # remove old scripts & links

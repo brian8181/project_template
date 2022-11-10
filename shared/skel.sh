@@ -3,18 +3,18 @@
 FILE='skel.sh'
 VERSION='0.1.2'
 FILE_DATE='June 7, 2022'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
+FMT_FG_GREEN='\e[32m'
 FMT_RESET='\e[0m'
 PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
+PRINT_GREEN_VERBOSE=${FMT_FG_GREEM}DEBUG${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
 # USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
-#VERBOSE=0
+VERBOSE_MSG="$PRINT_GREEN_VERBOSE: "
+VERBOSE=1
 #DEBUG=0
 # END
 
@@ -23,9 +23,6 @@ then
 	echo ${VERBOSE:-"File - $FILE"}.
 	echo ${VERBOSE:-"Version - $VERSION"}.
 	echo ${VERBOSE:-"Date - $FILE_DATE"}.
-	echo ${VERBOSE:"Author - $AUTHOR"}.
-	echo ${VERBOSE:-"Email - $EMAIL"}.
-	echo ${VERBOSE:-"www - $WWW"}.
 fi
 
 function PRINT_DEBUG
@@ -33,7 +30,12 @@ function PRINT_DEBUG
     MSG=${DEBUG_MSG}$1
     echo -e ${DEBUG:-"$MSG"}
 }
-PRINT_DEBUG "$FILE -> Running... @ $DATE"
+function PRINT_VERBOSE
+{
+    MSG=${VERBOSE_MSG}$1
+    echo -e ${VERBOSE:-"$MSG"}
+}
+PRINT_VERBOSE "$FILE -> Running... @ $DATE"
 
 # YOUR CODE HERE
 APP_NAME=$1 
@@ -44,21 +46,24 @@ PROJECT_PATH=$3/$APP_NAME
 
 mkdir -p $PROJECT_PATH
 cp -rf $TEMPLATE_PATH/* $PROJECT_PATH 
+#cp -rf ../$TEMPLATE_PATH/shared $PROJECT_PATH/Makefile.tmpl
 touch $PROJECT_PATH/.project # create file that marks this a project folder
 #cp -rf $TEMPLATE_PATH/.project $PROJECT_PATH
 
 pushd $PROJECT_PATH
+# do auto tools files
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 rm configure.ac.tmpl
 chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
-popd
 
-pushd $PROJECT_PATH/build
-cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
-rm Makefile.tmpl
-mv Makefile.tmp Makefile.tmpl
+# do makefile
+pushd ./${APP_NAME}/
+cat ./build/Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmpl
 cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
-#rm *.tmpl
+# rm ./build/Makefile.tmpl
+# mv Makefile.tmpl ./build/Makefile.tmpl
+cat Makefile.tpml > ./build/Makefile.tmpl
+
 chmod 644 Makefile 
 popd
 
@@ -77,7 +82,7 @@ rm ./app.cpp.tmpl
 cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 cat  ./app_test.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.cpp
-cat  ./@app@_test.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.hpp
+cat  ./app_test.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.hpp
 rm *.tmpl
 chmod 644 *.cpp *.hpp Makefile*
 popd
@@ -101,7 +106,7 @@ popd
 # add to git hub
 # gh --repo @@APP_NAME@@
 
-PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"
+PRINT_VERBOSE "$FILE -> Exiting.   @ $DATE"
 
 
 
