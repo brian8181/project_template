@@ -61,11 +61,14 @@ fi
 # fi
 # HACK
 rm ~/bin/csk
+
 #rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk 
 
 PRINT_DEBUG "install exsisting project scripts ..."
 # copy scripts
-cp -f ./shared/csk.sh ~/bin
+cp -rf ./shared/* ~/bin
+cp -f ./shared/csk.sh ~/bin/csk.sh
+
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
 
@@ -95,6 +98,7 @@ if [ -f ~/bin/~/bin/class.?pp.tmpl ]
 then
 	rm ~/bin/~/bin/class.?pp.tmpl
 fi
+
 #rm ~/bin/ccl ~/bin/ccl2 ~/bin/create.class.sh ~/bin/class.?pp.tmpl
 PRINT_DEBUG "install existing class templates ..."
 # copy scripts
