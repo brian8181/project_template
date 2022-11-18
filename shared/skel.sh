@@ -13,8 +13,8 @@ DATE=$(date "+%H:%M:%S:%s")
 
 # USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
-VERBOSE_MSG="$PRINT_GREEN_VERBOSE: "
-VERBOSE=1
+#VERBOSE_MSG="$PRINT_GREEN_VERBOSE: "
+#VERBOSE=1
 #DEBUG=0
 # END
 
@@ -35,7 +35,7 @@ function PRINT_VERBOSE
     MSG=${VERBOSE_MSG}$1
     echo -e ${VERBOSE:-"$MSG"}
 }
-PRINT_VERBOSE "$FILE -> Running... @ $DATE"
+PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
 # YOUR CODE HERE
 APP_NAME=$1 
@@ -106,4 +106,4 @@ popd
 # add to git hub
 # gh --repo @@APP_NAME@@
 
-PRINT_VERBOSE "$FILE -> Exiting.   @ $DATE"
+PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"

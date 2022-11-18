@@ -1,16 +1,18 @@
 #!/bin/bash
-FILE='install.sh'
-VERSION='0.0.2'
-FILE_DATE='January 1, 2022'
-
+FILE='install2.sh'
+VERSION='0.1'
+FILE_DATE='1172022'
 
 FMT_FG_RED='\e[31m'
+FMT_FG_GREEN='\e[32m'
 FMT_RESET='\e[0m'
 PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
+PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
 # USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
+INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
 # END
@@ -28,14 +30,20 @@ function PRINT_DEBUG
     echo -e ${DEBUG:+"$MSG"}
 }
 
-PRINT_DEBUG "$FILE -> Running... @ $DATE"
+function PRINT_INFO
+{
+    MSG=${INFO_MSG}$1
+    echo -e ${VERBOSE:+"$MSG"}
+}
+
+PRINT_INFO "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
-PRINT_DEBUG "remove existing project templates ..."
+PRINT_INFO "remove existing project templates ..."
 # remove "project_templates" before update
 rm -rf ~/bin/project_templates
-PRINT_DEBUG "install project templates ..."
+PRINT_INFO "install project templates ..."
 # copy templates
 mkdir ~/bin/project_templates
 cp -r ./basic ~/bin/project_templates
@@ -43,28 +51,13 @@ cp -r ./minimal ~/bin/project_templates
 cp -r ./gtk ~/bin/project_templates
 cp -r ./shared ~/bin/project_templates
 
-PRINT_DEBUG "remove existing project scripts ..."
+PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-if [ -f ~/bin/skel.sh ] 
-then
-	rm ~/bin/skel.sh
-fi
+rm ~/bin/skel.sh  > /dev/null # possible error
+rm ~/bin/csk.sh > /dev/null   # possible error
+rm ~/bin/csk > /dev/null      # possible error
 
-if [ -f ~/bin/csk.sh ]
-then
-	rm ~/bin/csk.sh
-fi
-
-# if [ -e ~/bin/csk ]
-# then
-# 	rm ~/bin/csk
-# fi
-# HACK
-rm ~/bin/csk
-
-#rm ~/bin/skel.sh ~/bin/csk.sh ~/bin/csk 
-
-PRINT_DEBUG "install exsisting project scripts ..."
+PRINT_INFO "install project scripts ..."
 # copy scripts
 cp -rf ./shared/* ~/bin
 cp -f ./shared/csk.sh ~/bin/csk.sh
@@ -74,43 +67,24 @@ chmod +x ~/bin/skel.sh
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
 
-PRINT_DEBUG "remove existing class templates ..."
+PRINT_INFO "remove existing class templates ..."
 # remove old scripts
-if [ -f ~/bin/ccl ] 
-then
-	rm ~/bin/ccl
-fi
-
-if [ -f ~/bin/ccl2 ] 
-then
-	rm ~/bin/ccl2
-fi
-
-if [ -f ~/bin/create.class.sh ] 
-then
-	rm ~/bin/create.class.sh
-fi
-
-if [ -f ~/bin/run.create.class.sh ] 
-then
-	rm ~/bin/run.create.class.sh
-fi
-
-if [ -f ~/bin/~/bin/class.?pp.tmpl ] 
-then
-	rm ~/bin/~/bin/class.?pp.tmpl
-fi
-
+rm ~/bin/ccl 
+rm ~/bin/ccl2
+rm ~/bin/create.class.sh
+rm ~/bin/run.create.class.sh
+rm ~/bin/class.?pp.tmpl
 #rm ~/bin/ccl ~/bin/ccl2 ~/bin/create.class.sh ~/bin/class.?pp.tmpl
-PRINT_DEBUG "install existing class templates ..."
-# copy scripts
+
+PRINT_INFO "install class templates ..."
+PRINT_INFO "copy scripts"
 cp -f ./class_tmpl/*.sh ~/bin
 cp -f ./class_tmpl/*.tmpl ~/bin
-# create easy name soft link
+PRINT_INFO "create easy name soft link"
 ln -s ~/bin/create.class.sh ~/bin/ccl
 # create new link with multi name option built into script
 ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 
 ##{ END YOUR CODE  }##
 
-PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"
+PRINT_INFO "$FILE -> Exiting.   @ $DATE"
