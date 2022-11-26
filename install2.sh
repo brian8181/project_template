@@ -53,9 +53,9 @@ cp -r ./shared ~/bin/project_templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel.sh  > /dev/null # possible error
-rm ~/bin/csk.sh > /dev/null   # possible error
-rm ~/bin/csk > /dev/null      # possible error
+rm ~/bin/skel.sh  2> /dev/null # possible error
+rm ~/bin/csk.sh 2> /dev/null   # possible error
+rm ~/bin/csk 2> /dev/null      # possible error
 
 PRINT_INFO "install project scripts ..."
 # copy scripts
@@ -69,11 +69,11 @@ ln -s ~/bin/csk.sh ~/bin/csk
 
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
-rm ~/bin/ccl 
-rm ~/bin/ccl2
-rm ~/bin/create.class.sh
-rm ~/bin/run.create.class.sh
-rm ~/bin/class.?pp.tmpl
+rm ~/bin/ccl 2>/dev/null
+rm ~/bin/ccl2 2>/dev/null
+rm ~/bin/create.class.sh 2>/dev/null
+rm ~/bin/run.create.class.sh 2>/dev/null
+rm ~/bin/class.?pp.tmpl 2>/dev/null
 #rm ~/bin/ccl ~/bin/ccl2 ~/bin/create.class.sh ~/bin/class.?pp.tmpl
 
 PRINT_INFO "install class templates ..."
