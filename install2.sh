@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE='install2.sh'
-VERSION='0.1'
-FILE_DATE='1172022'
+VERSION='0.1.1'
+FILE_DATE='12102022'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -38,7 +38,7 @@ function PRINT_INFO
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
 
-##{ BEGIN YOUR CODE  }##
+##{ BEGIN CODE  }##
 
 PRINT_INFO "remove existing project templates ..."
 # remove "project_templates" before update
@@ -69,11 +69,11 @@ ln -s ~/bin/csk.sh ~/bin/csk
 
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
-rm ~/bin/ccl 2>/dev/null
-rm ~/bin/ccl2 2>/dev/null
-rm ~/bin/create.class.sh 2>/dev/null
-rm ~/bin/run.create.class.sh 2>/dev/null
-rm ~/bin/class.?pp.tmpl 2>/dev/null
+rm ~/bin/ccl 2>/dev/null                  # possible error
+rm ~/bin/ccl2 2>/dev/null                 # possible error
+rm ~/bin/create.class.sh 2>/dev/null      # possible error
+rm ~/bin/run.create.class.sh 2>/dev/null  # possible error
+rm ~/bin/class.?pp.tmpl 2>/dev/null       # possible error
 #rm ~/bin/ccl ~/bin/ccl2 ~/bin/create.class.sh ~/bin/class.?pp.tmpl
 
 PRINT_INFO "install class templates ..."
@@ -85,6 +85,6 @@ ln -s ~/bin/create.class.sh ~/bin/ccl
 # create new link with multi name option built into script
 ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 
-##{ END YOUR CODE  }##
+##{ END CODE  }##
 
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
