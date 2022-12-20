@@ -59,7 +59,7 @@ rm ~/bin/csk 2> /dev/null      # possible error
 
 PRINT_INFO "install project scripts ..."
 # copy scripts
-#cp -rf ./shared/* ~/bin
+#cp -rf ./shared/* ~/bin 
 cp -f ./shared/csk.sh ~/bin/csk.sh
 cp -f ./shared/skel.sh ~/bin/skel.sh
 chmod +x ~/bin/csk.sh  
@@ -75,7 +75,7 @@ rm ~/bin/ccl2 2>/dev/null                 # possible error
 rm ~/bin/create.class.sh 2>/dev/null      # possible error
 rm ~/bin/run.create.class.sh 2>/dev/null  # possible error
 rm ~/bin/class.?pp.tmpl 2>/dev/null       # possible error
-#rm ~/bin/ccl ~/bin/ccl2 ~/bin/create.class.sh ~/bin/class.?pp.tmpl
+rm ~/bin/class.base.?pp.tmpl 2>/dev/null  # possible error
 
 PRINT_INFO "install class templates ..."
 PRINT_INFO "copy scripts"

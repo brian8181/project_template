@@ -57,6 +57,7 @@ rm ~/bin/ccl2 2>/dev/null                 # possible error
 rm ~/bin/create.class.sh 2>/dev/null      # possible error
 rm ~/bin/run.create.class.sh 2>/dev/null  # possible error
 rm ~/bin/class.?pp.tmpl 2>/dev/null       # possible error
+rm ~/bin/class.base.?pp.tmpl 2>/dev/null   # possible error
 
 ##{ END YOUR CODE  }##
 
