@@ -51,8 +51,9 @@ then
 		
 		if [ -z $BASE_CLASS_NAME ]; then
 
-			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
-			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp
+			echo 'BOOM BOOM POW'
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp
 			# now remove base class tag
 			# no need if using correct templates
 			# cat ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
@@ -63,11 +64,13 @@ then
 			# make a backup of Makefile for now
 			cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
 			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
+			# no backup
+			# cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" | sed "s/@@CLASS_NAME@@//g" > Makefile;
 			rm  Makefile.tmp
 			
 		else
-				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl
-				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp.tmpl	
+				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.base.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl
+				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.base.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp.tmpl	
 				# now replace base class tag
 				cat ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.hpp
 				cat ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-".."}/src/${CLASS_NAME}.cpp	

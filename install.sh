@@ -1,7 +1,7 @@
 #!/bin/bash
-FILE='install2.sh'
-VERSION='0.1.1'
-FILE_DATE='12102022'
+FILE='install.sh'
+VERSION='0.1.3'
+FILE_DATE='12212022'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -72,19 +72,25 @@ PRINT_INFO "remove existing class templates ..."
 # remove old scripts
 rm ~/bin/ccl 2>/dev/null                  # possible error
 rm ~/bin/ccl2 2>/dev/null                 # possible error
-rm ~/bin/create.class.sh 2>/dev/null      # possible error
-rm ~/bin/run.create.class.sh 2>/dev/null  # possible error
-rm ~/bin/class.?pp.tmpl 2>/dev/null       # possible error
-rm ~/bin/class.base.?pp.tmpl 2>/dev/null  # possible error
+rm ~/bin/create.class.sh 2> /dev/null      # possible error
+rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
+rm ~/bin/class.?pp.tmpl 2> /dev/null       # possible error
+rm ~/bin/class.base.?pp.tmpl 2> /dev/null  # possible error
+# rm whole! class template folder
+rm -rf ~/bin/class_tmpl 2> /dev/null
 
 PRINT_INFO "install class templates ..."
 PRINT_INFO "copy scripts"
+# copy whole! class template folder
+cp -rf ./class_tmpl ~/bin #2> /dev/null
 cp -f ./class_tmpl/*.sh ~/bin
 cp -f ./class_tmpl/*.tmpl ~/bin
 PRINT_INFO "create easy name soft link"
-ln -s ~/bin/create.class.sh ~/bin/ccl
+#ln -s ~/bin/create.class.sh ~/bin/ccl
+ln -s ~/bin/class_tmpl/create.class.sh ~/bin/ccl
 # create new link with multi name option built into script
-ln -s ~/bin/run.create.class.sh ~/bin/ccl2
+#ln -s ~/bin/run.create.class.sh ~/bin/ccl2
+ln -s ~/bin/class_tmpl/run.create.class.sh ~/bin/ccl2
 
 ##{ END CODE  }##
 
