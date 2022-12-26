@@ -1,43 +1,45 @@
 #!/bin/bash
-
-FILE='skel.sh'
-VERSION='0.1.2'
-FILE_DATE='June 7, 2022'
+FILE='{FILE}'
+VERSION='{VERSION}'
+FILE_DATE='{DATE}'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
 FMT_RESET='\e[0m'
 PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
-PRINT_GREEN_VERBOSE=${FMT_FG_GREEM}DEBUG${FMT_RESET}
+PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
 # USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
-#VERBOSE_MSG="$PRINT_GREEN_VERBOSE: "
-#VERBOSE=1
-#DEBUG=0
+INFO_MSG="$PRINT_GREEN_INFO: "
+VERBOSE=1
+DEBUG=1
 # END
 
 if [ -n $VERBOSE ]
 then
-	echo ${VERBOSE:-"File - $FILE"}.
-	echo ${VERBOSE:-"Version - $VERSION"}.
-	echo ${VERBOSE:-"Date - $FILE_DATE"}.
+	echo ${VERBOSE:+"File - $FILE"}.
+	echo ${VERBOSE:+"Version - $VERSION"}.
+	echo ${VERBOSE:+"Date - $FILE_DATE"}.
 fi
 
 function PRINT_DEBUG
 {
     MSG=${DEBUG_MSG}$1
-    echo -e ${DEBUG:-"$MSG"}
+    echo -e ${DEBUG:+"$MSG"}
 }
-function PRINT_VERBOSE
-{
-    MSG=${VERBOSE_MSG}$1
-    echo -e ${VERBOSE:-"$MSG"}
-}
-PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
-# YOUR CODE HERE
+function PRINT_INFO
+{
+    MSG=${INFO_MSG}$1
+    echo -e ${VERBOSE:+"$MSG"}
+}
+
+PRINT_INFO "$FILE -> Running... @ $DATE"
+
+##{ BEGIN YOUR CODE  }##
+
 APP_NAME=$1 
 TEMPLATE_PATH=$2
 PROJECT_PATH=$3/$APP_NAME
@@ -59,7 +61,7 @@ chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 # do makefile
 pushd ./${APP_NAME}/
 cat ./build/Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmpl
-cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
+cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile # delete ? 
 # rm ./build/Makefile.tmpl
 # mv Makefile.tmpl ./build/Makefile.tmpl
 cat Makefile.tpml > ./build/Makefile.tmpl
@@ -106,4 +108,7 @@ popd
 # add to git hub
 # gh --repo @@APP_NAME@@
 
-PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"
+##{ END YOUR CODE  }##
+
+PRINT_INFO "$FILE -> Exiting.   @ $DATE"
+
