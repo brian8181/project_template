@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE='create.class.sh'
-VERSION='0.1.1'
-FILE_DATE='Jnauary 1, 2022'
+VERSION='0.1.2.'
+FILE_DATE='December 26, 2022'
 FMT_FG_RED='\e[31m'
 FMT_RESET='\e[0m'
 PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
