@@ -51,8 +51,6 @@ then
 			# make a backup of Makefile for now
 			cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
 			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
-			# no backup
-			# cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" | sed "s/@@CLASS_NAME@@//g" > Makefile;
 			rm  Makefile.tmp
 			
 		else
