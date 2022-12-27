@@ -62,9 +62,9 @@ chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 pushd ./${APP_NAME}/
 cat ./build/Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmpl
 cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile # delete ? 
-# rm ./build/Makefile.tmpl
+rm ./build/*
 # mv Makefile.tmpl ./build/Makefile.tmpl
-cat Makefile.tpml > ./build/Makefile.tmpl
+# cat Makefile.tpml > ./build/Makefile.tmpl
 
 chmod 644 Makefile 
 popd
