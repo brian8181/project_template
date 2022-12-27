@@ -68,7 +68,8 @@ then
 				cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
 				cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
 				rm  Makefile.tmp 
-				rm ../src/${CLASS_NAME}.cpp.tmpl  ../src/${CLASS_NAME}.hpp.tmpl
+				rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
+				rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl
 		fi
 	else
 		echo "Error: This is not a project directory."
