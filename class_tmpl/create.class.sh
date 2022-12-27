@@ -14,6 +14,7 @@ VERBOSE=1
 DEBUG=1
 # END
 
+
 if [ -n $VERBOSE ]
 then
 	echo ${VERBOSE:+"File - $FILE"}.
@@ -27,9 +28,16 @@ function PRINT_DEBUG
     echo -e ${DEBUG:+"$MSG"}
 }
 
-PRINT_DEBUG "$FILE -> Running... @ $DATE"
+function PRINT_INFO
+{
+    MSG=${INFO_MSG}$1
+    echo -e ${VERBOSE:+"$MSG"}
+}
+
+PRINT_INFO "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
+
 CLASS_NAME=$1
 BASE_CLASS_NAME=$2
 INPUT_PATH=$3
@@ -75,6 +83,8 @@ then
 else
 		echo "Error: No class name."
 fi
+
 ##{ END YOUR CODE  }##
 
-PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"
+PRINT_INFO "$FILE -> Exiting.   @ $DATE"
+
