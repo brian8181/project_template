@@ -37,34 +37,17 @@ OUTPUT_PATH=$4
 
 if [ ! -z $CLASS_NAME ]
 then
-	# is this a project folder
-	if [ -f "./.project" ]
+	if [ -f "./.project" ] # is this a project folder?
 	then
-		#pushd ./build
-		if [ -f Makefile.tmp ]; then
-			rm Makefile.tmp
-		fi
-		if [ -f Makefile.tmp2 ]; then
-			rm Makefile.tmp2
-		fi
 		PRINT_DEBUG ${INPUT_PATH:-"~/bin"}
 		
 		if [ -z $BASE_CLASS_NAME ]; then
 
-			echo 'BOOM BOOM POW'
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
-			# now remove base class tag
-			# no need if using correct templates
-			# cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
-			# cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	
-			echo 'BOOM BOOM POW2' 
-			echo $PWD
 			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}.o  @@CLASS_NAME@@/g" > Makefile.tmp
-			echo 'BOOM BOOM POW3'
 			# try to update Makefile with new rule
 			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
-			echo 'BOOM BOOM POW4'
 			# make a backup of Makefile for now
 			cat Makefile.tmp | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
 			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
@@ -87,8 +70,6 @@ then
 				rm  Makefile.tmp 
 				rm ../src/${CLASS_NAME}.cpp.tmpl  ../src/${CLASS_NAME}.hpp.tmpl
 		fi
-		#popd
-
 	else
 		echo "Error: This is not a project directory."
 	fi
