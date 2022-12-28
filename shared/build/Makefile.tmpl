@@ -28,11 +28,11 @@ debug: all
 
 # compile & link for debug GDBversion variable
 #debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
-all: $(APPNAME) bash_color_test $(APPNAME)_test
+all: $(APPNAME) bash_color_test
 
 # link
-$(APPNAME): $(APPNAME).o main.o @@CLASS_NAME@@ #END
-	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/@@CLASS_NAME@@ -o $(BUILDDIR)/$(APPNAME)
+$(APPNAME): $(APPNAME).o main.o #AUTO_INSERT_POINT_DO_NOT_REMOVE#
+	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o -o $(BUILDDIR)/$(APPNAME)
 
 # compile only
 $(APPNAME).o:
@@ -40,18 +40,10 @@ $(APPNAME).o:
 	
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
-	# $(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
 
 ## auto gernerated here ##
 
-# link
-$(APPNAME)_test: $(APPNAME)_test.o
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME)_test.o $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
-
 # compile only
-$(APPNAME)_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME)_test.cpp -o $(BUILDDIR)/$(APPNAME)_test.o
-
 bash_color_test: bash_color_test.o
 	$(CXX) $(CXXFLAGS) $(BUILDDIR)/bash_color_test.o -o $(BUILDDIR)/bash_color_test
 
