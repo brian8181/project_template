@@ -14,7 +14,6 @@ VERBOSE=1
 DEBUG=1
 # END
 
-
 if [ -n $VERBOSE ]
 then
 	echo ${VERBOSE:+"File - $FILE"}.
@@ -53,9 +52,11 @@ then
 
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
+			
 			# dont't add to all
 			#cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}.o @@CLASS_NAME@@/g" | sed "s/@@CLASS_PATH@@/\/\$\(BUILDDIR\)\//g" > Makefile.tmp 
 			#cat Makefile.tmpl | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE/${CLASS_NAME}.o/g #AUTO_INSERT_POINT_DO_NOT_REMOVE" > Makefile.tmp
+
 			# try to update Makefile with new rule
 			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 			# make a backup of Makefile for now
@@ -69,8 +70,10 @@ then
 				# now replace base class tag
 				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	
+				
 				# dont't add to all
 				#cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}.o  @@CLASS_NAME@@/g" > Makefile.tmp
+				
 				# try to update Makefile with new rule
 				MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 				# make a backup of Makefile for now
