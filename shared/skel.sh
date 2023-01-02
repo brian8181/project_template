@@ -1,7 +1,7 @@
 #!/bin/bash
-FILE='{FILE}'
-VERSION='{VERSION}'
-FILE_DATE='{DATE}'
+FILE='skel.h'
+VERSION='0.1'
+FILE_DATE='January 2, 2023'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'

@@ -1,3 +1,8 @@
+#!/bin/bash
+FILE='run.create.class.sh'
+VERSION='0.1'
+FILE_DATE='January 2, 2023'
+
 INPUT_PATH=~/bin
 OUTPUT_PATH=.
 

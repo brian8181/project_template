@@ -46,7 +46,7 @@ if [ ! -z $CLASS_NAME ]
 then
 	if [ -f "./.project" ] # is this a project folder?
 	then
-		PRINT_DEBUG ${INPUT_PATH:-"~/bin"}
+		PRINT_INFO ${INPUT_PATH:-"~/bin"}
 		
 		if [ -z $BASE_CLASS_NAME ]; then
 
