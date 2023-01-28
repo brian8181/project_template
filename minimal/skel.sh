@@ -3,9 +3,6 @@
 FILE='skel.sh'
 VERSION='0.1'
 FILE_DATE='October 30, 2021'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
 FMT_RESET='\e[0m'
