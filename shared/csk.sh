@@ -1,7 +1,7 @@
 #!/bin/bash
-FILE='{FILE}'
-VERSION='{VERSION}'
-FILE_DATE='{DATE}'
+FILE='shared/csk.sh'
+VERSION='0.1'
+FILE_DATE='January 19, 2023'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
