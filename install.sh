@@ -19,9 +19,9 @@ DEBUG=1
 
 if [ -n $VERBOSE ]
 then
-	echo ${VERBOSE:+"File - $FILE"}.
-	echo ${VERBOSE:+"Version - $VERSION"}.
-	echo ${VERBOSE:+"Date - $FILE_DATE"}.
+	echo ${VERBOSE:+"File - $FILE"}
+	echo ${VERBOSE:+"Version - $VERSION"}
+	echo ${VERBOSE:+"Date - $FILE_DATE"}
 fi
 
 function PRINT_DEBUG
@@ -70,8 +70,8 @@ ln -s ~/bin/csk.sh ~/bin/csk
 
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
-rm ~/bin/ccl 2>/dev/null                  # possible error
-rm ~/bin/ccl2 2>/dev/null                 # possible error
+rm ~/bin/ccl 2>/dev/null                   # possible error
+rm ~/bin/ccl2 2>/dev/null                  # possible error
 rm ~/bin/create.class.sh 2> /dev/null      # possible error
 rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
 rm ~/bin/class.?pp.tmpl 2> /dev/null       # possible error

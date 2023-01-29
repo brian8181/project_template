@@ -2,8 +2,8 @@
 FILE='minimal/csk.sh'
 VERSION='0.1'
 FILE_DATE='January 2, 2023'
-# AUTHOR='{AUTHOR}'
-# EMAIL='{EMAIL}'
+AUTHOR='Brian K Preston'
+EMAIL='brain1818@gmail.com'
 # WWW='{WWW}'
 
 FMT_FG_RED='\e[31m'
