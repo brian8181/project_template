@@ -15,7 +15,7 @@ DATE=$(date "+%H:%M:%S:%s")
 USER_NAME=brian
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 VERBOSE=1
-DEBUG=1
+DEBUG=1akwe
 # END
 
 if [ -n $VERBOSE ]

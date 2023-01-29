@@ -2,9 +2,9 @@
 FILE='{FILE}'
 VERSION='{VERSION}'
 FILE_DATE='{DATE}'
-# AUTHOR='{AUTHOR}'
-# EMAIL='{EMAIL}'
-# WWW='{WWW}'
+AUTHOR='Brian K Preston'
+EMAIL='brian8181@gmail.com'
+WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -25,9 +25,9 @@ then
 	echo ${VERBOSE:+"File - $FILE"}.
 	echo ${VERBOSE:+"Version - $VERSION"}.
 	echo ${VERBOSE:+"Date - $FILE_DATE"}.
-	# echo ${VERBOSE:+"Author - $AUTHOR"}.
-	# echo ${VERBOSE:+"Email - $EMAIL"}.
-	# echo ${VERBOSE:+"www - $WWW"}.
+	echo ${VERBOSE:+"Author - $AUTHOR"}.
+	echo ${VERBOSE:+"Email - $EMAIL"}.
+	echo ${VERBOSE:+"www - $WWW"}.
 fi
 
 function PRINT_DEBUG
