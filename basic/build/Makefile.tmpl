@@ -31,7 +31,7 @@ debug: all
 all: $(APPNAME) bash_color_test
 
 # link
-$(APPNAME): $(APPNAME).o main.o #AUTO_INSERT_POINT_DO_NOT_REMOVE#
+$(APPNAME): $(APPNAME).o main.o
 	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o -o $(BUILDDIR)/$(APPNAME)
 
 # compile only

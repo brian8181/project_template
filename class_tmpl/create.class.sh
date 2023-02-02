@@ -58,7 +58,7 @@ then
 	then
 		PRINT_INFO ${INPUT_PATH:-"~/bin"}
 		
-		if [ -z $BASE_CLASS_NAME ]; then
+		if [ -z $BASE_CLASS_NAME ]; then # no base class
 
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
@@ -70,11 +70,11 @@ then
 			# try to update Makefile with new rule
 			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 			# make a backup of Makefile for now
-			cat Makefile | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
-			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
+			cat Makefile | sed "s/@@CLASS_NAME@@/${MAKE_RULE}\n@@CLASS_NAME@@/g" > Makefile.tmpl
+			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile # delete @@CLASS_NAME@@'s
 			rm  Makefile.tmpl
 			
-		else
+		else    # has a base class
 				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.base.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
 				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.base.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl	
 				# now replace base class tag
@@ -87,7 +87,7 @@ then
 				# try to update Makefile with new rule
 				MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 				# make a backup of Makefile for now
-				cat Makefile | sed "s/## auto gernerated here ##/${MAKE_RULE}\n## auto gernerated here ##/g" > Makefile.tmpl
+				cat Makefile | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile.tmpl
 				cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile
 				rm  Makefile.tmpl 
 				rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
