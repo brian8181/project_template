@@ -32,7 +32,7 @@ all: $(APPNAME) bash_color_test
 
 # link
 $(APPNAME): $(APPNAME).o main.o #@@PREREQUISTE@@
-	 $(CXX) $(CXXFLAGS) -o $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o @@CLASS_NAME@@
+	 $(CXX) $(CXXFLAGS) -o $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o #@@CLASS_NAME@@
 
 # compile only
 $(APPNAME).o:
