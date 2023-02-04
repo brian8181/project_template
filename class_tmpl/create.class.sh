@@ -64,14 +64,14 @@ then
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class_tmpl/class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
 			
 			# dont't add to all
-			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/\$(BUILDDIR)\/${CLASS_NAME}.o @@CLASS_NAME@@/g" | sed "s/@@PREREQUISTE@@/${CLASS_NAME}.o/g" > Makefile.tmp #| sed "s/@@CLASS_PATH@@/\\/$(BUILDDIR)\\/g" > Makefile.tmp 
+			cat Makefile.tmpl | sed "s/@@CLASS_NAME@@/\$(BUILDDIR)\/${CLASS_NAME}.o @@CLASS_NAME@@/g" | sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o/g" > Makefile.tmp #| sed "s/@@CLASS_PATH@@/\\/$(BUILDDIR)\\/g" > Makefile.tmp 
 			#cat Makefile.tmpl | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE/${CLASS_NAME}.o/g #AUTO_INSERT_POINT_DO_NOT_REMOVE" > Makefile.tmp
 
 			# try to update Makefile with new rule
 			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 			# make a backup of Makefile for now
 			cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile.tmpl
-          	cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g"  | sed "s/@@PREREQUISTE@@//"> Makefile # delete @@CLASS_NAME@@'s
+          	cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g"  | sed "s/#@@PREREQUISTE@@//"> Makefile # delete @@CLASS_NAME@@'s
 			rm  Makefile.tmpl
 			
 		else    # has a base class
