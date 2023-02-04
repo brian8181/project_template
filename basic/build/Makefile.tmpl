@@ -31,8 +31,8 @@ debug: all
 all: $(APPNAME) bash_color_test
 
 # link
-$(APPNAME): $(APPNAME).o main.o #AUTO_INSERT_POINT_DO_NOT_REMOVE#
-	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o -o $(BUILDDIR)/$(APPNAME)
+$(APPNAME): $(APPNAME).o main.o @@CLASS_NAME@@
+	 $(CXX) $(CXXFLAGS) -o $(BUILDDIR)/$(APPNAME) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o $(BUILDDIR)/@@CLASS_NAME@@
 
 # compile only
 $(APPNAME).o:
@@ -41,7 +41,7 @@ $(APPNAME).o:
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
 
-## auto gernerated here ##
+#AUTO_INSERT_POINT_DO_NOT_REMOVE#
 
 # compile only
 bash_color_test: bash_color_test.o
@@ -59,7 +59,7 @@ man:
 
 .PHONY: unman
 unman:
-	rm $(man1dir)/$(APPNAME).1.gz
+	-rm -rf $(man1dir)/$(APPNAME).1.gz
 	mandb
 
 # install 
@@ -71,25 +71,25 @@ install: man
 # delete object files & app executable
 .PHONY: clean
 clean:
-	-rm -f $(OBJS)/*.o 
-	-rm -f $(BUILD)/$(APPNAME) 
-	-rm -f $(BUILD)/bash_color_test
-	-rm -f $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
-	-rm -f $(BUILD)/$(APPNAME).core
+	-rm -rf $(OBJS)/*.o 
+	-rm -rf $(BUILD)/$(APPNAME) 
+	-rm -rf $(BUILD)/bash_color_test
+	-rm -rf $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
+	-rm -rf $(BUILD)/$(APPNAME).core
 
 # delete object files, app, executables, & all automake/autoconf generated files
 .PHONY: distclean
 distclean: clean
-	-rm -f $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
-	-rm -f $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
-	-rm -f $(SRCS)/Makefile $(SRCS)/Makefile.in
+	-rm -rf $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
+	-rm -rf $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
+	-rm -rf $(SRCS)/Makefile $(SRCS)/Makefile.in
 	-rm -rf $(ROOT)/autom4te.cache $(SRCS)/.deps $(SRCS)/.libs
 
 clean-local:
-	-rm -f config.status configure config.log
+	-rm -rf config.status configure config.log
 	-rm -rf autom4te.cache/
-	-rm =-f aclocal.m4
-	-rm -f compile install-sh missing Makefile.in
+	-rm =-rf aclocal.m4
+	-rm -rf compile install-sh missing Makefile.in
 	
 dist: 
 	git archive HEAD | gzip > $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
