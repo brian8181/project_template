@@ -1,7 +1,10 @@
 #!/bin/bash
-FILE='skel.h'
-VERSION='0.1'
-FILE_DATE='January 2, 2023'
+FILE='./skel.sh'
+VERSION='0.1.1'
+FILE_DATE='Febuary, 2023'
+AUTHOR='Brian K Preston'
+EMAIL='brain1818@gmail.com'
+WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -19,9 +22,12 @@ DEBUG=1
 
 if [ -n $VERBOSE ]
 then
-	echo ${VERBOSE:+"File - $FILE"}.
-	echo ${VERBOSE:+"Version - $VERSION"}.
-	echo ${VERBOSE:+"Date - $FILE_DATE"}.
+	echo ${VERBOSE:+"File - $FILE"}
+	echo ${VERBOSE:+"Version - $VERSION"}
+	echo ${VERBOSE:+"Date - $FILE_DATE"}
+	echo ${VERBOSE:+"Author - $AUTHOR"}
+	echo ${VERBOSE:+"Email - $EMAIL"}
+	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG

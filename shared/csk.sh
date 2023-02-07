@@ -1,9 +1,10 @@
+
 #!/bin/bash
-FILE='shared/csk.sh'
-VERSION='0.1'
-FILE_DATE='January 19, 2023'
+FILE='./csk.sh'
+VERSION='0.1.1'
+FILE_DATE='Febuary, 2023'
 AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
+EMAIL='brain1818@gmail.com'
 WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
@@ -22,12 +23,12 @@ DEBUG=1
 
 if [ -n $VERBOSE ]
 then
-	echo ${VERBOSE:+"File - $FILE"}.
-	echo ${VERBOSE:+"Version - $VERSION"}.
-	echo ${VERBOSE:+"Date - $FILE_DATE"}.
-	echo ${VERBOSE:+"Author - $AUTHOR"}.
-	echo ${VERBOSE:+"Email - $EMAIL"}.
-	echo ${VERBOSE:+"www - $WWW"}.
+	echo ${VERBOSE:+"File - $FILE"}
+	echo ${VERBOSE:+"Version - $VERSION"}
+	echo ${VERBOSE:+"Date - $FILE_DATE"}
+	echo ${VERBOSE:+"Author - $AUTHOR"}
+	echo ${VERBOSE:+"Email - $EMAIL"}
+	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
