@@ -1,7 +1,7 @@
 #!/bin/bash
-FILE='basic/csk.sh'
-VERSION='0.1'
-FILE_DATE='January 19, 2023'
+FILE='./csk.sh'
+VERSION='0.1.1'
+FILE_DATE='Febuary, 2023'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
@@ -9,8 +9,7 @@ WWW='https://github.com/brian8181'
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
 FMT_RESET='\e[0m'
-PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
-PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
+PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
 # USER SETTING
