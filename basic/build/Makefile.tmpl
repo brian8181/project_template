@@ -43,12 +43,6 @@ main.o:
 
 #AUTO_INSERT_POINT_DO_NOT_REMOVE#
 
-# compile only
-bash_color_test: bash_color_test.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/bash_color_test.o -o $(BUILDDIR)/bash_color_test
-
-bash_color_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/bash_color_test.cpp -o $(BUILDDIR)/bash_color_test.o
 
 # install man pages
 .PHONY: man
