@@ -44,6 +44,20 @@ main.o:
 
 ## auto gernerated here ##
 
+# link
+$(APPNAME)_test: $(APPNAME)_test.o
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME)_test.o $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
+
+# compile only
+$(APPNAME)_test.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME)_test.cpp -o $(BUILDDIR)/$(APPNAME)_test.o
+
+bash_color_test: bash_color_test.o
+	$(CXX) $(CXXFLAGS) $(BUILDDIR)/bash_color_test.o -o $(BUILDDIR)/bash_color_test
+
+bash_color_test.o:
+	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/bash_color_test.cpp -o $(BUILDDIR)/bash_color_test.o
+
 # install man pages
 .PHONY: man
 man:
@@ -67,7 +81,19 @@ install: man
 clean:
 	-rm -f $(OBJS)/*.o 
 	-rm -f $(BUILD)/$(APPNAME) 
-	
+	-rm -f $(BUILD)/$(APPNAME)_test 
+	-rm -f $(BUILD)/bash_color_test
+	-rm -f $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
+	-rm -f $(BUILD)/$(APPNAME).core
+
+# delete object files, app, executables, & all automake/autoconf generated files
+.PHONY: distclean
+distclean: clean
+	-rm -f $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
+	-rm -f $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
+	-rm -f $(SRCS)/Makefile $(SRCS)/Makefile.in
+	-rm -rf $(ROOT)/autom4te.cache $(SRCS)/.deps $(SRCS)/.libs
+
 clean-local:
 	-rm -f config.status configure config.log
 	-rm -rf autom4te.cache/

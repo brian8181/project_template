@@ -1,6 +1,5 @@
 #!/bin/bash
-
-FILE='skel.sh'
+FILE='./minimal/skel.sh'
 VERSION='0.1'
 FILE_DATE='October 30, 2021'
 

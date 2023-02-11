@@ -1,5 +1,5 @@
 #!/bin/bash
-FILE='./skel.sh'
+FILE='./shared//skel.sh'
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
 AUTHOR='Brian K Preston'
@@ -67,7 +67,7 @@ rm configure.ac.tmpl
 chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
 # do makefile
-pushd ./${APP_NAME}/
+#pushd ./${APP_NAME}/
 cat ./build/Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmpl
 cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile # delete ? 
 rm ./build/*
@@ -75,7 +75,7 @@ rm ./build/*
 # cat Makefile.tpml > ./build/Makefile.tmpl
 
 chmod 644 Makefile 
-popd
+#popd
 
 # get dir name, aka template name
 # TEMPLATE_NAME=${TEMPLATE_PATH##/*/}

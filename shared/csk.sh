@@ -1,5 +1,5 @@
 #!/bin/bash
-FILE='./csk.sh'
+FILE='./shared/csk.sh'
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
 AUTHOR='Brian K Preston'
