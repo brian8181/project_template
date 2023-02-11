@@ -79,12 +79,12 @@ install: man
 # delete object files & app executable
 .PHONY: clean
 clean:
-	-rm -f $(OBJS)/*.o 
-	-rm -f $(BUILD)/$(APPNAME) 
-	-rm -f $(BUILD)/$(APPNAME)_test 
-	-rm -f $(BUILD)/bash_color_test
-	-rm -f $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
-	-rm -f $(BUILD)/$(APPNAME).core
+	-rm -f $(OBJDIR)/*.o 
+	-rm -f $(BUILDDIR)/$(APPNAME) 
+	-rm -f $(BUILDDIR)/$(APPNAME)_test 
+	-rm -f $(BUILDDIR)/bash_color_test
+	-rm -f $(BUILDDIR)/*.xml $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz
+	-rm -f $(BUILDDIR)/$(APPNAME).core
 
 # delete object files, app, executables, & all automake/autoconf generated files
 .PHONY: distclean
@@ -101,6 +101,6 @@ clean-local:
 	-rm -f compile install-sh missing Makefile.in
 	
 dist: 
-	git archive HEAD | gzip > $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
+	git archive HEAD | gzip > $(BUILDDIR)/$(APPNAME).$(BUILD_VERSION).tar.gz
 
 dist-gz: dist
