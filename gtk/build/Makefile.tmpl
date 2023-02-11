@@ -89,10 +89,10 @@ clean:
 # delete object files, app, executables, & all automake/autoconf generated files
 .PHONY: distclean
 distclean: clean
-	-rm -f $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
-	-rm -f $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
-	-rm -f $(SRCS)/Makefile $(SRCS)/Makefile.in
-	-rm -rf $(ROOT)/autom4te.cache $(SRCS)/.deps $(SRCS)/.libs
+	-rm -f $(ROOTDIR)/config.* $(ROOTDIR)/Makefile $(ROOTDIR)/Makefile.in $(ROOTDIR)/INSTALL $(ROOTDIR)/configure 
+	-rm -f $(ROOTDIR)/stamp-h1 $(ROOTDIR)/aclocal.m4 $(ROOTDIR)/compile $(ROOTDIR)/install-sh $(ROOTDIR)/libtool $(ROOTDIR)/ltmain.sh $(ROOTDIR)/stamp-h1 $(ROOTDIR)/missing $(ROOTDIR)/depcomp
+	-rm -f $(SRCDIR)/Makefile $(SRCDIR)/Makefile.in
+	-rm -rf $(ROOTDIR)/autom4te.cache $(SRCDIR)/.deps $(SRCSDIR)/.libs
 
 clean-local:
 	-rm -f config.status configure config.log
