@@ -65,7 +65,6 @@ rm ~/bin/csk 2> /dev/null      # possible error
 
 PRINT_INFO "install project scripts ..."
 # copy scripts
-#cp -rf ./shared/* ~/bin 
 cp -f ./shared/csk.sh ~/bin/csk.sh
 cp -f ./shared/skel.sh ~/bin/skel.sh
 chmod +x ~/bin/csk.sh  
@@ -91,11 +90,10 @@ PRINT_INFO "copy scripts"
 cp -rf ./class_tmpl ~/bin #2> /dev/null
 cp -f ./class_tmpl/*.sh ~/bin
 cp -f ./class_tmpl/*.tmpl ~/bin
+
 PRINT_INFO "create easy name soft link"
-#ln -s ~/bin/create.class.sh ~/bin/ccl
 ln -s ~/bin/class_tmpl/create.class.sh ~/bin/ccl
 # create new link with multi name option built into script
-#ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 ln -s ~/bin/class_tmpl/run.create.class.sh ~/bin/ccl2
 
 ##{ END CODE  }##
