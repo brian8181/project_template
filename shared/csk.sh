@@ -43,6 +43,8 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
+# DEBUG
+PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
@@ -63,4 +65,6 @@ DEFAULT_PROJECT_PATH="${USER_ROOT}/tmp"
 
 ##{ END YOUR CODE  }##
 
-PRINT_INFO "$FILE -> Exiting.   @ $DATE"
+PRINT_INFO "$FILE -> Exiting... @ $DATE"
+# DEBUG
+PRINT_DEBUG "$FILE -> Exiting... @ $DATE"
