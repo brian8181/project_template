@@ -91,8 +91,8 @@ cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
 rm ./app.cpp.tmpl 
 cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-cat  ./app_test.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.cpp
-cat  ./app_test.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.hpp
+# cat  ./app_test.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.cpp
+# cat  ./app_test.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.hpp
 rm *.tmpl
 chmod 644 *.cpp *.hpp Makefile*
 popd
@@ -109,9 +109,10 @@ popd
 pushd $PROJECT_PATH
 mv gitignore_template .gitignore
 rm *skel.sh
-git init
-git add '*'
-git commit -m 'initial commit'
+# git init repository
+# git init
+# git add '*'
+# git commit -m 'initial commit'
 popd
 # add to git hub
 # gh --repo @@APP_NAME@@
