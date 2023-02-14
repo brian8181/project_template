@@ -86,8 +86,9 @@ rm -rf ~/bin/class_tmpl 2> /dev/null
 
 PRINT_INFO "install class templates ..."
 PRINT_INFO "copy scripts"
-# copy whole! class template folder
+# copy whole class template directory to bin
 cp -rf ./class_tmpl ~/bin #2> /dev/null
+# copy class templates to bin
 cp -f ./class_tmpl/*.sh ~/bin
 cp -f ./class_tmpl/*.tmpl ~/bin
 
