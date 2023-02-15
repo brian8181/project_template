@@ -48,9 +48,10 @@ PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
-USER_NAME=brian
+USER_NAME=brian # from config
 APP_NAME=$1
 TEMPLATE_NAME=$2
+TEST_DEBUG=$3
 
 # defaults
 USER_ROOT="/home/${USER_NAME}"
@@ -64,6 +65,7 @@ DEFAULT_PROJECT_PATH="${USER_ROOT}/tmp"
 echo USER_NAME = $USER_NAME
 echo APP_NAME = $APP_NAME
 echo TEMPLATE_NAME = $TEMPLATE_NAME
+echo TEST_DEBUG = $TEST_DEBUG
 
 ##{ END YOUR CODE  }##
 

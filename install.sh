@@ -66,8 +66,10 @@ rm ~/bin/csk 2> /dev/null      # possible error
 PRINT_INFO "install project scripts ..."
 # copy scripts
 cp -f ./shared/csk.sh ~/bin/csk.sh
+cp -f ./shared/cskd.sh ~/bin/cskd.sh  #DEBUG
 cp -f ./shared/skel.sh ~/bin/skel.sh
 chmod +x ~/bin/csk.sh  
+chmod +x ~/bin/cskd.sh                #DEBUG
 chmod +x ~/bin/skel.sh
 
 # create easy name soft link
