@@ -45,7 +45,9 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
-USER_NAME=brian
+#USER_NAME=$(cat ./UserName)
+USER_NAME=$(whoami)
+USER_ROOT="/home/${USER_NAME}"
 APP_NAME=$1
 TEMPLATE_NAME=$2
 
