@@ -49,7 +49,7 @@ PRINT_DEBUG "$FILE -> Running... @ $DATE"
 ##{ BEGIN YOUR CODE  }##
 
 #USER_NAME=$(cat ./UserName)
-USER_NAME=$(whomai)
+USER_NAME=$(whoami)
 APP_NAME=$1
 TEMPLATE_NAME=$2
 TEST_DEBUG1=$3

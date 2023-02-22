@@ -50,7 +50,7 @@ PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
 #USER_NAME=$(cat ./UserName)
 USER_NAME=$(whomai)
-USER_ROOT="/home/${USER_NAME}"
+USER_ROOT="/home/${USER_NAME}""
 APP_NAME=$1
 TEMPLATE_NAME=$2
 
