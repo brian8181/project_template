@@ -51,9 +51,9 @@ PRINT_DEBUG "$FILE -> Running... @ $DATE"
 #USER_NAME=$(cat ./UserName)
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
+# command line params
 APP_NAME=$1
 TEMPLATE_NAME=$2
-
 # defaults
 SRC="${USER_ROOT}/src"
 BIN="${USER_ROOT}/bin"
@@ -61,7 +61,6 @@ TMP="$USER_ROOT/tmp"
 DEFAULT_APP_NAME='NoName'
 DEFAULT_TEMPLATE_PATH="${BIN}/project_templates/${TEMPLATE_NAME}"
 DEFAULT_PROJECT_PATH="${USER_ROOT}/tmp"
-
 TEMPLATE_PATH="${BIN}/project_templates/${TEMPLATE_NAME}"
 
 #~/bin/skel.sh ${APP_NAME:=$DEFAULT_APP_NAME} ${TEMPLATE_PATH:=$DEFAULT_TEMPLATE_PATH} ${PROJECT_PATH:=$DEFAULT_PROJECT_PATH} 
