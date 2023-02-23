@@ -53,10 +53,15 @@ PROJECT_PATH=$3/$APP_NAME
 #TEMPLATE_PATH=${INPUT_PROJECT_PATH:-.}
 
 echo ---- $APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH
+PRINT_DEBUG "$APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH"
+
+exit 1
 
 mkdir -p $PROJECT_PATH
 cp -rf $TEMPLATE_PATH/..* $PROJECT_PATH
 cp -rf $TEMPLATE_PATH/* $PROJECT_PATH
+
+exit 1
 
 #cp -rf ../$TEMPLATE_PATH/shared $PROJECT_PATH/Makefile.tmpl
 touch $PROJECT_PATH/.project # create file that marks this a project folder
