@@ -55,11 +55,11 @@ USER_ROOT="/home/${USER_NAME}"
 APP_NAME=$1
 TEMPLATE_NAME=$2
 # defaults
-SRC="${USER_ROOT}/src"
+SRC_ROOT="${USER_ROOT}/src"
 BIN="${USER_ROOT}/bin"
-TMP="$USER_ROOT/tmp"
+TMP="{$USER_ROOT}/tmp"
 DEFAULT_APP_NAME='NoName'
-DEFAULT_TEMPLATE_PATH="${BIN}/project_templates/${TEMPLATE_NAME}"
+DEFAULT_TEMPLATE_PATH="${BIN}/project_templates/basic"
 DEFAULT_PROJECT_PATH="${USER_ROOT}/tmp"
 TEMPLATE_PATH="${BIN}/project_templates/${TEMPLATE_NAME}"
 
