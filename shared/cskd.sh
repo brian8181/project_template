@@ -56,7 +56,7 @@ APP_NAME=$1
 TEMPLATE_NAME=$2
 TEST_DEBUG1=$3
 TEST_DEBUG2=$4
-# defualts
+# defaults
 SRC_ROOT="${USER_ROOT}/src"
 BIN="${USER_ROOT}/bin"
 TMP="{$USER_ROOT}/tmp"
