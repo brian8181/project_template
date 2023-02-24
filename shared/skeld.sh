@@ -53,21 +53,20 @@ TEMPLATE_PATH=$3
 echo PARAMS $APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH
 PRINT_DEBUG "$APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH"
 
+
 echo "APP_NAME : $APP_NAME"
 echo "PROJECT_PATH : $PROJECT_PATH"
 echo "TEMPLATE_PATH : $TEMPLATE_PATH"
 
-exit 1
-
 mkdir -p $PROJECT_PATH
-cp -rf $TEMPLATE_PATH/..* $PROJECT_PATH
-cp -rf $TEMPLATE_PATH/* $PROJECT_PATH
-
-exit 1
+cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
 
 #cp -rf ../$TEMPLATE_PATH/shared $PROJECT_PATH/Makefile.tmpl
 touch $PROJECT_PATH/.project # create file that marks this a project folder
 #cp -rf $TEMPLATE_PATH/.project $PROJECT_PATH
+
+# END DEBUG
+exit 1
 
 pushd $PROJECT_PATH
 # do auto tools files
