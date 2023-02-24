@@ -61,12 +61,7 @@ echo "TEMPLATE_PATH : $TEMPLATE_PATH"
 mkdir -p $PROJECT_PATH
 cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
 
-#cp -rf ../$TEMPLATE_PATH/shared $PROJECT_PATH/Makefile.tmpl
 touch $PROJECT_PATH/.project # create file that marks this a project folder
-#cp -rf $TEMPLATE_PATH/.project $PROJECT_PATH
-
-# END DEBUG
-exit 1
 
 pushd $PROJECT_PATH
 # do auto tools files
@@ -75,24 +70,17 @@ rm configure.ac.tmpl
 chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
 # do makefile
-#pushd ./${APP_NAME}/
 cat ./build/Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmpl
 cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile # delete ? 
 rm ./build/*
 # mv Makefile.tmpl ./build/Makefile.tmpl
 # cat Makefile.tpml > ./build/Makefile.tmpl
-
 chmod 644 Makefile 
 #popd
 
-# get dir name, aka template name
-# TEMPLATE_NAME=${TEMPLATE_PATH##/*/}
-# if[ ${TEMPLATE_NAME} == "basic" ]; then
-# fi
-
-# if [ -d "$PROJECT_PATH/man" ]
-# then
-# fi
+echo END_DENUG
+# END DEBUG
+exit 1
 
 pushd $PROJECT_PATH/src
 cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
@@ -122,8 +110,6 @@ rm *skel.sh
 # git add '*'
 # git commit -m 'initial commit'
 popd
-# add to git hub
-# gh --repo @@APP_NAME@@
 
 ##{ END YOUR CODE  }##
 
