@@ -78,10 +78,6 @@ rm ./build/*
 chmod 644 Makefile 
 #popd
 
-echo END_DENUG
-# END DEBUG
-exit 1
-
 pushd $PROJECT_PATH/src
 cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
 rm ./app.cpp.tmpl 
@@ -92,6 +88,10 @@ cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm *.tmpl
 chmod 644 *.cpp *.hpp Makefile*
 popd
+
+echo END_DEBUGGING
+# END DEBUG
+exit 1
 
 pushd $PROJECT_PATH/man
 cat  ./app.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
