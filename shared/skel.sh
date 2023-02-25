@@ -1,5 +1,5 @@
 #!/bin/bash
-FILE='./shared//skel.sh'
+FILE='./shared/skeld.sh'
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
 AUTHOR='Brian K Preston'
@@ -47,25 +47,21 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 ##{ BEGIN YOUR CODE  }##
 
 APP_NAME=$1 
-TEMPLATE_PATH=$2
-PROJECT_PATH=$3/$APP_NAME
-#INPUT_TEMPLATE_PATH=$3
-#TEMPLATE_PATH=${INPUT_PROJECT_PATH:-.}
+PROJECT_PATH=$2/$APP_NAME
+TEMPLATE_PATH=$3
 
-echo ---- $APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH
+echo PARAMS $APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH
 PRINT_DEBUG "$APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH"
 
-exit 1
+
+echo "APP_NAME : $APP_NAME"
+echo "PROJECT_PATH : $PROJECT_PATH"
+echo "TEMPLATE_PATH : $TEMPLATE_PATH"
 
 mkdir -p $PROJECT_PATH
-cp -rf $TEMPLATE_PATH/..* $PROJECT_PATH
-cp -rf $TEMPLATE_PATH/* $PROJECT_PATH
+cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
 
-exit 1
-
-#cp -rf ../$TEMPLATE_PATH/shared $PROJECT_PATH/Makefile.tmpl
 touch $PROJECT_PATH/.project # create file that marks this a project folder
-#cp -rf $TEMPLATE_PATH/.project $PROJECT_PATH
 
 pushd $PROJECT_PATH
 # do auto tools files
@@ -74,35 +70,24 @@ rm configure.ac.tmpl
 chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
 # do makefile
-#pushd ./${APP_NAME}/
 cat ./build/Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmpl
 cat Makefile.tmpl | sed "s/@@CLASS_NAME@@//g" > Makefile # delete ? 
 rm ./build/*
-# mv Makefile.tmpl ./build/Makefile.tmpl
-# cat Makefile.tpml > ./build/Makefile.tmpl
-
 chmod 644 Makefile 
 #popd
-
-# get dir name, aka template name
-# TEMPLATE_NAME=${TEMPLATE_PATH##/*/}
-# if[ ${TEMPLATE_NAME} == "basic" ]; then
-# fi
-
-# if [ -d "$PROJECT_PATH/man" ]
-# then
-# fi
 
 pushd $PROJECT_PATH/src
 cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
 rm ./app.cpp.tmpl 
 cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-# cat  ./app_test.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.cpp
-# cat  ./app_test.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}_test/g" > ${APP_NAME}_test.hpp
 rm *.tmpl
 chmod 644 *.cpp *.hpp Makefile*
 popd
+
+echo END_DEBUGGING
+# END DEBUG
+exit 1
 
 pushd $PROJECT_PATH/man
 cat  ./app.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
@@ -121,8 +106,6 @@ rm *skel.sh
 # git add '*'
 # git commit -m 'initial commit'
 popd
-# add to git hub
-# gh --repo @@APP_NAME@@
 
 ##{ END YOUR CODE  }##
 
