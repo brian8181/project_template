@@ -50,16 +50,8 @@ APP_NAME=$1
 TEMPLATE_PATH=$2
 PROJECT_PATH=$(pwd)/$APP_NAME
 
-#echo PARAMS $APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH
-#PRINT_DEBUG "$APP_NAME $TEMPLATE_NAME $TEMPLATE_PATH $PROJECT_PATH"
-
-echo "APP_NAME : $APP_NAME"
-echo "PROJECT_PATH : $PROJECT_PATH"
-echo "TEMPLATE_PATH : $TEMPLATE_PATH"
-
 mkdir -p $PROJECT_PATH
 cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
-
 touch $PROJECT_PATH/.project # create file that marks this a project folder
 
 pushd $PROJECT_PATH
@@ -75,7 +67,6 @@ rm ./build/*
 chmod 644 Makefile 
 #popd
 
-#echo ${TEMPLATE_PATH##/*/}
 if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
 
 		pushd $PROJECT_PATH/src
