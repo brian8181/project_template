@@ -66,9 +66,9 @@ rm ~/bin/csk 2> /dev/null      # possible error
 PRINT_INFO "install project scripts ..."
 # copy scripts
 cp -f ./shared/csk.sh ~/bin/csk.sh
-cp -f ./shared/cskd.sh ~/bin/cskd.sh   #DEBUG
+#cp -f ./shared/cskd.sh ~/bin/cskd.sh   #DEBUG
 cp -f ./shared/skel.sh ~/bin/skel.sh	
-cp -f ./shared/skeld.sh ~/bin/skeld.sh  #DEBUG
+#cp -f ./shared/skeld.sh ~/bin/skeld.sh  #DEBUG
 # config
 cp -f ./shared/UserName ~/bin/UserName
 chmod +x ~/bin/csk.sh  
