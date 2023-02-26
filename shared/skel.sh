@@ -47,7 +47,10 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 ##{ BEGIN YOUR CODE  }##
 
 APP_NAME=$1 
-TEMPLATE_PATH=$2
+TEMPLATE_=$2
+USER_NAME=$(whoami)
+USER_ROOT="/home/${USER_NAME}"
+TEMPLATE_PATH="${USER_ROOT}/bin/project_templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
 
 mkdir -p $PROJECT_PATH
