@@ -17,10 +17,10 @@ INCLUDES = -I/usr/local/include/cppunit/
 # Makefile settings - Can be customized.
 APPNAME = @@APP_NAME@@
 EXT = cpp
-ROOTDIR  = .
-BUILDDIR = ./build
-OBJDIR = ../build
-SRCDIR = ./src
+ROOT  = .
+BUILD = ./build
+OBJ = ./build
+SRC = ./src
 
 # compile & link for debug
 #debug: CXXFLAGS += -DDEBUG -g
@@ -32,31 +32,31 @@ all: $(APPNAME) bash_color_test
 
 # link
 $(APPNAME): $(APPNAME).o main.o @@CLASS_NAME@@ #END
-	 $(CXX) $(CXXFLAGS) $(BUILDDIR)/$(APPNAME).o $(BUILDDIR)/main.o @@CLASS_NAME@@ -o $(BUILDDIR)/$(APPNAME)
+	 $(CXX) $(CXXFLAGS) $(BUILD)/$(APPNAME).o $(BUILD)/main.o @@CLASS_NAME@@ -o $(BUILD)/$(APPNAME)
 
 # compile only
 $(APPNAME).o:
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME).$(EXT) -o $(BUILDDIR)/$(APPNAME).o
+	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME).$(EXT) -o $(OBJ)/$(APPNAME).o
 	
 main.o:
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/main.$(EXT) -o $(BUILDDIR)/main.o
-	# $(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
+	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(BUILD)/main.o
+	# $(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILD)/$(APPNAME).o $(LDFLAGS) -o $(BUILD)/$(APPNAME)_test
 
 ## auto gernerated here ##
 
 # link
 $(APPNAME)_test: $(APPNAME)_test.o
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILDDIR)/$(APPNAME)_test.o $(BUILDDIR)/$(APPNAME).o $(LDFLAGS) -o $(BUILDDIR)/$(APPNAME)_test
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILD)/$(APPNAME)_test.o $(BUILD)/$(APPNAME).o $(LDFLAGS) -o $(BUILD)/$(APPNAME)_test
 
 # compile only
 $(APPNAME)_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/$(APPNAME)_test.cpp -o $(BUILDDIR)/$(APPNAME)_test.o
+	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME)_test.cpp -o $(OBJ)/$(APPNAME)_test.o
 
 bash_color_test: bash_color_test.o
-	$(CXX) $(CXXFLAGS) $(BUILDDIR)/bash_color_test.o -o $(BUILDDIR)/bash_color_test
+	$(CXX) $(CXXFLAGS) $(BUILD)/bash_color_test.o -o $(BUILD)/bash_color_test
 
 bash_color_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRCDIR)/bash_color_test.cpp -o $(BUILDDIR)/bash_color_test.o
+	$(CXX) $(CXXFLAGS) -c $(SRC)/bash_color_test.cpp -o $(OBJ)/bash_color_test.o
 
 # install man pages
 .PHONY: man
@@ -73,13 +73,13 @@ unman:
 # install 
 .PHONY: install
 install: man
-	cp $(BUILDDIR)/$(APPNAME) $(prefix)/bin/$(APPNAME)
+	cp $(BUILD)/$(APPNAME) $(prefix)/bin/$(APPNAME)
 	rm $(prefix)/bin/$(APPNAME)
 
 # delete object files & app executable
 .PHONY: clean
 clean:
-	-rm -f $(OBJS)/*.o 
+	-rm -f $(OBJ)/*.o 
 	-rm -f $(BUILD)/$(APPNAME) 
 	-rm -f $(BUILD)/$(APPNAME)_test 
 	-rm -f $(BUILD)/bash_color_test
@@ -91,8 +91,8 @@ clean:
 distclean: clean
 	-rm -f $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
 	-rm -f $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
-	-rm -f $(SRCS)/Makefile $(SRCS)/Makefile.in
-	-rm -rf $(ROOT)/autom4te.cache $(SRCS)/.deps $(SRCS)/.libs
+	-rm -f $(SRC)/Makefile $(SRC)/Makefile.in
+	-rm -rf $(ROOT)/autom4te.cache $(SRC)/.deps $(SRC)/.libs
 
 clean-local:
 	-rm -f config.status configure config.log

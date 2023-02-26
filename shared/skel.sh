@@ -75,35 +75,68 @@ rm ./build/*
 chmod 644 Makefile 
 #popd
 
-pushd $PROJECT_PATH/src
-cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
-rm ./app.cpp.tmpl 
-cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
-cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-rm *.tmpl
-chmod 644 *.cpp *.hpp Makefile*
-popd
+#echo ${TEMPLATE_PATH##/*/}
+if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
+
+		pushd $PROJECT_PATH/src
+		cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
+		rm ./app.cpp.tmpl 
+		cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
+		cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+		rm *.tmpl
+		chmod 644 *.cpp *.hpp Makefile*
+		popd
+
+#elif [[ ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
+	
+		# pushd $PROJECT_PATH/src
+		# cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
+		# rm ./app.cpp.tmpl 
+		# cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
+		# cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+		# rm *.tmpl
+		# chmod 644 *.cpp *.hpp Makefile*
+		# popd
+
+elif [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
+
+	echo PRINT_DEBUG "Minmal Type"
+	# cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
+	# rm ./app.cpp.tmpl 
+else
+	echo PRINT_DEBUG "Unknown Type"
+fi
+
+
+# pushd $PROJECT_PATH/src
+# cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
+# rm ./app.cpp.tmpl 
+# cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
+# cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+# rm *.tmpl
+# chmod 644 *.cpp *.hpp Makefile*
+# popd
 
 # echo END_DEBUGGING
 # # END DEBUG
 # exit 1
 
-pushd $PROJECT_PATH/man
-cat  ./app.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
-cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
-cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-rm *.tmpl
-chmod 644 install.sh Makefile* ${APP_NAME}.1
-popd
+# pushd $PROJECT_PATH/man
+# cat  ./app.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
+# cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
+# cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+# rm *.tmpl
+# chmod 644 install.sh Makefile* ${APP_NAME}.1
+#popd
 
 # move to project root, and stay
-pushd $PROJECT_PATH
+
 mv gitignore_template .gitignore
+popd
 # git init repository
 # git init
 # git add '*'
 # git commit -m 'initial commit'
-popd
 
 ##{ END YOUR CODE  }##
 

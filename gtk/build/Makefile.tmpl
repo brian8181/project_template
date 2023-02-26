@@ -50,13 +50,13 @@ $(APPNAME)_test: $(APPNAME)_test.o
 
 # compile only
 $(APPNAME)_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME)_test.cpp -o $(BUILD)/$(APPNAME)_test.o
+	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME)_test.cpp -o $(OBJ)/$(APPNAME)_test.o
 
 bash_color_test: bash_color_test.o
 	$(CXX) $(CXXFLAGS) $(BUILD)/bash_color_test.o -o $(BUILD)/bash_color_test
 
 bash_color_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRC)/bash_color_test.cpp -o $(BUILD)/bash_color_test.o
+	$(CXX) $(CXXFLAGS) -c $(SRC)/bash_color_test.cpp -o $(OBJ)/bash_color_test.o
 
 # install man pages
 .PHONY: man
@@ -92,7 +92,7 @@ distclean: clean
 	-rm -f $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
 	-rm -f $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
 	-rm -f $(SRC)/Makefile $(SRC)/Makefile.in
-	-rm -rf $(ROOT)/autom4te.cache $(SRC)/.deps $(SRCSDIR)/.libs
+	-rm -rf $(ROOT)/autom4te.cache $(SRC)/.deps $(SRC)/.libs
 
 clean-local:
 	-rm -f config.status configure config.log
