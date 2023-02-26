@@ -43,8 +43,6 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-# DEBUG
-PRINT_DEBUG "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
@@ -69,5 +67,3 @@ echo "USER_ROOT : $USER_ROOT"
 ##{ END YOUR CODE  }##
 
 PRINT_INFO "$FILE -> Exiting... @ $DATE"
-# DEBUG
-PRINT_DEBUG "$FILE -> Exiting... @ $DATE"

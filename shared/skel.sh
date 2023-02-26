@@ -133,6 +133,7 @@ fi
 
 mv gitignore_template .gitignore
 popd
+# no git for now!
 # git init repository
 # git init
 # git add '*'
