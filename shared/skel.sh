@@ -84,9 +84,9 @@ rm *.tmpl
 chmod 644 *.cpp *.hpp Makefile*
 popd
 
-echo END_DEBUGGING
-# END DEBUG
-exit 1
+# echo END_DEBUGGING
+# # END DEBUG
+# exit 1
 
 pushd $PROJECT_PATH/man
 cat  ./app.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
@@ -99,7 +99,6 @@ popd
 # move to project root, and stay
 pushd $PROJECT_PATH
 mv gitignore_template .gitignore
-rm *skel.sh
 # git init repository
 # git init
 # git add '*'
