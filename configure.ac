@@ -3,7 +3,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([create_project_template], [0.01], [brian8181@gmail.com], [create_project_template], [https://github.com/brian8181])
+AC_INIT([], [0.01], [brian8181@gmail.com], [], [https://github.com/brian8181])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 

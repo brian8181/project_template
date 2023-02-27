@@ -9,6 +9,12 @@
             "request": "launch",
             "name": "Bash-Debug (simplest configuration)",
             "program": "${file}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Bash-Debug (simplest configuration)",
+            "program": "./skel.sh abc basic"
         }
     ]
 }
