@@ -70,7 +70,7 @@ rm ./build/*
 chmod 644 Makefile 
 #popd
 
-if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
+if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 
 		pushd $PROJECT_PATH/src
 		cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
@@ -80,17 +80,6 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
 		rm *.tmpl
 		chmod 644 *.cpp *.hpp Makefile*
 		popd
-
-#elif [[ ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
-	
-		# pushd $PROJECT_PATH/src
-		# cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
-		# rm ./app.cpp.tmpl 
-		# cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
-		# cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-		# rm *.tmpl
-		# chmod 644 *.cpp *.hpp Makefile*
-		# popd
 
 elif [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
 
