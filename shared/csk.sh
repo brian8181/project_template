@@ -46,7 +46,6 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
-#USER_NAME=$(cat ./UserName)
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 # command line params
