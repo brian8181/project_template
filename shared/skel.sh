@@ -47,7 +47,7 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 ##{ BEGIN YOUR CODE  }##
 
 APP_NAME=$1 
-TEMPLATE_=$2
+TEMPLATE_NAME=$2
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 TEMPLATE_PATH="${USER_ROOT}/bin/project_templates/${TEMPLATE_NAME:=basic}"
@@ -71,13 +71,15 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	rm configure.ac.tmpl
 	chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
+	pushd ./src
 	cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
 	rm ./app.cpp.tmpl 
 	cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-	-rm *.tmpl
+	rm *.tmpl
 	chmod 644 *.cpp *.hpp Makefile*
-	
+	popd
+
 	# pushd $PROJECT_PATH/man
 	# cat  ./app.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
 	# cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh

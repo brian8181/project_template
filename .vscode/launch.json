@@ -13,8 +13,10 @@
         {
             "type": "bashdb",
             "request": "launch",
-            "name": "Bash-Debug (simplest configuration)",
-            "program": "./skel.sh abc basic"
+            "name": "Skel.sh-Debug",
+            "program": "${workspaceFolder}/shared/skel.sh",
+            "args": ["abc", "basic"],
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
