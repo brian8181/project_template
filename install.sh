@@ -70,7 +70,7 @@ cp -f ./shared/csk.sh ~/bin/csk.sh
 cp -f ./shared/skel.sh ~/bin/skel.sh	
 #cp -f ./shared/skeld.sh ~/bin/skeld.sh  #DEBUG
 # config
-cp -f ./shared/UserName ~/bin/UserName
+#cp -f ./shared/UserName ~/bin/UserName
 chmod +x ~/bin/csk.sh  
 chmod +x ~/bin/cskd.sh                 #DEBUG
 chmod +x ~/bin/skel.sh
