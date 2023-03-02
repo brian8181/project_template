@@ -16,7 +16,7 @@ DATE=$(date "+%H:%M:%S:%s")
 # USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 INFO_MSG="$PRINT_GREEN_INFO: "
-VERBOSE=1
+VERBOSE=0
 DEBUG=1
 # END
 
@@ -46,7 +46,6 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 ##{ BEGIN YOUR CODE  }##
 
-#USER_NAME=$(cat ./UserName)
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 # command line params
