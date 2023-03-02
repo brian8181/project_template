@@ -43,7 +43,6 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-
 ##{ BEGIN YOUR CODE  }##
 
 USER_NAME=$(whoami)
@@ -55,5 +54,4 @@ TEMPLATE_NAME=$2
 ~/bin/skel.sh ${APP_NAME} ${TEMPLATE_NAME}
 
 ##{ END YOUR CODE  }##
-
 PRINT_INFO "$FILE -> Exiting... @ $DATE"

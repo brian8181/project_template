@@ -45,7 +45,6 @@ function PRINT_INFO
 PRINT_INFO "$FILE -> Running... @ $DATE"
 # DEBUG
 PRINT_DEBUG "$FILE -> Running... @ $DATE"
-
 ##{ BEGIN YOUR CODE  }##
 
 #USER_NAME=$(cat ./UserName)
@@ -79,7 +78,6 @@ echo "TEST_DEBUG2 : $TEST_DEBUG2"
 echo COMMAND : ${APP_NAME:-$DEFAULT_APP_NAME} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH} ${TEMPLATE_PATH:-$DEFAULT_TEMPLATE_PATH} 
 
 ##{ END YOUR CODE  }##
-
 PRINT_INFO "$FILE -> Exiting... @ $DATE"
 # DEBUG
 PRINT_DEBUG "$FILE -> Exiting... @ $DATE"

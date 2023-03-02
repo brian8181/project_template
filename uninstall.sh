@@ -37,7 +37,6 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-
 ##{ BEGIN YOUR CODE  }##
 
 PRINT_INFO "remove existing project templates ..."
@@ -60,5 +59,4 @@ rm ~/bin/class.?pp.tmpl 2>/dev/null       # possible error
 rm ~/bin/class.base.?pp.tmpl 2>/dev/null   # possible error
 
 ##{ END YOUR CODE  }##
-
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"

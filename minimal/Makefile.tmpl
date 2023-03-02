@@ -1,5 +1,5 @@
-# MAKE_TEMPLATE = 0.l.o
-# BUILD_VERSION = 0.l.o
+# MAKE_TEMPLATE = 0.l
+# BUILD_VERSION = 0.l
 
 prefix = /usr/local
 mandir = $(prefix)/share/man
@@ -34,23 +34,13 @@ all: $(APPNAME) bash_color_test
 $(APPNAME): $(APPNAME).o main.o @@CLASS_NAME@@ #END
 	 $(CXX) $(CXXFLAGS) $(BUILD)/$(APPNAME).o $(BUILD)/main.o @@CLASS_NAME@@ -o $(BUILD)/$(APPNAME)
 
-# compile only
 $(APPNAME).o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME).$(EXT) -o $(OBJ)/$(APPNAME).o
 	
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(BUILD)/main.o
-	# $(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILD)/$(APPNAME).o $(LDFLAGS) -o $(BUILD)/$(APPNAME)_test
 
 ## auto gernerated here ##
-
-# link
-$(APPNAME)_test: $(APPNAME)_test.o
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BUILD)/$(APPNAME)_test.o $(BUILD)/$(APPNAME).o $(LDFLAGS) -o $(BUILD)/$(APPNAME)_test
-
-# compile only
-$(APPNAME)_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME)_test.cpp -o $(OBJ)/$(APPNAME)_test.o
 
 bash_color_test: bash_color_test.o
 	$(CXX) $(CXXFLAGS) $(BUILD)/bash_color_test.o -o $(BUILD)/bash_color_test
@@ -84,8 +74,7 @@ clean:
 	-rm -f $(BUILD)/$(APPNAME)_test 
 	-rm -f $(BUILD)/bash_color_test
 	-rm -f $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
-	-rm -f $(BUILD)/$(APPNAME).core
-
+	
 # delete object files, app, executables, & all automake/autoconf generated files
 .PHONY: distclean
 distclean: clean

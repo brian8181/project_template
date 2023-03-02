@@ -13,7 +13,6 @@ PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
-
 # USER SETTING
 USER_NAME=brian
 DEBUG_MSG="$PRINT_RED_DEBUG: "
@@ -44,7 +43,6 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-
 ##{ BEGIN YOUR CODE  }##
 
 CLASS_NAME=$1
@@ -94,6 +92,5 @@ else
 fi
 
 ##{ END YOUR CODE  }##
-
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
 

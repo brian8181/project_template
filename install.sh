@@ -43,7 +43,6 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-
 ##{ BEGIN CODE  }##
 
 PRINT_INFO "remove existing project templates ..."
@@ -66,14 +65,12 @@ rm ~/bin/csk 2> /dev/null      # possible error
 PRINT_INFO "install project scripts ..."
 # copy scripts
 cp -f ./shared/csk.sh ~/bin/csk.sh
-#cp -f ./shared/cskd.sh ~/bin/cskd.sh   #DEBUG
+#cp -f ./shared/cskd.sh ~/bin/csk_debug.sh   #DEBUG
 cp -f ./shared/skel.sh ~/bin/skel.sh	
-#cp -f ./shared/skeld.sh ~/bin/skeld.sh  #DEBUG
 # config
 chmod +x ~/bin/csk.sh  
-chmod +x ~/bin/cskd.sh                 #DEBUG
+chmod +x ~/bin/csk_debug.sh                 #DEBUG
 chmod +x ~/bin/skel.sh
-chmod +x ~/bin/skeld.sh                #DEBUG
 
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
@@ -103,5 +100,4 @@ ln -s ~/bin/class_tmpl/create.class.sh ~/bin/ccl
 ln -s ~/bin/class_tmpl/run.create.class.sh ~/bin/ccl2
 
 ##{ END CODE  }##
-
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
