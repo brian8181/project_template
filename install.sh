@@ -68,6 +68,10 @@ cp -f ./shared/csk.sh ~/bin/csk.sh
 #cp -f ./shared/cskd.sh ~/bin/csk_debug.sh   #DEBUG
 cp -f ./shared/skel.sh ~/bin/skel.sh	
 # config
+<<<<<<< HEAD
+#cp -f ./shared/UserName ~/bin/UserName
+=======
+>>>>>>> fc39be970bb2656a66c9bee0f16836ccafb82b9d
 chmod +x ~/bin/csk.sh  
 chmod +x ~/bin/csk_debug.sh                 #DEBUG
 chmod +x ~/bin/skel.sh
