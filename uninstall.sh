@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE='uninstall.sh'
-VERSION='0.1'
-FILE_DATE='12192022'
+VERSION='0.1.6'
+FILE_DATE='March 8, 2030'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
