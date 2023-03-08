@@ -3,7 +3,7 @@ FILE='./shared/skel.sh'
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
 AUTHOR='Brian K Preston'
-EMAIL='brain1818@gmail.com'
+EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'

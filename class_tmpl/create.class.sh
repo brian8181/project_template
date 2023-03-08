@@ -3,7 +3,7 @@ FILE='create.class.sh'
 VERSION='0.1.2.'
 FILE_DATE='December 26, 2022'
 AUTHOR='Brian K Preston'
-EMAIL='brain1818@gmail.com'
+EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
