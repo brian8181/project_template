@@ -3,7 +3,7 @@ FILE='./install.sh'
 VERSION='0.1.6'
 FILE_DATE='March 8, 2023'
 AUTHOR='Brian K Preston'
-EMAIL='brian818@gmail.com'
+EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
@@ -58,19 +58,19 @@ cp -r ./shared ~/bin/project_templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel.sh  2> /dev/null # possible error
-rm ~/bin/csk.sh 2> /dev/null   # possible error
-rm ~/bin/csk 2> /dev/null      # possible error
+rm ~/bin/skel.sh  2> /dev/null             # possible error
+rm ~/bin/csk_debug.sh 2> /dev/null         # possible error  #DEBUG
+rm ~/bin/csk.sh 2> /dev/null               # possible error
+rm ~/bin/csk 2> /dev/null                  # possible error
 
 PRINT_INFO "install project scripts ..."
 # copy scripts
 cp -f ./shared/csk.sh ~/bin/csk.sh
-#cp -f ./shared/cskd.sh ~/bin/csk_debug.sh   #DEBUG
+cp -f ./shared/csk_debug.sh ~/bin/csk_debug.sh #DEBUG
 cp -f ./shared/skel.sh ~/bin/skel.sh	
 # config
-#cp -f ./shared/UserName ~/bin/UserName
 chmod +x ~/bin/csk.sh  
-chmod +x ~/bin/csk_debug.sh                 #DEBUG
+chmod +x ~/bin/csk_debug.sh                    #DEBUG
 chmod +x ~/bin/skel.sh
 
 # create easy name soft link
