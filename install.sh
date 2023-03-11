@@ -51,10 +51,10 @@ rm -rf ~/bin/project_templates
 PRINT_INFO "install project templates ..."
 # copy templates
 mkdir ~/bin/project_templates
-cp -r ./basic ~/bin/project_templates
-cp -r ./minimal ~/bin/project_templates
-cp -r ./gtk ~/bin/project_templates
-cp -r ./shared ~/bin/project_templates
+cp -r ./templates/basic ~/bin/project_templates
+cp -r ./templates/minimal ~/bin/project_templates
+cp -r ./templates/gtk ~/bin/project_templates
+cp -r ./templates/shared ~/bin/project_templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
@@ -92,8 +92,8 @@ PRINT_INFO "copy scripts"
 # copy whole class template directory to bin
 cp -rf ./class_tmpl ~/bin #2> /dev/null
 # copy class templates to bin
-cp -f ./class_tmpl/*.sh ~/bin
-cp -f ./class_tmpl/*.tmpl ~/bin
+cp -f ./templates/class_tmpl/*.sh ~/bin
+cp -f ./templates/class_tmpl/*.tmpl ~/bin
 
 PRINT_INFO "create easy name soft link"
 ln -s ~/bin/class_tmpl/create.class.sh ~/bin/ccl
