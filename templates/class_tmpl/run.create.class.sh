@@ -9,6 +9,7 @@ OUTPUT_PATH=.
 for i in "$@"; do
 
     CLASS_NAME=$i
-    ${INPUT_PATH}/create.class.sh ${CLASS_NAME} ${BASE_CLASS_NAME}
+    ${CLASS_NAME##::x}
+    ${INPUT_PATH}/create.class.sh ${CLASS_NAME}
 
 done
