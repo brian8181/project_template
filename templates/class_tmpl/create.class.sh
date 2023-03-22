@@ -47,7 +47,7 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 INPUT=$1
 CLASS_NAME=${INPUT%%::*}
-BASE_CLASS_NAME=${INPUT##[a-z][a-z]*}
+BASE_CLASS_NAME=${INPUT##*[a-z:]}
 INPUT_PATH=$3
 OUTPUT_PATH=$4
 
