@@ -59,7 +59,8 @@ pushd $PROJECT_PATH > /dev/null
 
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
-cat Makefile.tmp | sed "s/@@CLASS_NAME@@//g" > Makefile
+#cat Makefile.tmp | sed "s/@@CLASS_NAME@@//g" > Makefile
+mv Makefile.tmp Makefile
 rm Makefile.tmp*
 chmod 644 Makefile 
 

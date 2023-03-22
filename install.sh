@@ -65,9 +65,9 @@ rm ~/bin/csk 2> /dev/null                  # possible error
 
 PRINT_INFO "install project scripts ..."
 # copy scripts
-cp -f ./shared/csk.sh ~/bin/csk.sh
-cp -f ./shared/csk_debug.sh ~/bin/csk_debug.sh #DEBUG
-cp -f ./shared/skel.sh ~/bin/skel.sh	
+cp -f ./templates/shared/csk.sh ~/bin/csk.sh
+cp -f ./templates/shared/csk_debug.sh ~/bin/csk_debug.sh #DEBUG
+cp -f ./templates/shared/skel.sh ~/bin/skel.sh	
 # config
 chmod +x ~/bin/csk.sh  
 chmod +x ~/bin/csk_debug.sh                    #DEBUG
@@ -90,7 +90,7 @@ rm -rf ~/bin/class_tmpl 2> /dev/null
 PRINT_INFO "install class templates ..."
 PRINT_INFO "copy scripts"
 # copy whole class template directory to bin
-cp -rf ./class_tmpl ~/bin #2> /dev/null
+cp -rf ./templates/class_tmpl ~/bin #2> /dev/null
 # copy class templates to bin
 cp -f ./templates/class_tmpl/*.sh ~/bin
 cp -f ./templates/class_tmpl/*.tmpl ~/bin
