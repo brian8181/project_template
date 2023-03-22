@@ -14,8 +14,16 @@
             "type": "bashdb",
             "request": "launch",
             "name": "Skel.sh-Debug",
-            "program": "${workspaceFolder}/shared/skel.sh",
+            "program": "${workspaceFolder}/templates/shared/skel.sh",
             "args": ["abc", "basic"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Class.sh-Debug",
+            "program": "${workspaceFolder}/templates/class_tmpl/create.class.sh",
+            "args": ["shape"],
             "cwd": "${workspaceFolder}"
         }
     ]
