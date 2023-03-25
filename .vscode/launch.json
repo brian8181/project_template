@@ -23,7 +23,7 @@
             "request": "launch",
             "name": "Class.sh-Debug",
             "program": "${workspaceFolder}/templates/class_tmpl/create.class.sh",
-            "args": ["shape"],
+            "args": ["square::shape"],
             "cwd": "${workspaceFolder}"
         }
     ]
