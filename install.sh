@@ -46,15 +46,14 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 ##{ BEGIN CODE  }##
 
 PRINT_INFO "remove existing project templates ..."
-# remove "project_templates" before update
-rm -rf ~/bin/project_templates
+# remove "templates" before update
+rm -rf ~/bin/templates
 PRINT_INFO "install project templates ..."
 # copy templates
-mkdir ~/bin/project_templates
-cp -r ./templates/basic ~/bin/project_templates
-cp -r ./templates/minimal ~/bin/project_templates
-cp -r ./templates/gtk ~/bin/project_templates
-cp -r ./templates/shared ~/bin/project_templates
+mkdir ~/bin/templates
+cp -r ./templates/basic ~/bin/templates
+cp -r ./templates/minimal ~/bin/templates
+cp -r ./templates/gtk ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
@@ -65,9 +64,7 @@ rm ~/bin/csk 2> /dev/null                  # possible error
 
 PRINT_INFO "install project scripts ..."
 # copy scripts
-cp -f ./templates/shared/csk.sh ~/bin/csk.sh
-cp -f ./templates/shared/csk_debug.sh ~/bin/csk_debug.sh #DEBUG
-cp -f ./templates/shared/skel.sh ~/bin/skel.sh	
+cp -r ./shared/* ~/bin
 # config
 chmod +x ~/bin/csk.sh  
 chmod +x ~/bin/csk_debug.sh                    #DEBUG
@@ -82,23 +79,18 @@ rm ~/bin/ccl 2>/dev/null                   # possible error
 rm ~/bin/ccl2 2>/dev/null                  # possible error
 rm ~/bin/create.class.sh 2> /dev/null      # possible error
 rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
-rm ~/bin/class.?pp.tmpl 2> /dev/null       # possible error
-rm ~/bin/class.base.?pp.tmpl 2> /dev/null  # possible error
-# rm whole! class template folder
-rm -rf ~/bin/class_tmpl 2> /dev/null
+rm ~/bin/class.base*.tmpl 2> /dev/null     # possible error
 
 PRINT_INFO "install class templates ..."
 PRINT_INFO "copy scripts"
 # copy whole class template directory to bin
-cp -rf ./templates/class_tmpl ~/bin #2> /dev/null
-# copy class templates to bin
-cp -f ./templates/class_tmpl/*.sh ~/bin
-cp -f ./templates/class_tmpl/*.tmpl ~/bin
+cp -rf ./templates/shared ~/bin 2> /dev/null
+
 
 PRINT_INFO "create easy name soft link"
-ln -s ~/bin/class_tmpl/create.class.sh ~/bin/ccl
+ln -s ~/bin/create.class.sh ~/bin/ccl
 # create new link with multi name option built into script
-ln -s ~/bin/class_tmpl/run.create.class.sh ~/bin/ccl2
+ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 
 ##{ END CODE  }##
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
