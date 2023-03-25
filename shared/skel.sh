@@ -49,7 +49,7 @@ APP_NAME=$1
 TEMPLATE_NAME=$2
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
-TEMPLATE_PATH="${USER_ROOT}/bin/project_templates/${TEMPLATE_NAME:=basic}"
+TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
 
 mkdir -p $PROJECT_PATH
