@@ -62,7 +62,7 @@ cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
 #cat Makefile.tmp | sed "s/@@CLASS_NAME@@//g" > Makefile
 mv Makefile.tmp Makefile
 rm Makefile.tmp*
-chmod 644 Makefile 
+#chmod 644 Makefile 
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 
@@ -76,7 +76,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	rm *.tmpl
-	chmod 644 *.cpp *.hpp Makefile*
+	#chmod 644 *.cpp *.hpp Makefile*
 	popd > /dev/null
 
 	pushd ./man > /dev/null
@@ -84,7 +84,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	rm *.tmpl
-	chmod 644 install.sh Makefile* ${APP_NAME}.1
+	#chmod 644 install.sh Makefile* ${APP_NAME}.1
 	popd > /dev/null
 fi
 
