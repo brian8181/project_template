@@ -1,20 +1,109 @@
-*Project Templates
+*Create Project Templates
 
     This project contains scripts to create a c++ project from a template.
 
-    *Templates
+    ** Templates
 
-        There a three templates at this point.
+        *** Project Template:
+        
+            There a three templates at this point.
 
-            * Basic
-            * Minimal
-            * Gtk
+                * Basic
+                * Minimal
+                * Gtk
 
-        There could be more but at this point there are only these three.
+            There could be more but at this point there are only these three.
 
-    * Usage
+        *** Class Templates:
+        
+            There is a create class scripts & template ...
+
+    ** Usage
 
             csk, soft link to csk.sh, calls skel.sh
             ccl, soft link to create.classs.sh
+
+            csk <project name>
+            ccl <class name>[::<base class name>] ...
+
+            Senerio 1;
+
+            csk:
+                user:~$ >csk abc
+                abc created ...
+                user:~$ > cd abc
+                user:~/abc $>ls
+                <todo>
+                user:~/abc $>make
+                <todo>
+                user:~/abc $>./abc
+                <todo>
+
+            ccl no base:
+                user:~$ >csk abc
+                abc created ...
+                user:~$ > cd abc
+                user:~/abc $>ls
+                <todo>
+                user:~/abc $>ccl shape
+                user:~/abc $>make
+                
+             ccl with base:
+                user:~$ >csk abc
+                abc created ...
+                user:~$ > cd abc
+                user:~/abc $>ls
+                <todo>
+                user:~/abc $>ccl shape
+                user:~/abc $>ccl square::shape
+                user:~/abc $>ccl circle::shape
+                user:~/abc $>ccl triangle:shape
+                user:~/abc $>make
+
+    ** Installation:
+
+        <todo>
+    
+    ** Detail:
+
+        *** Project Structure:
+
+            /templates
+            |   /basic
+                |   /scr
+                |   Makefile
+            |   /minimal
+                |   /scr
+                |   Makefile
+            |   /gtk
+            |   /scr
+                |   Makefile
+            /shared
+            |   csk.sh
+            |   skel.sh
+            |   csk -> csk.sh
+            |   create.class.sh
+            |   ccl -> create.class.sh
+            install.sh
+            uninstall.sh
+
+        *** bin:
+
+            /templates
+            |   /basic
+                |   /scr
+                |   Makefile
+            |   /minimal
+                |   /scr
+                |   Makefile
+            |   /gtk
+            |   /scr
+                |   Makefile
+            csk.sh
+            skel.sh
+            csk -> csk.sh
+            create.class.sh
+            ccl -> create.class.sh
+
 
 
