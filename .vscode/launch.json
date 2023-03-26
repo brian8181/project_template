@@ -14,15 +14,23 @@
             "type": "bashdb",
             "request": "launch",
             "name": "Skel.sh-Debug",
-            "program": "${workspaceFolder}/templates/shared/skel.sh",
+            "program": "${workspaceFolder}/shared/skel.sh",
             "args": ["abc", "basic"],
             "cwd": "${workspaceFolder}"
         },
         {
             "type": "bashdb",
             "request": "launch",
-            "name": "Class.sh-Debug",
-            "program": "${workspaceFolder}/templates/class_tmpl/create.class.sh",
+            "name": "ccl no base",
+            "program": "${workspaceFolder}/shared/create.class.sh",
+            "args": ["shape"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "ccl with base",
+            "program": "${workspaceFolder}/shared/create.class.sh",
             "args": ["square::shape"],
             "cwd": "${workspaceFolder}"
         }

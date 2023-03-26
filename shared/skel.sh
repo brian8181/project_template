@@ -53,10 +53,9 @@ TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
 
 mkdir -p $PROJECT_PATH
-cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
-touch $PROJECT_PATH/.project # create file that marks this a project folder
 pushd $PROJECT_PATH > /dev/null
-
+cp -rf $TEMPLATE_PATH/* ./
+touch .project  # create file that marks this a project folder
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
 #cat Makefile.tmp | sed "s/@@CLASS_NAME@@//g" > Makefile
@@ -89,7 +88,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 fi
 
 mv gitignore_template .gitignore
-popd > /dev/null
+popd > /dev/null # out of project path
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
