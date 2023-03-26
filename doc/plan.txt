@@ -14,7 +14,7 @@
 
     * Usage
 
-            csk
-            ccl
+            csk, soft link to csk.sh, calls skel.sh
+            ccl, soft link to create.classs.sh
 
 

@@ -62,7 +62,16 @@ rm ~/bin/csk_debug.sh 2> /dev/null         # possible error  #DEBUG
 rm ~/bin/csk.sh 2> /dev/null               # possible error
 rm ~/bin/csk 2> /dev/null                  # possible error
 
+PRINT_INFO "remove existing class templates ..."
+# remove old scripts
+rm ~/bin/ccl 2>/dev/null                   # possible error
+rm ~/bin/ccl2 2>/dev/null                  # possible error
+rm ~/bin/create.class.sh 2> /dev/null      # possible error
+rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
+rm ~/bin/class.*.tmpl 2> /dev/null         # possible error
+
 PRINT_INFO "install project scripts ..."
+PRINT_INFO "install class templates ..."
 # copy scripts
 cp -r ./shared/* ~/bin
 # config
@@ -70,24 +79,9 @@ chmod +x ~/bin/csk.sh
 chmod +x ~/bin/csk_debug.sh                    #DEBUG
 chmod +x ~/bin/skel.sh
 
+PRINT_INFO "create easy name soft link"
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
-
-PRINT_INFO "remove existing class templates ..."
-# remove old scripts
-rm ~/bin/ccl 2>/dev/null                   # possible error
-rm ~/bin/ccl2 2>/dev/null                  # possible error
-rm ~/bin/create.class.sh 2> /dev/null      # possible error
-rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
-rm ~/bin/class.base*.tmpl 2> /dev/null     # possible error
-
-PRINT_INFO "install class templates ..."
-PRINT_INFO "copy scripts"
-# copy whole class template directory to bin
-cp -rf ./templates/shared ~/bin 2> /dev/null
-
-
-PRINT_INFO "create easy name soft link"
 ln -s ~/bin/create.class.sh ~/bin/ccl
 # create new link with multi name option built into script
 ln -s ~/bin/run.create.class.sh ~/bin/ccl2
