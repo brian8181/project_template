@@ -1,0 +1,20 @@
+*Project Templates
+
+    This project contains scripts to create a c++ project from a template.
+
+    *Templates
+
+        There a three templates at this point.
+
+            * Basic
+            * Minimal
+            * Gtk
+
+        There could be more but at this point there are only these three.
+
+    * Usage
+
+            csk
+            ccl
+
+
