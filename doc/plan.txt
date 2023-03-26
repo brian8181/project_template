@@ -62,8 +62,24 @@
 
     ** Installation:
 
+        install.sh 
+
+            - Removes pervious versions from ~/bin
+            - Installs all to ~/bin 
+            - Sets permission on files based on files & user settings ...
+        
+        user:~/src/create_project_templates $>./install.sh
         <todo>
-    
+
+    ** Remove All
+        
+        unistall.sh
+        
+            - Removes all from ~/bin
+
+        user:~/src/create_project_templates $>./install.sh
+        <todo>
+
     ** Detail:
 
         *** Project Structure:
