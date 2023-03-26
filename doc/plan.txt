@@ -1,8 +1,8 @@
-*Create Project Templates
+*Create Project Templates*
 
     This project contains scripts to create a c++ project from a template.
 
-    ** Templates
+    ** Templates **
 
         *** Project Template:
         
@@ -104,6 +104,3 @@
             csk -> csk.sh
             create.class.sh
             ccl -> create.class.sh
-
-
-

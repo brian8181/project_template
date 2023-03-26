@@ -41,7 +41,7 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 PRINT_INFO "remove existing project templates ..."
 # remove "project_templates" before update
-rm -rf ~/bin/project_templates
+rm -rf ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
