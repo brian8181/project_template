@@ -76,7 +76,6 @@ PRINT_INFO "install class templates ..."
 cp -r ./shared/* ~/bin
 # config
 chmod +x ~/bin/csk.sh  
-chmod +x ~/bin/csk_debug.sh                    #DEBUG
 chmod +x ~/bin/skel.sh
 
 PRINT_INFO "create easy name soft link"
