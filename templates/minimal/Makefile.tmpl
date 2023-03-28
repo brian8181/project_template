@@ -19,16 +19,16 @@ APPNAME = @@APP_NAME@@
 EXT = cpp
 ROOTDIR  = .
 BUILD = ./build
-OBJ = ../build
+OBJ = ./build
 SRC = ./src
 
 # compile & link for debug
-#debug: CXXFLAGS += -DDEBUG -g
-debug: all
+debug:: CXXFLAGS += -DDEBUG -g
+debug:: all
 
 # compile & link for debug GDBversion variable
-#debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
-all: $(APPNAME) bash_color_test
+debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
+all: $(APPNAME)
 
 # link
 $(APPNAME): $(APPNAME).o main.o #@@PREREQUISTE@@

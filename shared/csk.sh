@@ -45,6 +45,7 @@ function PRINT_INFO
 PRINT_INFO "$FILE -> Running... @ $DATE"
 ##{ BEGIN YOUR CODE  }##
 
+# ! UNSUSED PARAMATERS !#
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 # command line params
