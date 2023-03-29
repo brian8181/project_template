@@ -1,3 +1,12 @@
+// @@LICENSE@@
+// @@AUTHOR@@
+//
+//
+// @@FILE_NAME@@
+// @@APP_NAME@@#
+// @@BUILD_DATE@@
+// @@VERSION@@
+
 #ifndef _STD_HPP
 #define _STD_HPP
 
