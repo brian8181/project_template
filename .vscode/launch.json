@@ -15,7 +15,7 @@
             "request": "launch",
             "name": "Skel.sh-Debug",
             "program": "${workspaceFolder}/shared/skel.sh",
-            "args": ["abc", "basic"],
+            "args": ["abc", "basic", "Brian K Preston"],
             "cwd": "${workspaceFolder}"
         },
         {

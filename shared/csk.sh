@@ -51,8 +51,12 @@ USER_ROOT="/home/${USER_NAME}"
 # command line params
 APP_NAME=$1
 TEMPLATE_NAME=$2
+AUTHOR="Brian K Preston"
+LICENSE=$4
+BUILD_DATE=$5
+VERSION=$6
 
-~/bin/skel.sh ${APP_NAME} ${TEMPLATE_NAME}
+~/bin/skel.sh "${APP_NAME}" "${TEMPLATE_NAME}" "${AUTHOR}" "${LICENSE}" "${BUILD_DATE}" "${VERSION}"
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting... @ $DATE"
