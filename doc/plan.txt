@@ -101,7 +101,21 @@
             |   create.class.sh
             |   ccl -> create.class.sh
             install.sh
+            |   /test 
+                |   csk_debug.sh
+                |   regx.txt
+            |   /doc 
+                |   plan.txt
+            install.sh
             uninstall.sh
+            AUTHORS
+            NEWS
+            COPYING
+            NEWS
+            README
+            README.md
+            .gitignore
+
 
         *** bin:
 
