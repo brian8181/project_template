@@ -87,6 +87,10 @@
             /templates
             |   /basic
                 |   /scr
+                    |   /@@APP_NAME@@.cpp.tmpl
+                        /@@APP_NAME@@.hpp.tmpl
+                        /main.cpp
+                        /main.hpp
                 |   Makefile
             |   /minimal
                 |   /scr
