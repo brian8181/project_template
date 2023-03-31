@@ -83,6 +83,7 @@ PRINT_INFO "create easy name soft link"
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
 ln -s ~/bin/create.class.sh ~/bin/ccl
+ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccld # debug testing
 # create new link with multi name option built into script
 ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 
