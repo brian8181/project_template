@@ -61,10 +61,8 @@ pushd $PROJECT_PATH > /dev/null
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
 # do makefile
-cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
-#cat Makefile.tmp | sed "s/@@CLASS_NAME@@//g" > Makefile
-mv Makefile.tmp Makefile
-rm Makefile.tmp*
+cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
+rm Makefile.tmpl
 #chmod 644 Makefile 
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
