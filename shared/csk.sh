@@ -56,7 +56,7 @@ LICENSE="GPL"
 BUILD_DATE="Jan 1, 2023"
 VERSION="0.0.1"
 
-~/bin/skel.sh "${APP_NAME}" "${TEMPLATE_NAME}" "${AUTHOR}" "${LICENSE}" "${BUILD_DATE}" "${VERSION}"
+~/bin/skel.sh "${APP_NAME}" "${TEMPLATE_NAME}" "${AUTHOR}" "${LICENSE}" "${BUILD_DATE}" "${VERSION}" "${BUILD_DATE}"
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting... @ $DATE"

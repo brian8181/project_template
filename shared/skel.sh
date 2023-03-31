@@ -74,8 +74,8 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	# chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
 	pushd ./src > /dev/null
-	cat  ./@@APP_NAME@@.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" > ${APP_NAME}.cpp
-	cat  ./@@APP_NAME@@.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" > ${APP_NAME}.hpp
+	cat  ./@@APP_NAME@@.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
+	cat  ./@@APP_NAME@@.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	rm *.tmpl
 	#chmod 644 *.cpp *.hpp Makefile*
@@ -95,4 +95,3 @@ popd > /dev/null # out of project path
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
-
