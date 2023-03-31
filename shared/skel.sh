@@ -70,8 +70,9 @@ rm Makefile.tmp*
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 
 	# do auto tools files
-	# cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
-	# rm configure.ac.tmpl
+	cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+	cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
+	rm configure.ac.tmpl Makefile.am.tmpl
 	# chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
 	pushd ./src > /dev/null

@@ -126,6 +126,8 @@
             /templates
             |   /basic
                 |   /scr
+                    |   /@@APP_NAME@@.cpp.tmpl
+                        /@@APP_NAME@@.hpp.tmpl
                 |   Makefile
             |   /minimal
                 |   /scr
@@ -138,3 +140,5 @@
             csk -> csk.sh
             create.class.sh
             ccl -> create.class.sh
+
+        *** output
