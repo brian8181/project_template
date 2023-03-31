@@ -1,8 +1,8 @@
-// License: @@LICENSE@@
-// Author: @@AUTHOR@@
-// File Name: @@FILE_NAME@@
+// License:    @@LICENSE@@
+// Author:     @@AUTHOR@@
+// File Name:  @@FILE_NAME@@
 // Build Date: @@BUILD_DATE@@
-// Version: @@VERSION@@
+// Version:    @@VERSION@@
 
 #ifndef _STD_HPP
 #define _STD_HPP
