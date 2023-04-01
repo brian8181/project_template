@@ -47,8 +47,8 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 APP_NAME=$1 
 TEMPLATE_NAME=$2
-AUTHOR=$3
-LICENSE=$4
+LICENSE=$3
+AUTHOR=$4
 BUILD_DATE=$5
 VERSION=$6
 USER_NAME=$(whoami)
@@ -75,10 +75,10 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	# chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
 	pushd ./src > /dev/null
-	cat  ./@@APP_NAME@@.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
-	cat  ./@@APP_NAME@@.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
-	cat  ./main.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > main.cpp
-	cat  ./main.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > main.hpp
+	cat  ./@@APP_NAME@@.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}.cpp/g" > ${APP_NAME}.cpp
+	cat  ./@@APP_NAME@@.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
+	cat  ./main.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/main.cpp/g" > main.cpp
+	cat  ./main.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/main.hpp/g" > main.hpp
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	rm *.tmpl
 	#chmod 644 *.cpp *.hpp Makefile*

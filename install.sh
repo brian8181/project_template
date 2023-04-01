@@ -66,7 +66,6 @@ PRINT_INFO "remove existing class templates ..."
 rm ~/bin/ccl 2>/dev/null                   # possible error
 rm ~/bin/ccl2 2>/dev/null                  # possible error
 rm ~/bin/create.class.sh 2> /dev/null      # possible error
-rm ~/bin/ccld 2> /dev/null  # possible error
 rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
 rm ~/bin/run.defaults.create.class.sh 2> /dev/null  # possible error
 rm ~/bin/class.*.tmpl 2> /dev/null         # possible error
@@ -85,8 +84,7 @@ chmod +x ~/bin/run.defaults.create.class.sh
 PRINT_INFO "create easy name soft link"
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
-ln -s ~/bin/create.class.sh ~/bin/ccl
-ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccld # debug testing
+ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccl # debug testing
 # create new link with multi name option built into script
 ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 

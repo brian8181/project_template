@@ -48,8 +48,8 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 INPUT=$1
 #INPUT_PATH=$2
 #OUTPUT_PATH=$3
-AUTHOR=$5
 LICENSE=$4
+AUTHOR=$5
 BUILD_DATE=$6
 VERSION=$7
 
@@ -59,7 +59,6 @@ BASE_CLASS_NAME=${INPUT#${CLASS_NAME}}
 #BASE_CLASS_NAME=${INPUT##*::}
 #BASE_CLASS_NAME=${BASE_CLASS_NAME:="NO_BASE"}
 
-
 if [ ! -z $CLASS_NAME ]
 then
 	if [ -f "./.project" ] # is this a project folder?
@@ -68,8 +67,8 @@ then
 		
 		if [ -z $BASE_CLASS_NAME ]; then # no base class
 
-			cat ${INPUT_PATH:-"/home/$USER_NAME/bin/"}class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
-			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"/}class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin/"}class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"/}class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
 			cat Makefile | sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" | sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp 
 			# try to update Makefile with new rule
 			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
@@ -78,11 +77,11 @@ then
 			#rm  Makefile.tmp
 			
 		else    # has a base class
-				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
-				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl	
+				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
+				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl	
 				# now replace base class tag
-				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
-				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	
+				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
+				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl | sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	
 				cat Makefile | sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" | sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp
 
 				# try to update Makefile with new rule

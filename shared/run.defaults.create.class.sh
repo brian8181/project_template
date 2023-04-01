@@ -1,7 +1,8 @@
 NAME=$1
-LICENSE="GPL"
+LICENSE="None"
 AUTHOR="Brian K Preston"
-BUILD_DATE="Jan 1, 2023"
+FILE_NAME=$2
+BUILD_DATE=$(date)
 VERSION="0.0.1"
 
-~/bin/create.class.sh ${NAME} "." "." ${LICENSE} ${AUTHOR} ${BUILD_DATE} ${VERSION}
+~/bin/create.class.sh ${NAME} "." "." ${LICENSE} "${AUTHOR}" "${BUILD_DATE}" ${VERSION} $FILE_NAME
