@@ -66,7 +66,9 @@ PRINT_INFO "remove existing class templates ..."
 rm ~/bin/ccl 2>/dev/null                   # possible error
 rm ~/bin/ccl2 2>/dev/null                  # possible error
 rm ~/bin/create.class.sh 2> /dev/null      # possible error
+rm ~/bin/ccld 2> /dev/null  # possible error
 rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
+rm ~/bin/run.defaults.create.class.sh 2> /dev/null  # possible error
 rm ~/bin/class.*.tmpl 2> /dev/null         # possible error
 
 PRINT_INFO "install project scripts ..."
@@ -78,6 +80,7 @@ chmod +x ~/bin/csk.sh
 chmod +x ~/bin/skel.sh
 chmod +x ~/bin/create.class.sh
 chmod +x ~/bin/run.create.class.sh
+chmod +x ~/bin/run.defaults.create.class.sh 
 
 PRINT_INFO "create easy name soft link"
 # create easy name soft link

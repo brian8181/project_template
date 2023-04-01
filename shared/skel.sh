@@ -67,6 +67,7 @@ rm Makefile.tmpl
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 
+	pushd $PROJECT_PATH
 	# do auto tools files
 	cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
@@ -93,6 +94,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 fi
 
 mv gitignore_template .gitignore
+popd > /dev/null # out of project path
 popd > /dev/null # out of project path
 
 ##{ END YOUR CODE  }##
