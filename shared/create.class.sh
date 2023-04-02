@@ -65,7 +65,7 @@ then
 	then
 		PRINT_INFO ${INPUT_PATH:-"~/bin"}
 		
-		if [ -z $BASE_CLASS_NAME ]; then # no base class
+		if [ $BASE_CLASS_NAME = "NO_BASE" ]; then # no base class
 
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin/"}class.cpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"/}class.hpp.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
