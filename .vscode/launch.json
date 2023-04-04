@@ -33,6 +33,14 @@
             "program": "${workspaceFolder}/shared/create.class.sh",
             "args": ["square::shape"],
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "run default ccl",
+            "program": "${workspaceFolder}/shared/run.defaults.create.class.sh",
+            "args": ["square::shape"],
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
