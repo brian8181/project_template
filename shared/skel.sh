@@ -60,6 +60,7 @@ mkdir -p $PROJECT_PATH
 pushd $PROJECT_PATH > /dev/null
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
+touch project_
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl

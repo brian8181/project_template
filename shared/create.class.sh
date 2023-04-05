@@ -61,7 +61,7 @@ BASE_CLASS_NAME=${INPUT#${CLASS_NAME}}
 
 if [ ! -z $CLASS_NAME ]
 then
-	if [ -f "./.project" ] # is this a project folder?
+	if [ -f "./project_" || -f "./.project"] # is this a project folder?
 	then
 		PRINT_INFO ${INPUT_PATH:-"~/bin"}
 		
