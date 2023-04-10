@@ -17,7 +17,7 @@ DATE=$(date "+%H:%M:%S:%s")
 USER_NAME=$(whoami)
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 VERBOSE=1
-DEBUG=1akwe
+DEBUG=1
 # END
 
 if [ -n $VERBOSE ]
@@ -56,12 +56,12 @@ VERSION=$7
 CLASS_NAME=${INPUT%%::*}
 BASE_CLASS_NAME=${INPUT#${CLASS_NAME}}
 # Base class bug !!
-#BASE_CLASS_NAME=${INPUT##*::}
+BASE_CLASS_NAME=${INPUT##*::}
 #BASE_CLASS_NAME=${BASE_CLASS_NAME:="NO_BASE"}
 
 if [ ! -z $CLASS_NAME ]
 then
-	if [ -f "./.project" ] # is this a project folder?
+	if [ -e "./.project" ] # is this a project folder?
 	then
 		PRINT_INFO ${INPUT_PATH:-"~/bin"}
 		
