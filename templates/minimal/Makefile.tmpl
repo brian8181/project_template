@@ -31,7 +31,7 @@ debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
 all: $(APPNAME)
 
 # link
-$(APPNAME): $(APPNAME).o main.o #@@PREREQUISTE@@
+$(APPNAME): main.o #@@PREREQUISTE@@
 	 $(CXX) $(CXXFLAGS) -o $(BUILD)/$(APPNAME) $(BUILD)/main.o #@@CLASS_NAME@@
 
 main.o:

@@ -60,13 +60,19 @@ mkdir -p $PROJECT_PATH
 pushd $PROJECT_PATH > /dev/null
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
+touch project_
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl
 #chmod 644 Makefile 
 
+pushd ./src > /dev/null
+cat  ./main.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/main.cpp/g" > main.cpp
+popd > /dev/null
+
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 
+	PRINT_INFO "TEMPLATE IS BASIC OR GTK"
 	pushd $PROJECT_PATH
 	# do auto tools files
 	cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
@@ -77,7 +83,6 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	pushd ./src > /dev/null
 	cat  ./@@APP_NAME@@.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}.cpp/g" > ${APP_NAME}.cpp
 	cat  ./@@APP_NAME@@.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
-	cat  ./main.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/main.cpp/g" > main.cpp
 	cat  ./main.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" | sed "s/@@AUTHOR@@/${AUTHOR}/g" | sed "s/@@LICENSE@@/${LICENSE}/g" | sed "s/@@VERSION@@/${VERSION}/g" | sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" | sed "s/@@FILE_NAME@@/main.hpp/g" > main.hpp
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	rm *.tmpl
@@ -91,10 +96,10 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	rm *.tmpl
 	#chmod 644 install.sh Makefile* ${APP_NAME}.1
 	popd > /dev/null
+	popd > /dev/null 
 fi
 
 mv gitignore_template .gitignore
-popd > /dev/null # out of project path
 popd > /dev/null # out of project path
 
 ##{ END YOUR CODE  }##
