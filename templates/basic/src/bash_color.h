@@ -1,3 +1,9 @@
+// License:    @@LICENSE@@
+// Author:     @@AUTHOR@@
+// File Name:  @@FILE_NAME@@
+// Build Date: @@BUILD_DATE@@
+// Version:    @@VERSION@@
+
 #ifndef _BASH_COLOR_HPP
 #define _BASH_COLOR_HPP
 
