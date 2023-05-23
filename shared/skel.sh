@@ -64,7 +64,6 @@ touch project_
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl
-#chmod 644 Makefile 
 
 pushd ./src > /dev/null
 
@@ -86,8 +85,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 	rm configure.ac.tmpl Makefile.am.tmpl
-	# chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
-
+	
 	pushd ./src > /dev/null
 	cat  ./@@APP_NAME@@.cpp.tmpl \
 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
@@ -115,7 +113,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	rm *.tmpl
-	#chmod 644 *.cpp *.hpp Makefile*
+	
 	popd > /dev/null
 
 	pushd ./man > /dev/null
@@ -123,7 +121,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 	rm *.tmpl
-	#chmod 644 install.sh Makefile* ${APP_NAME}.1
+	
 	popd > /dev/null
 	popd > /dev/null 
 fi
