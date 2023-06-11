@@ -122,7 +122,7 @@ then
 				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl \
 				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
 				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-0				| sed "s/@@LICENSE@@/${LICENSE}/g" \
+				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	
