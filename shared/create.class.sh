@@ -91,54 +91,53 @@ then
 			# make a backup of Makefile for now
 			cat Makefile.tmp 
 			sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile  
-			#rm  Makefile.tmp
-			
+						
 		else    # has a base class
-				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.hpp.tmpl \
-				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
-				| sed "s/@@VERSION@@/${VERSION}/g" \
-				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" /\
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.hpp.tmpl \
+			| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
+			| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+			| sed "s/@@LICENSE@@/${LICENSE}/g" \
+			| sed "s/@@VERSION@@/${VERSION}/g" \
+			| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" /\
+			| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
 
-				cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.cpp.tmpl \
-				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
-				| sed "s/@@VERSION@@/${VERSION}/g" \
-				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl	
+			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.cpp.tmpl \
+			| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
+			| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+			| sed "s/@@LICENSE@@/${LICENSE}/g" \
+			| sed "s/@@VERSION@@/${VERSION}/g" \
+			| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+			| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl	
 
-				# now replace base class tag
-				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl \
-				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
-				| sed "s/@@VERSION@@/${VERSION}/g" \
-				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
+			# now replace base class tag
+			cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl \
+			| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
+			| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+			| sed "s/@@LICENSE@@/${LICENSE}/g" \
+			| sed "s/@@VERSION@@/${VERSION}/g" \
+			| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+			| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 
-				cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl \
-				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
-				| sed "s/@@VERSION@@/${VERSION}/g" \
-				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	
+			cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl \
+			| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
+			| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+			| sed "s/@@LICENSE@@/${LICENSE}/g" \
+			| sed "s/@@VERSION@@/${VERSION}/g" \
+			| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+			| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	
 
-				cat Makefile \
-				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
-				| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp
+			cat Makefile \
+			| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
+			| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp
 
-				# try to update Makefile with new rule
-				MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
-				# make a backup of Makefile for now
-				cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
-				#cat Makefile.tmp > Makefile./install
-				rm  Makefile.tmp
-				rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
-				rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl
+			# try to update Makefile with new rule
+			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
+			# make a backup of Makefile for now
+			cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
+			#cat Makefile.tmp > Makefile./install
+			rm  Makefile.tmp
+			rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
+			rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl
 		fi
 	else
 		echo "Error: This is not a project directory."
