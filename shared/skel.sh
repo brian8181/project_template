@@ -87,10 +87,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	rm configure.ac.tmpl Makefile.am.tmpl
 	
 	pushd ./src > /dev/null
-<<<<<<< HEAD
 	
-=======
->>>>>>> a65249c1738292eb07206aeb609eb4c9b71580d1
 	cat  ./@@APP_NAME@@.cpp.tmpl \
 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
