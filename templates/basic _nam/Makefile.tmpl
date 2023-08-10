@@ -1,0 +1,48 @@
+# MAKE_TEMPLATE = 0.l.2
+# BUILD_VERSION = 0.l.2
+
+prefix = /usr/local
+
+# Compiler settings - Can be customized.
+CXX = g++
+CXXFLAGS = -Wall -std=c++17 -DDEBUG -ggdb
+
+# lib settings
+LDFLAGS = -static -lcppunit -L/usr/local/lib/
+INCLUDES = -I/usr/local/include/cppunit/
+# add addtional libs here
+
+# Makefile settings - Can be customized.
+APPNAME = @@APP_NAME@@
+EXT = cpp
+ROOTDIR  = .
+BUILD = ./build
+OBJ = ./build
+SRC = ./src
+
+# compile & link for debug
+#debug: CXXFLAGS += -DDEBUG -g
+debug: all
+
+# compile & link for debug GDBversion variable
+#debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
+all: $(APPNAME)
+
+# link
+$(APPNAME): $(APPNAME).o main.o #@@PREREQUISTE@@
+	 $(CXX) $(CXXFLAGS) -o $(BUILD)/$(APPNAME) $(BUILD)/$(APPNAME).o $(BUILD)/main.o #@@CLASS_NAME@@
+
+# compile only
+$(APPNAME).o:
+	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME).$(EXT) -o $(BUILD)/$(APPNAME).o
+	
+main.o:
+	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(BUILD)/main.o
+
+#AUTO_INSERT_POINT_DO_NOT_REMOVE#
+
+# delete object files & app executable
+.PHONY: clean
+clean:
+	-rm -rf $(OBJ)/*.o 
+	-rm -rf $(BUILD)/$(APPNAME) 
