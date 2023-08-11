@@ -127,7 +127,15 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	popd > /dev/null 
 fi
 
+if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
+	echo "YEAH"
+fi
+
 if [[ ${TEMPLATE_PATH##/*/} = "basic_nam" ]]; then
+	echo "YEAH"
+fi
+
+if [[ ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	echo "YEAH"
 fi
 
