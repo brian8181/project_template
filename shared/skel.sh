@@ -139,6 +139,10 @@ if [[ ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	echo "YEAH"
 fi
 
+if [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
+	echo "YEAH"
+fi
+
 mv gitignore_template .gitignore
 popd > /dev/null # out of project path
 
