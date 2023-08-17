@@ -55,17 +55,28 @@ USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
+LICENSE_HEADER="None"
 
 mkdir -p $PROJECT_PATH
 pushd $PROJECT_PATH > /dev/null
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
-touch project_
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl
 
 pushd ./src > /dev/null
+
+if [[ ${LICENSE} = "GPL" ]]; then
+	cat ~/bin/gpl_header.tmpl.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
+	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl
+	cat ~/bin/gpl_header.tmpl.snip ./@@APP_NAME@@.hpp.tmpl > ./@@APP_NAME@@.hpp.tmpl.tmp
+	mv ./@@APP_NAME@@.hpp.tmpl.tmp ./@@APP_NAME@@.hpp.tmpl
+	cat ~/bin/gpl_header.tmpl.snip ./main.cpp.tmpl > ./main.cpp.tmpl.tmp
+	mv ./main.cpp.tmpl.tmp ./main.cpp.tmpl
+	cat ~/bin/gpl_header.tmpl.snip ./main.hpp.tmpl > ./main.hpp.tmpl.tmp
+	mv ./main.hpp.tmpl.tmp ./main.hpp.tmpl
+fi
 
 cat  ./main.cpp.tmpl \
 | sed "s/@@APP_NAME@@/${APP_NAME}/g" \
