@@ -104,7 +104,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 	| sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
 
-	cat  ./main.hpp.tmpl /
+	cat  ./main.hpp.tmpl \
 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
@@ -128,19 +128,19 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
-	echo "YEAH"
+	echo "basic"
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic_nam" ]]; then
-	echo "YEAH"
+	echo "basic_nam"
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
-	echo "YEAH"
+	echo "gtk"
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
-	echo "YEAH"
+	echo "minimal"
 fi
 
 mv gitignore_template .gitignore
