@@ -67,17 +67,28 @@ USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
+#LICENSE_HEADER
 
 mkdir -p $PROJECT_PATH
 pushd $PROJECT_PATH > /dev/null
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
-touch project_
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl
 
 pushd ./src > /dev/null
+
+if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
+	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
+	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl
+	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.hpp.tmpl > ./@@APP_NAME@@.hpp.tmpl.tmp
+	mv ./@@APP_NAME@@.hpp.tmpl.tmp ./@@APP_NAME@@.hpp.tmpl
+	cat ~/bin/${LICENSE}_header.snip ./main.cpp.tmpl > ./main.cpp.tmpl.tmp
+	mv ./main.cpp.tmpl.tmp ./main.cpp.tmpl
+	cat ~/bin/${LICENSE}_header.snip ./main.hpp.tmpl > ./main.hpp.tmpl.tmp
+	mv ./main.hpp.tmpl.tmp ./main.hpp.tmpl
+fi
 
 cat  ./main.cpp.tmpl \
 | sed "s/@@APP_NAME@@/${APP_NAME}/g" \
@@ -116,7 +127,7 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 	| sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
 
-	cat  ./main.hpp.tmpl /
+	cat  ./main.hpp.tmpl \
 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
@@ -190,15 +201,15 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic_nam" ]]; then
-	echo "YEAH"
+	echo "basic_nam"
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
-	echo "YEAH"
+	echo "gtk"
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
-	echo "YEAH"
+	echo "minimal"
 fi
 
 mv gitignore_template .gitignore
