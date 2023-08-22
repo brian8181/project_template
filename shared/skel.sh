@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE='./shared/skel.sh'
 VERSION='0.1.7'
-FILE_DATE='May 23, 2023'
+FILE_DATE='Tue Aug 22 01:30:16 PM CDT 2023'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
@@ -40,6 +40,18 @@ function PRINT_INFO
 {
     MSG=${INFO_MSG}$1
     echo -e ${VERBOSE:+"$MSG"}
+}
+
+function ADD_HEADERS
+{
+	FILE=$1
+	cat  ./${FILE} \
+	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+	| sed "s/@@LICENSE@@/${LICENSE}/g" \
+	| sed "s/@@VERSION@@/${VERSION}/g" \
+	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+	| sed "s/@@FILE_NAME@@/${FILE%%.tmpl}/g" > ${FILE%%.tmpl}
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
@@ -128,7 +140,53 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" ]]; then
-	echo "YEAH"
+
+	PRINT_INFO "TEMPLATE IS BASIC"
+	pushd $PROJECT_PATH
+	# do auto tools files
+	cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+	cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
+	rm configure.ac.tmpl Makefile.am.tmpl
+	
+	pushd ./src > /dev/null
+	
+	cat  ./@@APP_NAME@@.cpp.tmpl \
+	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+	| sed "s/@@LICENSE@@/${LICENSE}/g" \
+	| sed "s/@@VERSION@@/${VERSION}/g" \
+	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+	| sed "s/@@FILE_NAME@@/${APP_NAME}.cpp/g" > ${APP_NAME}.cpp
+
+	cat  ./@@APP_NAME@@.hpp.tmpl \
+	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+	| sed "s/@@LICENSE@@/${LICENSE}/g" \
+	| sed "s/@@VERSION@@/${VERSION}/g" \
+	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+	| sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
+
+	cat  ./main.hpp.tmpl /
+	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+	| sed "s/@@LICENSE@@/${LICENSE}/g" \
+	| sed "s/@@VERSION@@/${VERSION}/g" \
+	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+	| sed "s/@@FILE_NAME@@/main.hpp/g" > main.hpp
+
+	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+	rm *.tmpl
+	
+	popd > /dev/null
+
+	pushd ./man > /dev/null
+	cat  ./@@APP_NAME@@.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
+	cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
+	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+	rm *.tmpl
+	
+	popd > /dev/null
+	popd > /dev/null 
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic_nam" ]]; then
