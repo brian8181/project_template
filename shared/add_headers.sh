@@ -2,7 +2,6 @@
 
 function ADD_HEADERS
 {
-
 	FILE=$1
     echo "adding file ${FILE} ..."
 
@@ -18,7 +17,6 @@ function ADD_HEADERS
 function LICENSE_HEADER
 {
     LICENSE=$1
-
     echo "adding ${LICENSE} license header ..."
     
     cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp

@@ -11,11 +11,12 @@ USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
-#LICENSE_HEADER
+
+# path
+PATH=${FILE%%.tmpl}
 
 function ADD_HEADERS
 {
-
 	FILE=$1
     echo "adding file ${FILE} ..."
 
@@ -31,7 +32,6 @@ function ADD_HEADERS
 function LICENSE_HEADER
 {
     LICENSE=$1
-
     echo "adding ${LICENSE} license header ..."
     
     cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
@@ -44,6 +44,7 @@ function LICENSE_HEADER
 	mv ./main.hpp.tmpl.tmp ./main.hpp.tmpl
 }
 
-pushd ~/src/create_project_template/test
+pushd ${PATH}
 ADD_HEADERS "${FILE}"
+popd
 
