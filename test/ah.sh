@@ -59,7 +59,7 @@ VERSION="6.6.6"
 
 echo "HERE ..."
 
-./add_headers.sh "${TEST_FILE}" "${APP_NAME}" "${TEMPLATE_NAME}" "${LICENSE:=GPL}" "${AUTHOR}" "${BUILD_DATE}" "${VERSION}" "${BUILD_DATE}"
+./add_headers.sh "${TEST_FILE:=test.hpp.tmpl}" "${APP_NAME:=ABC}" "${TEMPLATE_NAME:=basic}" "${LICENSE:=GPL}" "${AUTHOR:=bob}" "${BUILD_DATE:=2023}" "${VERSION:=01}"
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting... @ $DATE"
