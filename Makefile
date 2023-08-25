@@ -1,5 +1,5 @@
-all:
+install:
 	./install.sh
 
-clean:
-	# todo
+uninstall:
+	./uninstall.sh
