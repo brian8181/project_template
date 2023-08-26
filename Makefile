@@ -1,3 +1,6 @@
+reinstall: uninstall
+	./install.sh
+
 install:
 	./install.sh
 
