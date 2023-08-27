@@ -92,15 +92,14 @@ fi
 
 #ADD_HEADERS ./main.cpp.tmpl
 
-FILE_TEST="main.cpp.tmpl"
-F=${FILE_TEST%%.tmpl}
-cat  "./main.cpp.tmpl" \
+FILE_NAME="main.cpp.tmpl"
+cat  "./${FILE_NAME}" \
 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
 	| sed "s/@@VERSION@@/${VERSION}/g" \
 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-	| sed "s/@@FILE_NAME@@/${FILE_TEST%%tmpl}/g" > ./main.cpp
+	| sed "s/@@FILE_NAME@@/${FILE_NAME%%.tmpl}/g" > ./main.cpp
 
 popd > /dev/null
 
