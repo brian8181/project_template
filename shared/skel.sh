@@ -43,7 +43,7 @@ function PRINT_INFO
 function ADD_HEADERS
 {
 	FILE=$1
-	NAME=$(echo ${FILE%%.tmpl} | sed "s/@@APP_NAME@@/${APP_NAME}/g");
+	NAME=$(echo ${FILE%%.tmpl} | sed "s/@@${APP_NAME}@@/${APP_NAME}/g");
 	echo $NAME
 	cat  "./${FILE}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
