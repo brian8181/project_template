@@ -15,7 +15,7 @@
             "request": "launch",
             "name": "Skel.sh-Debug",
             "program": "${workspaceFolder}/shared/skel.sh",
-            "args": ["abc", "basic", "Brian K Preston"],
+            "args": ["abc", "basic", "GPL", "Brian K Preston", "August, 2023", "v0.9.9"],
             "cwd": "${workspaceFolder}"
         },
         {
