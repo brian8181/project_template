@@ -51,7 +51,7 @@ function ADD_HEADERS
 		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-		| sed "s/@@FILE_NAME@@/${FILE%%.tmpl}/g" > ${FILE%%.tmpl}
+		| sed "s/@@FILE_NAME@@/todo/g" > "./${FILE%%.tmpl}"
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
@@ -90,17 +90,7 @@ if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	# mv ./main.hpp.tmpl.tmp ./main.hpp.tmpl
 fi
 
-#ADD_HEADERS ./main.cpp.tmpl
-
-FILE_NAME="main.cpp.tmpl"
-cat  "./${FILE_NAME}" \
-	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-	| sed "s/@@LICENSE@@/${LICENSE}/g" \
-	| sed "s/@@VERSION@@/${VERSION}/g" \
-	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-	| sed "s/@@FILE_NAME@@/${FILE_NAME%%.tmpl}/g" > ./main.cpp
-
+ADD_HEADERS "./main.cpp.tmpl"
 popd > /dev/null
 
 PRINT_INFO "TEMPLATE IS BASIC OR GTK"
