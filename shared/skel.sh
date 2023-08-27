@@ -83,8 +83,6 @@ if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	mv ./@@APP_NAME@@.hpp.tmpl.tmp ./@@APP_NAME@@.hpp.tmpl
 	cat ~/bin/${LICENSE}_header.snip ./main.cpp.tmpl > ./main.cpp.tmpl.tmp
 	mv ./main.cpp.tmpl.tmp ./main.cpp.tmpl
-	# cat ~/bin/${LICENSE}_header.snip ./main.hpp.tmpl > ./main.hpp.tmpl.tmp
-	# mv ./main.hpp.tmpl.tmp ./main.hpp.tmpl
 fi
 
 ADD_HEADERS "./main.cpp.tmpl"
