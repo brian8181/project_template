@@ -15,15 +15,15 @@ PROJECT_PATH=$(pwd)/$APP_NAME
 function ADD_HEADERS
 {
 	FILE=$1
-    echo "adding file ${FILE} ..."
-
-	cat  ${FILE} \
-	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-	| sed "s/@@LICENSE@@/${LICENSE}/g" \
-	| sed "s/@@VERSION@@/${VERSION}/g" \
-	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-	| sed "s/@@FILE_NAME@@/todo/g" > ${FILE%%.tmpl}
+	NAME=$(echo ${FILE%%.tmpl} | sed "s/@@APP_NAME@@/${APP_NAME}/g");
+	echo $NAME
+	cat  "./${FILE}" \
+		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+		| sed "s/@@LICENSE@@/${LICENSE}/g" \
+		| sed "s/@@VERSION@@/${VERSION}/g" \
+		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+		| sed "s/@@FILE_NAME@@/todo/g" > "./${NAME}"
 }
 
 function LICENSE_HEADER
