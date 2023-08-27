@@ -45,13 +45,15 @@ function PRINT_INFO
 function ADD_HEADERS
 {
 	FILE=$1
+	NAME=$(echo ${FILE%%.tmpl} | sed "s/@@APP_NAME@@/${APP_NAME}/g");
+	echo $NAME
 	cat  "./${FILE}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-		| sed "s/@@FILE_NAME@@/todo/g" > "./${FILE%%.tmpl}"
+		| sed "s/@@FILE_NAME@@/todo/g" > "./${NAME}"
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
@@ -76,7 +78,7 @@ touch .project  # create file that marks this a project folder
 # do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl
-
+               
 pushd ./src > /dev/null
 
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
@@ -102,21 +104,23 @@ rm configure.ac.tmpl Makefile.am.tmpl
 
 pushd ./src > /dev/null
 
-cat  ./@@APP_NAME@@.cpp.tmpl \
-	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-	| sed "s/@@LICENSE@@/${LICENSE}/g" \
-	| sed "s/@@VERSION@@/${VERSION}/g" \
-	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-	| sed "s/@@FILE_NAME@@/${APP_NAME}.cpp/g" > ${APP_NAME}.cpp
+ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
+# cat  ./@@APP_NAME@@.cpp.tmpl \
+# 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+# 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+# 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
+# 	| sed "s/@@VERSION@@/${VERSION}/g" \
+# 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+# 	| sed "s/@@FILE_NAME@@/${APP_NAME}.cpp/g" > ${APP_NAME}.cpp
 
-cat  ./@@APP_NAME@@.hpp.tmpl \
-	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-	| sed "s/@@LICENSE@@/${LICENSE}/g" \
-	| sed "s/@@VERSION@@/${VERSION}/g" \
-	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-	| sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
+ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
+# cat  ./@@APP_NAME@@.hpp.tmpl \
+# 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+# 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+# 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
+# 	| sed "s/@@VERSION@@/${VERSION}/g" \
+# 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+# 	| sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
 
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm *.tmpl
