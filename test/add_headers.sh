@@ -12,9 +12,6 @@ USER_ROOT="/home/${USER_NAME}"
 TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
 
-# path
-PATH=${FILE%%.tmpl}
-
 function ADD_HEADERS
 {
 	FILE=$1
@@ -26,7 +23,7 @@ function ADD_HEADERS
 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
 	| sed "s/@@VERSION@@/${VERSION}/g" \
 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-	| sed "s/@@FILE_NAME@@/${FILE%%.tmpl}/g" > ${FILE%%.tmpl}
+	| sed "s/@@FILE_NAME@@/todo/g" > ${FILE%%.tmpl}
 }
 
 function LICENSE_HEADER
@@ -44,7 +41,7 @@ function LICENSE_HEADER
 	mv ./main.hpp.tmpl.tmp ./main.hpp.tmpl
 }
 
-pushd ${PATH}
+pushd ${PROJECT_PATH}
 ADD_HEADERS "${FILE}"
 popd
 
