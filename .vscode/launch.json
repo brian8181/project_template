@@ -47,7 +47,7 @@
             "request": "launch",
             "name": "Mantis:0000111:add_header",
             "program": "${workspaceFolder}/test/add_headers.sh",
-            "args": ["test.hpp.tmpl", "test", "basic", "GPL", "bob", "2023", "066"],
+            "args": ["@@test@@.hpp.tmpl", "test", "basic", "GPL", "bob", "2023", "066"],
             "cwd": "${workspaceFolder}"
         }
     ]
