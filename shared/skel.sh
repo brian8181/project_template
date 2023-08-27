@@ -13,12 +13,10 @@ PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
-# USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
-# END
 
 if [ -n $VERBOSE ]
 then
@@ -57,7 +55,6 @@ function ADD_HEADERS
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-##{ BEGIN YOUR CODE  }##
 
 APP_NAME=$1 
 TEMPLATE_NAME=$2
@@ -69,7 +66,6 @@ USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
 PROJECT_PATH=$(pwd)/$APP_NAME
-#LICENSE_HEADER
 
 mkdir -p $PROJECT_PATH
 pushd $PROJECT_PATH > /dev/null
@@ -80,7 +76,6 @@ cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl
                
 pushd ./src > /dev/null
-
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
 	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl
@@ -96,6 +91,7 @@ ADD_HEADERS "./main.cpp.tmpl"
 popd > /dev/null
 
 PRINT_INFO "TEMPLATE IS BASIC OR GTK"
+
 pushd $PROJECT_PATH
 # do auto tools files
 cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
@@ -103,28 +99,10 @@ cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 rm configure.ac.tmpl Makefile.am.tmpl
 
 pushd ./src > /dev/null
-
 ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
-# cat  ./@@APP_NAME@@.cpp.tmpl \
-# 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-# 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-# 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
-# 	| sed "s/@@VERSION@@/${VERSION}/g" \
-# 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-# 	| sed "s/@@FILE_NAME@@/${APP_NAME}.cpp/g" > ${APP_NAME}.cpp
-
 ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
-# cat  ./@@APP_NAME@@.hpp.tmpl \
-# 	| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-# 	| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-# 	| sed "s/@@LICENSE@@/${LICENSE}/g" \
-# 	| sed "s/@@VERSION@@/${VERSION}/g" \
-# 	| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-# 	| sed "s/@@FILE_NAME@@/${APP_NAME}.hpp/g" > ${APP_NAME}.hpp
-
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm *.tmpl
-
 popd > /dev/null
 
 pushd ./man > /dev/null
@@ -132,12 +110,10 @@ cat  ./@@APP_NAME@@.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
 cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm *.tmpl
-
 popd > /dev/null
 popd > /dev/null 
 
 mv gitignore_template .gitignore
 popd > /dev/null # out of project path
 
-##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
