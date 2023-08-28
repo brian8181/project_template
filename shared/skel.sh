@@ -120,6 +120,7 @@ rm *.tmpl
 
 popd > /dev/null
 mv gitignore_template .gitignore
+touch .project
 popd > /dev/null # out of project path
 
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"

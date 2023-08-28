@@ -59,9 +59,10 @@ BASE_CLASS_NAME=${INPUT#${CLASS_NAME}}
 BASE_CLASS_NAME=${INPUT##*::}
 #BASE_CLASS_NAME=${BASE_CLASS_NAME:="NO_BASE"}
 
+PRINT_DEBUG $PWD
 if [ ! -z $CLASS_NAME ]
 then
-	if [ -e "./project_" ] # is this a project folder?
+	if [ -e "./.project" ] # is this a project folder?
 	then
 		PRINT_INFO ${INPUT_PATH:-"~/bin"}
 		
