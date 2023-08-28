@@ -1,7 +1,7 @@
 #!/bin/bash
 FILE='create.class.sh'
-VERSION='0.1.6.'
-FILE_DATE='March 8, 2023'
+VERSION='08.28.2023.0'
+FILE_DATE='Mon Aug 28 09:41:28 AM CDT 2023'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
@@ -13,8 +13,6 @@ PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
-# USER SETTING
-USER_NAME=$(whoami)
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 VERBOSE=1
 DEBUG=1
@@ -45,6 +43,8 @@ function PRINT_INFO
 PRINT_INFO "$FILE -> Running... @ $DATE"
 ##{ BEGIN YOUR CODE  }##
 
+# USER SETTING
+USER_NAME=$(whoami)
 INPUT=$1
 #INPUT_PATH=$2
 #OUTPUT_PATH=$3
@@ -59,7 +59,12 @@ BASE_CLASS_NAME=${INPUT#${CLASS_NAME}}
 BASE_CLASS_NAME=${INPUT##*::}
 #BASE_CLASS_NAME=${BASE_CLASS_NAME:="NO_BASE"}
 
+# ASSUME USER IS IN A PROJECT DIRECTORY
 PRINT_DEBUG $PWD
+# DEBUG
+# pushd ~/tmp/abc
+PRINT_DEBUG $PWD
+
 if [ ! -z $CLASS_NAME ]
 then
 	if [ -e "./.project" ] # is this a project folder?
@@ -149,4 +154,3 @@ fi
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
-
