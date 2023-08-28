@@ -14,18 +14,18 @@ PROJECT_PATH=$(pwd)/$APP_NAME
 
 function ADD_HEADERS
 {
-	FILE=$1
-	NAME=$(echo ${FILE%%.tmpl} | sed "s/@@${APP_NAME}@@/${APP_NAME}/g");
-	echo $NAME
-	cat  "./${FILE}" \
+	TMPL_NAME=$1
+	REAL_NAME=$(echo ${TMPL_NAME%%.tmpl} | sed "s/@@.*@@/${APP_NAME}/g");
+	echo $REAL_NAME
+	cat  "./${TMPL_NAME}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-		| sed "s/@@FILE_NAME@@/todo/g" > "./${NAME}"
+		| sed "s/@@FILE_NAME@@/todo/g" > "./${REAL_NAME}"
+	rm ./${TMPL_NAME}
 }
-
 function LICENSE_HEADER
 {
     LICENSE=$1

@@ -65,8 +65,8 @@ function ADD_HEADERS
 		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-		| sed "s/@@FILE_NAME@@/todo/g" > "./${REAL_NAME}" > /dev/null
-	rm ./${TMPL_NAME} > /dev/null
+		| sed "s/@@FILE_NAME@@/todo/g" > "./${REAL_NAME}"
+	rm ./${TMPL_NAME}
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
