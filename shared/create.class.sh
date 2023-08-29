@@ -60,7 +60,7 @@ BASE_CLASS_NAME=${INPUT##*::}
 # ASSUME USER IS IN A PROJECT DIRECTORY
 PRINT_DEBUG $PWD
 # DEBUG
-# pushd ~/tmp/abc
+pushd ~/tmp/abc
 PRINT_DEBUG $PWD
 
 if [ ! -z $CLASS_NAME ]
