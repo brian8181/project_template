@@ -20,15 +20,15 @@ VERBOSE=0
 DEBUG=1
 # END
 
-if [ -n $VERBOSE ]
-then
-	echo ${VERBOSE:+"File - $FILE"}
-	echo ${VERBOSE:+"Version - $VERSION"}
-	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
-fi
+# if [ -n $VERBOSE ]
+# then
+# 	echo ${VERBOSE:+"File - $FILE"}
+# 	echo ${VERBOSE:+"Version - $VERSION"}
+# 	echo ${VERBOSE:+"Date - $FILE_DATE"}
+# 	echo ${VERBOSE:+"Author - $AUTHOR"}
+# 	echo ${VERBOSE:+"Email - $EMAIL"}
+# 	echo ${VERBOSE:+"www - $WWW"}
+# fi
 
 function PRINT_DEBUG
 {

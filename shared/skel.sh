@@ -97,6 +97,7 @@ if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	mv ./main.cpp.tmpl.tmp ./main.cpp.tmpl
 fi
 
+PRINT_INFO "Add headers, main.cpp.tmpl ..."
 ADD_HEADERS "./main.cpp.tmpl"
 popd > /dev/null
 
@@ -105,22 +106,29 @@ cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 rm configure.ac.tmpl Makefile.am.tmpl
 
+PRINT_INFO "Enter src directory ..."
 pushd ./src > /dev/null
+PRINT_INFO "Add headers, @@APP_NAME@@.cpp.tmpl ..."
+PRINT_INFO "Add headers, @@APP_NAME@@.hpp.tmpl ..."
+
 ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
 ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm Makefile.am.tmpl
 popd > /dev/null
 
+PRINT_INFO "Enter man directory ..."
 pushd ./man > /dev/null
 cat  ./@@APP_NAME@@.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
 cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm *.tmpl
 
+PRINT_INFO "Leave man directory ..."
 popd > /dev/null
 mv gitignore_template .gitignore
 touch .project
+PRINT_INFO "Leave src directory ..."
 popd > /dev/null # out of project path
 
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
