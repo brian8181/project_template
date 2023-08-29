@@ -42,9 +42,6 @@ function PRINT_INFO
     echo -e ${VERBOSE:+"$MSG"}
 }
 
-#PRINT_INFO "$FILE -> Running... @ $DATE"
-##{ BEGIN YOUR CODE  }##
-
 # ! UNSUSED PARAMATERS !#
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
@@ -57,6 +54,3 @@ BUILD_DATE=$(date)
 VERSION="0.0.1"
 
 ~/bin/skel.sh "${APP_NAME}" "${TEMPLATE_NAME}" "${LICENSE:=GPL}" "${AUTHOR}" "${BUILD_DATE}" "${VERSION}" "${BUILD_DATE}"
-
-##{ END YOUR CODE  }##
-#PRINT_INFO "$FILE -> Exiting... @ $DATE"
