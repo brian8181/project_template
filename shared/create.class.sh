@@ -55,6 +55,8 @@ CLASS_NAME=${INPUT%%::*}
 BASE_CLASS_NAME=${INPUT##*::}
 
 # ASSUME USER IS IN A PROJECT DIRECTORY
+
+BIN_DIR="/home/$USER_NAME/bin/"
 PRINT_DEBUG $PWD
 # DEBUG
 pushd ~/tmp/abc
@@ -87,7 +89,7 @@ then
 			cat Makefile \
 				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
 				| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp 
-				
+
 			# try to update Makefile with new rule
 			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 			# make a backup of Makefile for now
