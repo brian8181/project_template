@@ -69,7 +69,7 @@ then
 	then
 		PRINT_INFO ${INPUT_PATH:-"~/bin"}
 		
-		if [ [ $BASE_CLASS_NAME = "NO_BASE" ] ]; then # no base class
+		if [ $BASE_CLASS_NAME = $CLASS_NAME ]; then # no base class
 
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin/"}class.cpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
