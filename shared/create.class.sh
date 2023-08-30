@@ -52,10 +52,7 @@ BUILD_DATE=$6
 VERSION=$7
 
 CLASS_NAME=${INPUT%%::*}
-BASE_CLASS_NAME=${INPUT#${CLASS_NAME}}
-# Base class bug !!
 BASE_CLASS_NAME=${INPUT##*::}
-#BASE_CLASS_NAME=${BASE_CLASS_NAME:="NO_BASE"}
 
 # ASSUME USER IS IN A PROJECT DIRECTORY
 PRINT_DEBUG $PWD
@@ -90,6 +87,7 @@ then
 			cat Makefile \
 				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
 				| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp 
+				
 			# try to update Makefile with new rule
 			MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 			# make a backup of Makefile for now

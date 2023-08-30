@@ -1,0 +1,16 @@
+#!/bin/bash
+
+USER_NAME=$(whoami)
+INPUT=$1
+INPUT_PATH=$2
+OUTPUT_PATH=$3
+LICENSE=$4
+AUTHOR=$5
+BUILD_DATE=$6
+VERSION=$7
+
+CLASS_NAME=${INPUT%%::*}
+BASE_CLASS_NAME=${INPUT##*::}
+
+echo ${INPUT_PATH:-"/home/$USER_NAME/bin/"}
+
