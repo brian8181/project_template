@@ -41,12 +41,10 @@ function PRINT_INFO
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
 
-pushd ~/tmp/abc/
-
 # USER SETTING
 USER_NAME=$(whoami)
 INPUT=$1
-INPUT_PATH=$2
+#INPUT_PATH=$2
 #OUTPUT_PATH=$3
 LICENSE=$4
 AUTHOR=$5
@@ -58,19 +56,19 @@ BASE_CLASS_NAME=${INPUT##*::}
 
 # ASSUME USER IS IN A PROJECT DIRECTORY
 
-BIN_DIR="/home/$USER_NAME/bin/"
-PRINT_DEBUG $PWD
-# DEBUG
-cd ~/tmp/abc
-#pushd ~/tmp/abc
-PRINT_DEBUG $PWD
+# BIN_DIR="/home/$USER_NAME/bin/"
+# PRINT_DEBUG $PWD
+# # DEBUG
+# cd ~/tmp/abc
+# #pushd ~/tmp/abc
+# PRINT_DEBUG $PWD
 
 if [ ! -z $CLASS_NAME ]
 then
+
 	if [ -e "./.project" ] # is this a project folder?
 	then
-		PRINT_INFO ${INPUT_PATH:-"~/bin"}
-		
+				
 		if [ $BASE_CLASS_NAME = $CLASS_NAME ]; then # no base class
 
 			cat ~/bin/class.cpp.tmpl \
