@@ -61,7 +61,8 @@ BASE_CLASS_NAME=${INPUT##*::}
 BIN_DIR="/home/$USER_NAME/bin/"
 PRINT_DEBUG $PWD
 # DEBUG
-pushd ~/tmp/abc
+cd ~/tmp/abc
+#pushd ~/tmp/abc
 PRINT_DEBUG $PWD
 
 if [ ! -z $CLASS_NAME ]
@@ -78,7 +79,7 @@ then
 				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ./src/${CLASS_NAME}.hpp
+				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ./src/${CLASS_NAME}.cpp
 
 			cat ~/bin/class.hpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
@@ -86,17 +87,16 @@ then
 				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.cpp
+				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.hpp
 
 			cat Makefile \
 				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
 			 	| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp 
 
-				# try to update Makefile with new rule
-				MAKE_RULE=$(cat ~/bin/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
-				# make a backup of Makefile for now
-				cat Makefile.tmp |
-				sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
+			# try to update Makefile with new rule
+			MAKE_RULE=$(cat ~/bin/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
+			# make a backup of Makefile for now
+			cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
 						
 		else    # has a base class
 			cat ~/bin/class.base.hpp.tmpl \
@@ -104,7 +104,7 @@ then
 				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
-				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" /\
+				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ./src/${CLASS_NAME}.hpp.tmpl
 
 			cat ~/bin/class.base.cpp.tmpl \
@@ -136,14 +136,13 @@ then
 				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
 				| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp
 
-			# # try to update Makefile with new rule
-			# MAKE_RULE=$(cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
-			# # make a backup of Makefile for now
-			# cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
-			# #cat Makefile.tmp > Makefile./install
+			# try to update Makefile with new rule
+			MAKE_RULE=$(cat ~/bin/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
+			# make a backup of Makefile for now
+			cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
 			# rm  Makefile.tmp
-			# rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
-			# rm ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl
+			# rm ./src/${CLASS_NAME}.hpp.tmpl
+			# rm ./src/${CLASS_NAME}.cpp.tmpl
 		fi
 	else
 		echo "Error: This is not a project directory."
