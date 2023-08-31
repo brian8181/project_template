@@ -51,17 +51,23 @@ AUTHOR=$5
 BUILD_DATE=$6
 VERSION=$7
 
+echo '$INPUT'=$INPUT
 CLASS_NAME=${INPUT%%::*}
 BASE_CLASS_NAME=${INPUT##*::}
 
-# ASSUME USER IS IN A PROJECT DIRECTORY
+# ASSUME USER IS IN A PROJECT DIRECTORY #
 
-# BIN_DIR="/home/$USER_NAME/bin/"
-# PRINT_DEBUG $PWD
-# # DEBUG
-# cd ~/tmp/abc
+## DEBUG BEGIN ##
+
+PRINT_DEBUG '$PWD'=$PWD
+#cd ~/tmp/abc
 # #pushd ~/tmp/abc
-# PRINT_DEBUG $PWD
+PRINT_DEBUG '$PWD'=$PWD
+
+echo '${CLASS_NAME}'=${CLASS_NAME}
+echo '${BASE_CLASS_NAME}'=${BASE_CLASS_NAME}
+
+## DEBUG END ##
 
 if [ ! -z $CLASS_NAME ]
 then

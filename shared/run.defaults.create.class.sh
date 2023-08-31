@@ -1,4 +1,4 @@
-NAME=$1
+CLASS_NAME=$1
 LICENSE="None"
 AUTHOR="Brian K Preston"
 FILE_NAME=$2
