@@ -96,7 +96,7 @@ then
 				MAKE_RULE=$(cat ~/bin/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
 				# make a backup of Makefile for now
 				cat Makefile.tmp |
-				sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile.tmp2 
+				sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
 						
 		else    # has a base class
 			cat ~/bin/class.base.hpp.tmpl \
