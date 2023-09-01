@@ -99,6 +99,13 @@ fi
 
 PRINT_INFO "Add headers, main.cpp.tmpl ..."
 ADD_HEADERS "./main.cpp.tmpl"
+
+PRINT_INFO "Add headers, bash_color.h.tmpl ..."
+ADD_HEADERS "./bash_color.h.tmpl"
+
+PRINT_INFO "Add headers, bash_color_test.cpp.tmpl ..."
+ADD_HEADERS "./bash_color_test.cpp.tmpl"
+
 popd > /dev/null
 
 # do auto tools files
