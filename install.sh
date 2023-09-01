@@ -57,7 +57,7 @@ cp -r ./templates/gtk ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel.sh  2> /dev/null             # possible error
+rm ~/bin/skel*.sh  2> /dev/null             # possible error
 rm ~/bin/csk.sh 2> /dev/null               # possible error
 rm ~/bin/csk 2> /dev/null                  # possible error
 
@@ -76,7 +76,7 @@ PRINT_INFO "install class templates ..."
 cp -r ./shared/* ~/bin
 # config
 chmod +x ~/bin/csk.sh  
-chmod +x ~/bin/skel.sh
+chmod +x ~/bin/skel*.sh
 chmod +x ~/bin/create.class.sh
 chmod +x ~/bin/run.create.class.sh
 chmod +x ~/bin/run.defaults.create.class.sh 
