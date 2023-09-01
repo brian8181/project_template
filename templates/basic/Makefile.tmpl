@@ -28,7 +28,7 @@ debug: all
 
 # compile & link for debug GDBversion variable
 #debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
-all: $(APPNAME) bash_color_test
+all: $(APPNAME)
 
 # link
 $(APPNAME): $(APPNAME).o main.o #@@PREREQUISTE@@
@@ -41,14 +41,7 @@ $(APPNAME).o:
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(BUILD)/main.o
 
-bash_color_test: bash_color_test.o
-	$(CXX) $(CXXFLAGS) $(BUILD)/bash_color_test.o -o $(BUILD)/bash_color_test
-
-bash_color_test.o:
-	$(CXX) $(CXXFLAGS) -c $(SRC)/bash_color_test.cpp -o $(BUILD)/bash_color_test.o
-
 #AUTO_INSERT_POINT_DO_NOT_REMOVE#
-
 
 # install man pages
 .PHONY: man
