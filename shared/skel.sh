@@ -80,8 +80,7 @@ cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
 
 PRINT_INFO "Create Makefile ..."
-# do makefile
-cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
+cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile # create Makefile
 rm Makefile.tmpl
                
 PRINT_INFO "Change to src directory ..."
