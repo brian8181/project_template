@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=$1
+FILE_NAME=$1
 APP_NAME=$2 
 TEMPLATE_NAME=$3
 LICENSE=$4
@@ -47,6 +47,6 @@ function ADD_HEADERS
 # }
 
 pushd ${PROJECT_PATH}
-ADD_HEADERS "${FILE}"
+ADD_HEADERS "${FILE_NAME}"
 popd
 
