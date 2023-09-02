@@ -20,16 +20,6 @@ INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
 
-if [ -n $VERBOSE ]
-then
-	echo ${VERBOSE:+"File - $FILE"}
-	echo ${VERBOSE:+"Version - $VERSION"}
-	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
-fi
-
 # Input Paramaters
 APP_NAME=$1 
 TEMPLATE_NAME=$2
@@ -69,6 +59,16 @@ function ADD_HEADERS
 		| sed "s/@@FILE_NAME@@/todo/g" > "./${REAL_NAME}"
 	rm ./${TMPL_NAME}
 }
+
+if [ -n $VERBOSE ]
+then
+	PRINT_INFO ${VERBOSE:+"File - $FILE"}
+	PRINT_INFO ${VERBOSE:+"Version - $VERSION"}
+	PRINT_INFO ${VERBOSE:+"Date - $FILE_DATE"}
+	PRINT_INFO ${VERBOSE:+"Author - $AUTHOR"}
+	PRINT_INFO ${VERBOSE:+"Email - $EMAIL"}
+	PRINT_INFO ${VERBOSE:+"www - $WWW"}
+fi
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
 PRINT_INFO "Create project directory, ${PROJECT_PATH} ..."

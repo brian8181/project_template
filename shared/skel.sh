@@ -20,16 +20,6 @@ INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
 
-if [ -n $VERBOSE ]
-then
-	echo ${VERBOSE:+"File - $FILE"}
-	echo ${VERBOSE:+"Version - $VERSION"}
-	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
-fi
-
 # Input Paramaters
 APP_NAME=$1 
 TEMPLATE_NAME=$2
@@ -70,6 +60,16 @@ function ADD_HEADERS
 	rm ./${TMPL_NAME}
 }
 
+if [ -n $VERBOSE ]
+then
+	PRINT_INFO ${VERBOSE:+"File - $FILE"}
+	PRINT_INFO ${VERBOSE:+"Version - $VERSION"}
+	PRINT_INFO ${VERBOSE:+"Date - $FILE_DATE"}
+	PRINT_INFO ${VERBOSE:+"Author - $AUTHOR"}
+	PRINT_INFO ${VERBOSE:+"Email - $EMAIL"}
+	PRINT_INFO ${VERBOSE:+"www - $WWW"}
+fi
+
 PRINT_INFO "$FILE -> Running... @ $DATE"
 PRINT_INFO "Create project directory, ${PROJECT_PATH} ..."
 
@@ -84,9 +84,8 @@ PRINT_INFO "Create Makefile ..."
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
 rm Makefile.tmpl
                
-pushd ./src > /dev/null
-
 PRINT_INFO "Change to src directory ..."
+pushd ./src > /dev/null
 PRINT_INFO "Add license headers ..."
 
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
@@ -103,21 +102,18 @@ fi
 ADD_HEADERS "./main.cpp.tmpl"
 ADD_HEADERS "./bash_color.h.tmpl"
 
-popd > /dev/null
 # do auto tools files
 cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 rm configure.ac.tmpl Makefile.am.tmpl
 
 PRINT_INFO "Enter src directory ..."
-pushd ./src > /dev/null
-
-
 ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
 ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
 
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm Makefile.am.tmpl
+PRINT_INFO "Leave src directory ..."
 popd > /dev/null
 
 PRINT_INFO "Enter man directory ..."
