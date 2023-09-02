@@ -55,7 +55,7 @@ TEMPLATE_NAME=$3
 LICENSE=$4
 AUTHOR="MyName"
 BUILD_DATE=$(date)
-VERSION="6.6.6"
+VERSION="3.6.7"
 
 echo "HERE ..."
 

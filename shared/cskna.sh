@@ -13,7 +13,7 @@ USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 # command line params
 APP_NAME=$1
-TEMPLATE_NAME=$2
+TEMPLATE_NAME=basic_nam
 LICENSE=$3
 
 ~/bin/skel_no_auto.sh "${APP_NAME}" "${TEMPLATE_NAME}" "${LICENSE:=GPL}" "${AUTHOR}" "${BUILD_DATE}" "${VERSION}" "${BUILD_DATE}"
