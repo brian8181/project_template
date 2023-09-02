@@ -2,6 +2,7 @@
 
 # File info
 FILE='./shared/skel.sh'
+FILE_NAME=$FILE
 VERSION='0.1.7'
 FILE_DATE='Tue Aug 22 01:30:16 PM CDT 2023'
 AUTHOR='Brian K Preston'
@@ -56,7 +57,7 @@ function ADD_HEADERS
 		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-		| sed "s/@@FILE_NAME@@/todo/g" > "./${REAL_NAME}"
+		| sed "s/@@FILE_NAME@@/no file name/g" > "./${REAL_NAME}"
 	rm ./${TMPL_NAME}
 }
 
