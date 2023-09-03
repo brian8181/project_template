@@ -76,7 +76,7 @@ PRINT_INFO "Create project directory, \"${PROJECT_PATH}\" ..."
 
 mkdir -p $PROJECT_PATH
 
-# PUSHD
+# ** PUSHD **
 pushd $PROJECT_PATH > /dev/null
 PRINT_INFO "Enter \"$PWD\" directory ..."
 
@@ -92,7 +92,7 @@ cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 rm configure.ac.tmpl Makefile.am.tmpl
 
-# PUSHD               
+# ** PUSHD **               
 pushd ./src > /dev/null
 PRINT_INFO "Enter \"$PWD\" directory ..."
 
@@ -117,25 +117,27 @@ ADD_HEADERS "./bash_color.h.tmpl"
 ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
 ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
 
-# POPD
+# ** POPD **
 PRINT_INFO "Leave source directory ..."
 popd > /dev/null
 
+# ** PUSHD **      
 pushd ./man > /dev/null
 PRINT_INFO "Enter \"$PWD\" directory ..."
+
 cat  ./@@APP_NAME@@.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
 cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm *.tmpl
 
-# POPD
+# ** POPD **
 PRINT_INFO "Leave man directory ..."
 popd > /dev/null
 
 mv gitignore_template .gitignore
 touch .project
 
-# POPD
+# ** POPD **
 PRINT_INFO "Leave project directory ..."
 popd > /dev/null # out of project path
 
