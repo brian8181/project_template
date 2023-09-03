@@ -76,6 +76,7 @@ PRINT_INFO "Create project directory, \"${PROJECT_PATH}\" ..."
 
 mkdir -p $PROJECT_PATH
 pushd $PROJECT_PATH > /dev/null
+PRINT_INFO "Enter project directory, \"$PWD\" ..."
 PRINT_INFO "Copy template files to \"${PROJECT_PATH} \"..."
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
@@ -88,8 +89,8 @@ cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 rm configure.ac.tmpl Makefile.am.tmpl
                
-PRINT_INFO "Enter to source, \"$PROJECT/src\" directory\" ..."
 pushd ./src > /dev/null
+PRINT_INFO "Enter source, \"$PWD\" directory\" ..."
 # auto tools files
 cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm Makefile.am.tmpl
@@ -114,9 +115,8 @@ ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
 PRINT_INFO "Leave src directory ..."
 popd > /dev/null
 
-PRINT_INFO "Enter man directory ..."
-PRINT_INFO "Enter to source, \"$PROJECT/man\" directory ..."
 pushd ./man > /dev/null
+PRINT_INFO "Enter man, \"$PWD\" directory ..."
 cat  ./@@APP_NAME@@.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
 cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
