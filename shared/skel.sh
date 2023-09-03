@@ -90,10 +90,11 @@ rm configure.ac.tmpl Makefile.am.tmpl
                
 PRINT_INFO "Enter to src directory ..."
 pushd ./src > /dev/null
+# auto tools files
 cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm Makefile.am.tmpl
 
-PRINT_INFO "Add license headers ..."
+PRINT_INFO "Add license headers to source files ..."
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
 	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl 
