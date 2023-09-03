@@ -50,7 +50,7 @@ function ADD_HEADERS
 	PRINT_INFO "adding headers, $1 ..."
 	TMPL_NAME=$1
 	REAL_NAME=$(echo ${TMPL_NAME%%.tmpl} | sed "s/@@.*@@/${APP_NAME}/g");
-	#echo $REAL_NAME
+
 	cat  "./${TMPL_NAME}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
@@ -114,8 +114,11 @@ fi
 
 ADD_HEADERS "./main.cpp.tmpl"
 ADD_HEADERS "./bash_color.h.tmpl"
-ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
-ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
+ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl 
+ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl
+
+# test file
+ADD_HEADERS test.txt.tmpl
 
 # ** POPD **
 PRINT_INFO "Leave source directory ..."
