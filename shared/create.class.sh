@@ -103,36 +103,21 @@ then
 		else    # has a base class
 			cat ~/bin/class.base.hpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
+				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
 				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ./src/${CLASS_NAME}.hpp.tmpl
+				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ./src/${CLASS_NAME}.hpp
 
 			cat ~/bin/class.base.cpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
-				| sed "s/@@VERSION@@/${VERSION}/g" \
-				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.cpp.tmpl	
-
-			# now replace base class tag
-			cat ./src/${CLASS_NAME}.hpp.tmpl \
 				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
 				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ./src/${CLASS_NAME}.hpp
-
-			cat ./src/${CLASS_NAME}.cpp.tmpl \
-				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
-				| sed "s/@@VERSION@@/${VERSION}/g" \
-				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-				| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ./src/${CLASS_NAME}.cpp	
+				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.cpp
 
 			cat Makefile \
 				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
@@ -143,8 +128,6 @@ then
 			# make a backup of Makefile for now
 			cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
 			rm  Makefile.tmp
-			rm ./src/${CLASS_NAME}.hpp.tmpl
-			rm ./src/${CLASS_NAME}.cpp.tmpl
 		fi
 	else
 		echo "Error: This is not a project directory."
