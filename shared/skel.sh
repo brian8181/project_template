@@ -50,7 +50,7 @@ function ADD_HEADERS
 	PRINT_INFO "adding headers, $1 ..."
 	TMPL_NAME=$1
 	REAL_NAME=$(echo ${TMPL_NAME%%.tmpl} | sed "s/@@.*@@/${APP_NAME}/g");
-	echo $REAL_NAME
+	#echo $REAL_NAME
 	cat  "./${TMPL_NAME}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
