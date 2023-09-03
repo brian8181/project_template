@@ -83,11 +83,17 @@ touch .project  # create file that marks this a project folder
 PRINT_INFO "Create Makefile ..."
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile # create Makefile
 rm Makefile.tmpl
+# do auto tools files
+cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
+rm configure.ac.tmpl Makefile.am.tmpl
                
-PRINT_INFO "Change to src directory ..."
+PRINT_INFO "Enter to src directory ..."
 pushd ./src > /dev/null
-PRINT_INFO "Add license headers ..."
+cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+rm Makefile.am.tmpl
 
+PRINT_INFO "Add license headers ..."
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
 	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl 
@@ -101,13 +107,6 @@ fi
 
 ADD_HEADERS "./main.cpp.tmpl"
 ADD_HEADERS "./bash_color.h.tmpl"
-
-# do auto tools files
-# cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-# cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
-# rm configure.ac.tmpl Makefile.am.tmpl
-
-PRINT_INFO "Enter src directory ..."
 ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
 ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
 
