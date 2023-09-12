@@ -30,7 +30,7 @@ BUILD_DATE=$5
 VERSION=$6
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
-TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic}"
+TEMPLATE_PATH="${USER_ROOT}/bin/templates/${TEMPLATE_NAME:=basic_nam}"
 PROJECT_PATH=$(pwd)/$APP_NAME
 
 function PRINT_DEBUG
