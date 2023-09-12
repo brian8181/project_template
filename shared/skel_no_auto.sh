@@ -2,6 +2,7 @@
 
 # File info
 FILE='./shared/skel.sh'
+FILE_NAME=$FILE
 VERSION='0.1.7'
 FILE_DATE='Tue Aug 22 01:30:16 PM CDT 2023'
 AUTHOR='Brian K Preston'
@@ -19,16 +20,6 @@ DEBUG_MSG="$PRINT_RED_DEBUG: "
 INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
-
-if [ -n $VERBOSE ]
-then
-	echo ${VERBOSE:+"File - $FILE"}
-	echo ${VERBOSE:+"Version - $VERSION"}
-	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
-fi
 
 # Input Paramaters
 APP_NAME=$1 
@@ -56,38 +47,60 @@ function PRINT_INFO
 
 function ADD_HEADERS
 {
+	PRINT_INFO "adding headers, $1 ..."
 	TMPL_NAME=$1
 	REAL_NAME=$(echo ${TMPL_NAME%%.tmpl} | sed "s/@@.*@@/${APP_NAME}/g");
-	echo $REAL_NAME
+
 	cat  "./${TMPL_NAME}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
 		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-		| sed "s/@@FILE_NAME@@/todo/g" > "./${REAL_NAME}"
+		| sed "s/@@FILE_NAME@@/no file name/g" > "./${REAL_NAME}"
 	rm ./${TMPL_NAME}
 }
 
+if [ -n $VERBOSE ]
+then
+	PRINT_INFO ${VERBOSE:+"File - $FILE"}
+	PRINT_INFO ${VERBOSE:+"Version - $VERSION"}
+	PRINT_INFO ${VERBOSE:+"Date - $FILE_DATE"}
+	PRINT_INFO ${VERBOSE:+"Author - $AUTHOR"}
+	PRINT_INFO ${VERBOSE:+"Email - $EMAIL"}
+	PRINT_INFO ${VERBOSE:+"www - $WWW"}
+fi
+
 PRINT_INFO "$FILE -> Running... @ $DATE"
-PRINT_INFO "Create project directory, ${PROJECT_PATH} ..."
+PRINT_INFO "Create project directory, \"${PROJECT_PATH}\" ..."
 
 mkdir -p $PROJECT_PATH
+
+# ** PUSHD **
 pushd $PROJECT_PATH > /dev/null
-PRINT_INFO "Copy template files to ${PROJECT_PATH} ..."
+PRINT_INFO "Enter \"$PWD\" directory ..."
+
+PRINT_INFO "Copy template files to \"${PROJECT_PATH} \"..."
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
 
 PRINT_INFO "Create Makefile ..."
-# do makefile
-cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile
+cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile # create Makefile
 rm Makefile.tmpl
-               
+# auto tools files
+cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
+rm configure.ac.tmpl Makefile.am.tmpl
+
+# ** PUSHD **               
 pushd ./src > /dev/null
+PRINT_INFO "Enter \"$PWD\" directory ..."
 
-PRINT_INFO "Change to src directory ..."
-PRINT_INFO "Add license headers ..."
+# auto tools files
+cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+rm Makefile.am.tmpl
 
+PRINT_INFO "Add license headers to source files ..."
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
 	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl 
@@ -99,42 +112,36 @@ if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	mv ./bash_color.h.tmpl.tmp ./bash_color.h.tmpl
 fi
 
-PRINT_INFO "Add headers, main.cpp.tmpl ..."
 ADD_HEADERS "./main.cpp.tmpl"
-
-PRINT_INFO "Add headers, bash_color.h.tmpl ..."
 ADD_HEADERS "./bash_color.h.tmpl"
+ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl 
+ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl
 
+# test file
+ADD_HEADERS test.txt.tmpl
+
+# ** POPD **
+PRINT_INFO "Leave source directory ..."
 popd > /dev/null
 
-# do auto tools files
-cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
-rm configure.ac.tmpl Makefile.am.tmpl
-
-PRINT_INFO "Enter src directory ..."
-pushd ./src > /dev/null
-PRINT_INFO "Add headers, @@APP_NAME@@.cpp.tmpl ..."
-PRINT_INFO "Add headers, @@APP_NAME@@.hpp.tmpl ..."
-
-ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl ${APP_NAME}
-ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl ${APP_NAME}
-cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-rm Makefile.am.tmpl
-popd > /dev/null
-
-PRINT_INFO "Enter man directory ..."
+# ** PUSHD **      
 pushd ./man > /dev/null
+PRINT_INFO "Enter \"$PWD\" directory ..."
+
 cat  ./@@APP_NAME@@.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
 cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 rm *.tmpl
 
+# ** POPD **
 PRINT_INFO "Leave man directory ..."
 popd > /dev/null
+
 mv gitignore_template .gitignore
 touch .project
-PRINT_INFO "Leave src directory ..."
+
+# ** POPD **
+PRINT_INFO "Leave project directory ..."
 popd > /dev/null # out of project path
 
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
