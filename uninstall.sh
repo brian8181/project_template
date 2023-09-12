@@ -45,9 +45,11 @@ rm -rf ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel.sh  2> /dev/null # possible error
-rm ~/bin/csk.sh 2> /dev/null   # possible error
-rm ~/bin/csk 2> /dev/null      # possible error
+rm ~/bin/skel.sh  2> /dev/null           # possible error
+rm ~/bin/csk.sh 2> /dev/null             # possible error
+rm ~/bin/csk 2> /dev/null                # possible error
+rm ~/bin/csk-a.sh 2> /dev/null           # possible error
+rm ~/bin/csk-a 2> /dev/null              # possible error
 
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
@@ -56,7 +58,7 @@ rm ~/bin/ccl2 2>/dev/null                 # possible error
 rm ~/bin/create.class.sh 2>/dev/null      # possible error
 rm ~/bin/run.create.class.sh 2>/dev/null  # possible error
 rm ~/bin/class.?pp.tmpl 2>/dev/null       # possible error
-rm ~/bin/class.base.?pp.tmpl 2>/dev/null   # possible error
+rm ~/bin/class.base.?pp.tmpl 2>/dev/null  # possible error
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
