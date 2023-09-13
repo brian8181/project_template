@@ -58,12 +58,12 @@ cp -r ./templates/gtk ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel*.sh  2> /dev/null                    # possible error
-rm ~/bin/csk.sh 2> /dev/null                       # possible error
-rm ~/bin/csk 2> /dev/null                          # possible error
-rm ~/bin/csk-a.sh 2> /dev/null                     # possible error
-rm ~/bin/csk-a 2> /dev/null                        # possible error
-rm ~/bin/csk-a 2> /dev/null                        # possible error
+rm ~/bin/skel*.sh  2> /dev/null                     # possible error
+rm ~/bin/csk.sh 2> /dev/null                        # possible error
+rm ~/bin/csk 2> /dev/null                           # possible error
+rm ~/bin/csk-a.sh 2> /dev/null                      # possible error
+rm ~/bin/csk-a 2> /dev/null                         # possible error
+rm ~/bin/csk-a 2> /dev/null                         # possible error
 
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
