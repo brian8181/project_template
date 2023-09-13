@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # File info
-FILE='./shared/skel.sh'
+FILE='./shared/skel_no_auto.sh'
 FILE_NAME=$FILE
 VERSION='0.1.7'
 FILE_DATE='Tue Aug 22 01:30:16 PM CDT 2023'

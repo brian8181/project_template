@@ -52,24 +52,27 @@ PRINT_INFO "install project templates ..."
 # copy templates
 mkdir ~/bin/templates
 cp -r ./templates/basic ~/bin/templates
+cp -r ./templates/basic_nam ~/bin/templates
 cp -r ./templates/minimal ~/bin/templates
 cp -r ./templates/gtk ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel*.sh  2> /dev/null             # possible error
-rm ~/bin/csk.sh 2> /dev/null                # possible error
-rm ~/bin/csk 2> /dev/null                   # possible error
-rm ~/bin/csk-a 2> /dev/null                 # possible error
+rm ~/bin/skel*.sh  2> /dev/null                    # possible error
+rm ~/bin/csk.sh 2> /dev/null                       # possible error
+rm ~/bin/csk 2> /dev/null                          # possible error
+rm ~/bin/csk-a.sh 2> /dev/null                     # possible error
+rm ~/bin/csk-a 2> /dev/null                        # possible error
+rm ~/bin/csk-a 2> /dev/null                        # possible error
 
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
-rm ~/bin/ccl 2>/dev/null                   # possible error
-rm ~/bin/ccl2 2>/dev/null                  # possible error
-rm ~/bin/create.class.sh 2> /dev/null      # possible error
-rm ~/bin/run.create.class.sh 2> /dev/null  # possible error
+rm ~/bin/ccl 2>/dev/null                            # possible error
+rm ~/bin/ccl2 2>/dev/null                           # possible error
+rm ~/bin/create.class.sh 2> /dev/null               # possible error
+rm ~/bin/run.create.class.sh 2> /dev/null           # possible error
 rm ~/bin/run.defaults.create.class.sh 2> /dev/null  # possible error
-rm ~/bin/class.*.tmpl 2> /dev/null         # possible error
+rm ~/bin/class.*.tmpl 2> /dev/null                  # possible error
 
 PRINT_INFO "install project scripts ..."
 PRINT_INFO "install class templates ..."
