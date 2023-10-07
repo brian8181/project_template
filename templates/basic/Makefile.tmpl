@@ -8,6 +8,7 @@ man1dir = $(mandir)/man1
 # Compiler settings - Can be customized.
 CXX = g++
 CXXFLAGS = -Wall -std=c++17 -DDEBUG -ggdb
+# CXXFLAGS = -Wall -std=c++17
 
 # lib settings
 LDFLAGS = -static -lcppunit -L/usr/local/lib/
@@ -23,11 +24,9 @@ OBJ = ./build
 SRC = ./src
 
 # compile & link for debug
-#debug: CXXFLAGS += -DDEBUG -g
 debug: all
 
 # compile & link for debug GDBversion variable
-#debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
 all: $(APPNAME)
 
 # link
@@ -64,25 +63,12 @@ install: man
 # delete object files & app executable
 .PHONY: clean
 clean:
-	-rm -rf $(OBJ)/*.o 
-	-rm -rf $(BUILD)/$(APPNAME) 
-	-rm -rf $(BUILD)/bash_color_test
-	-rm -rf $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
-	-rm -rf $(BUILD)/$(APPNAME).core
-
+	-rm -rf $(OBJ)/*.
+	-rm -f $(BUILD)/*
+	
 # delete object files, app, executables, & all automake/autoconf generated files
 .PHONY: distclean
 distclean: clean
-	-rm -rf $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
-	-rm -rf $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
-	-rm -rf $(SRC)/Makefile $(SRCS)/Makefile.in
-	-rm -rf $(ROOT)/autom4te.cache $(SRCS)/.deps $(SRCS)/.libs
-
-clean-local:
-	-rm -rf config.status configure config.log
-	-rm -rf autom4te.cache/
-	-rm =-rf aclocal.m4
-	-rm -rf compile install-sh missing Makefile.in
 	
 dist: 
 	git archive HEAD | gzip > $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
