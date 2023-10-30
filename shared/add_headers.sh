@@ -18,3 +18,5 @@ pushd ~/src/create_project_template/shared
 
 ADD_HEADERS class.cpp.tmpl
 
+popd
+
