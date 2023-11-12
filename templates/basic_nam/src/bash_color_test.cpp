@@ -1,4 +1,4 @@
-/ License:    @@LICENSE@@
+// License:    @@LICENSE@@
 // Author:     @@AUTHOR@@
 // File Name:  @@FILE_NAME@@
 // Build Date: @@BUILD_DATE@@

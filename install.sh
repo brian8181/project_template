@@ -2,9 +2,6 @@
 FILE='./install.sh'
 VERSION='0.1.7'
 FILE_DATE='Tue Sep 12 09:50:26 AM CDT 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -25,9 +22,6 @@ then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
@@ -56,27 +50,19 @@ cp -r ./templates/basic_nam ~/bin/templates
 cp -r ./templates/minimal ~/bin/templates
 cp -r ./templates/gtk ~/bin/templates
 
-PRINT_INFO "remove existing project scripts ..."
-# remove old scripts & links
-rm ~/bin/skel*.sh  2> /dev/null                     # possible error
-rm ~/bin/csk.sh 2> /dev/null                        # possible error
-rm ~/bin/csk 2> /dev/null                           # possible error
-rm ~/bin/csk-a.sh 2> /dev/null                      # possible error
-rm ~/bin/csk-a 2> /dev/null                         # possible error
-
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
-rm ~/bin/ccl 2>/dev/null                            # possible error
-rm ~/bin/ccl2 2>/dev/null                           # possible error
-rm ~/bin/create.class.sh 2> /dev/null               # possible error
-rm ~/bin/run.create.class.sh 2> /dev/null           # possible error
-rm ~/bin/run.defaults.create.class.sh 2> /dev/null  # possible error
-rm ~/bin/class.*.tmpl 2> /dev/null                  # possible error
+# cp -f ~/shared/ccl 2>/dev/null                            # possible error
+# cp -f ~/shared/ccl2 2>/dev/null                           # possible error
+# cp -f ~/shared/create.class.sh 2> /dev/null               # possible error
+# cp -f ~/shared/run.create.class.sh 2> /dev/null           # possible error
+# cp -f ~/shared/run.defaults.create.class.sh 2> /dev/null  # possible error
+# cp -f ~/shared/class.*.tmpl 2> /dev/null                  # possible error
 
-PRINT_INFO "install project scripts ..."
-PRINT_INFO "install class templates ..."
-# copy scripts
-cp -r ./shared/* ~/bin
+PRINT_INFO "copy shared files to mbin ..."
+
+cp ./shared/* ~/bin
+
 # config
 chmod +x ~/bin/csk.sh
 chmod +x ~/bin/csk-a.sh  
@@ -86,10 +72,12 @@ chmod +x ~/bin/run.create.class.sh
 chmod +x ~/bin/run.defaults.create.class.sh 
 
 PRINT_INFO "create easy name soft link"
+rm -f ~/bin/csk ~/bin/csk-a ~/bin/ccl*
+
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
 ln -s ~/bin/csk-a.sh ~/bin/csk-a
-ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccl # debug testing
+ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccl 
 # create new link with multi name option built into script
 ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 
