@@ -10,13 +10,13 @@ SRC = src
 
 debug: all
 
-all: @@APPNAME@@
+all: @@APP_NAME@@
 
-@@APPNAME@@: @@APPNAME@@.o main.o #@@PREREQUISTE@@
-	 $(CXX) $(CXXFLAGS) $(BUILD)/@@APPNAME@@.o $(BUILD)/main.o -o $(BUILD)/@@APPNAME@@ #@@CLASS_NAME@@
+@@APP_NAME@@: @@APP_NAME@@.o main.o #@@PREREQUISTE@@
+	 $(CXX) $(CXXFLAGS) $(BUILD)/@@APP_NAME@@.o $(BUILD)/main.o -o $(BUILD)/@@APP_NAME@@ #@@CLASS_NAME@@
 
-@@APPNAME@@.o:
-	$(CXX) $(CXXFLAGS) -c $(SRC)/@@APPNAME@@.cpp -o $(BUILD)/@@APPNAME@@.o
+@@APP_NAME@@.o:
+	$(CXX) $(CXXFLAGS) -c $(SRC)/@@APP_NAME@@.cpp -o $(BUILD)/@@APP_NAME@@.o
 	
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/main.cpp -o $(BUILD)/main.o

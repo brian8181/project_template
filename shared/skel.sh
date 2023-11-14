@@ -80,7 +80,7 @@ touch .project  # create file that marks this a project folder
 
 PRINT_INFO "Create Makefile ..."
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile # create Makefile
-rm Makefile.tmpl
+# rm Makefile.tmpl
 # auto tools files
 cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
