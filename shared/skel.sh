@@ -5,9 +5,6 @@ FILE='./shared/skel.sh'
 FILE_NAME=$FILE
 VERSION='0.1.7'
 FILE_DATE='Tue Aug 22 01:30:16 PM CDT 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
 
 # Debug Info
 FMT_FG_RED='\e[31m'
@@ -38,13 +35,11 @@ function PRINT_DEBUG
     MSG=${DEBUG_MSG}$1
     echo -e ${DEBUG:+"$MSG"}
 }
-
 function PRINT_INFO
 {
     MSG=${INFO_MSG}$1
     echo -e ${VERBOSE:+"$MSG"}
 }
-
 function ADD_HEADERS
 {
 	PRINT_INFO "adding headers, $1 ..."
@@ -60,7 +55,6 @@ function ADD_HEADERS
 		| sed "s/@@FILE_NAME@@/no file name/g" > "./${REAL_NAME}"
 	rm ./${TMPL_NAME}
 }
-
 if [ -n $VERBOSE ]
 then
 	PRINT_INFO ${VERBOSE:+"File - $FILE"}
