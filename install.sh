@@ -1,4 +1,10 @@
+#// License:    None
+#// File Name:  ./Makefile
+#// Build Date: Tue Nov 14 04:08:48 PM CST 2023
+#// Version:    0.0.1
+
 #!/bin/bash
+
 FILE='./install.sh'
 VERSION='0.1.7'
 FILE_DATE='Tue Sep 12 09:50:26 AM CDT 2023'
