@@ -78,21 +78,21 @@ PRINT_INFO "Copy template files to \"${PROJECT_PATH} \"..."
 cp -rf $TEMPLATE_PATH/* ./
 touch .project  # create file that marks this a project folder
 
-PRINT_INFO "Create Makefile ..."
-cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile # create Makefile
-# rm Makefile.tmpl
+PRINT_INFO "Create makefile ..."
+cat ./makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > makefile # create makefile
+# rm makefile.tmpl
 # auto tools files
-cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+cat ./makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > makefile.am
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
-rm configure.ac.tmpl Makefile.am.tmpl
+rm configure.ac.tmpl makefile.am.tmpl
 
 # ** PUSHD **               
 pushd ./src > /dev/null
 PRINT_INFO "Enter \"$PWD\" directory ..."
 
 # auto tools files
-cat ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-rm Makefile.am.tmpl
+cat ./makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > makefile.am
+rm makefile.am.tmpl
 
 PRINT_INFO "Add license headers to source files ..."
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
@@ -124,7 +124,7 @@ PRINT_INFO "Enter \"$PWD\" directory ..."
 
 cat  ./@@APP_NAME@@.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
 cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
-cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+cat  ./makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > makefile.am
 rm *.tmpl
 
 # ** POPD **

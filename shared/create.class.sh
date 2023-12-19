@@ -90,15 +90,15 @@ then
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.hpp
 
-			cat Makefile \
+			cat makefile \
 				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
-			 	| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp 
+			 	| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > makefile.tmp 
 
-			# try to update Makefile with new rule
+			# try to update makefile with new rule
 			MAKE_RULE=$(cat ~/bin/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
-			# make a backup of Makefile for now
-			cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
-			rm  Makefile.tmp
+			# make a backup of makefile for now
+			cat makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > makefile
+			rm  makefile.tmp
 
 		else    # has a base class
 			cat ~/bin/class.base.hpp.tmpl \
@@ -119,15 +119,15 @@ then
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.cpp
 
-			cat Makefile \
+			cat makefile \
 				| sed "s/#@@CLASS_NAME@@/\$(BUILD)\/${CLASS_NAME}.o #@@CLASS_NAME@@/g" \
-				| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > Makefile.tmp
+				| sed "s/#@@PREREQUISTE@@/${CLASS_NAME}.o #@@PREREQUISTE@@/g" > makefile.tmp
 
-			# try to update Makefile with new rule
+			# try to update makefile with new rule
 			MAKE_RULE=$(cat ~/bin/make.class.snip.tmpl | sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g")
-			# make a backup of Makefile for now
-			cat Makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > Makefile
-			rm  Makefile.tmp
+			# make a backup of makefile for now
+			cat makefile.tmp | sed "s/#AUTO_INSERT_POINT_DO_NOT_REMOVE#/${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#/g" > makefile
+			rm  makefile.tmp
 		fi
 	else
 		echo "Error: This is not a project directory."
