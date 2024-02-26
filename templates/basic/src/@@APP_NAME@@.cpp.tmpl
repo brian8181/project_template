@@ -12,6 +12,20 @@
 
 using namespace std;
 
+
+void print_version()
+{
+	cout << VERSION_STRING << endl;
+}
+
+void print_help()
+{
+	cout << "Usage: "
+		 << FMT_BOLD      << "@@APP_NAME@@" << FMT_RESET << " "
+		 << FMT_UNDERLINE << "[OPTION]..."  << FMT_RESET << " "
+		 <<  endl;
+}
+
 int parse_options(int argc, char* argv[])
 {
 	cout << FMT_FG_BLUE << "Hello World!"  << FMT_RESET << endl;
