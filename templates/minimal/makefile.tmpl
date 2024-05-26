@@ -1,45 +1,31 @@
-# MAKE_TEMPLATE = 0.l.2
-# BUILD_VERSION = 0.l.2
+#// License:    None
+#// File Name:  ./makefile
+#// Build Date: Wed Feb 14 03:58:51 PM CST 2024
+#// Version:    0.1.0
 
-prefix = /usr/local
-mandir = $(prefix)/share/man
-man1dir = $(mandir)/man1
+CXX=g++
+CXXFLAGS=-Wall -std=c++17 -DDEBUG -g
+APPNAME= @@APP_NAME@@
+BLD=build
+OBJ=build
+SRC=src
 
-# Compiler settings - Can be customized.
-CXX = g++
-CXXFLAGS = -Wall -std=c++17 -DDEBUG -ggdb
+debug: all
 
-# lib settings
-LDFLAGS = -static -lcppunit -L/usr/local/lib/
-INCLUDES = -I/usr/local/include/cppunit/
-# add addtional libs here
+all: $(BLD)/@@APP_NAME@@
 
-# Makefile settings - Can be customized.
-APPNAME = @@APP_NAME@@
-EXT = cpp
-ROOTDIR  = .
-BUILD = ./build
-OBJ = ./build
-SRC = ./src
+$(BLD)/@@APP_NAME@@: $(OBJ)/@@APP_NAME@@.o $(OBJ)/main.o #@@PREREQUISTE@@
+	 $(CXX) $(CXXFLAGS) $(OBJ)/@@APP_NAME@@.o $(OBJ)/main.o -o $(BLD)/@@APP_NAME@@
 
-# compile & link for debug
-debug:: CXXFLAGS += -DDEBUG -g
-debug:: all
+$(OBJ)/@@APP_NAME@@.o: $(SRC)/@@APP_NAME@@.cpp
+	$(CXX) $(CXXFLAGS) -c $(SRC)/@@APP_NAME@@.cpp -o $(OBJ)/@@APP_NAME@@.o
 
-# compile & link for debug GDBversion variable
-debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
-all: $(APPNAME)
-
-# link
-$(APPNAME): main.o #@@PREREQUISTE@@
-	 $(CXX) $(CXXFLAGS) -o $(BUILD)/$(APPNAME) $(BUILD)/main.o #@@CLASS_NAME@@
-
-main.o:
-	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(BUILD)/main.o
+$(OBJ)/main.o: $(SRC)/main.cpp
+	$(CXX) $(CXXFLAGS) -c $(SRC)/main.cpp -o $(OBJ)/main.o
 
 #AUTO_INSERT_POINT_DO_NOT_REMOVE#
 
 .PHONY: clean
 clean:
-	-rm -rf $(BUILD)/*
-
+	-rm -f $(OBJ)/*.
+	-rm -f $(BLD)/*
