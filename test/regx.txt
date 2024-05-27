@@ -1,6 +1,0 @@
-[brian@gamma ~]$ X = 'shape::test'
-
-
-[brian@gamma ~]$ echo ${X##*::} # base class
-test
-[brian@gamma ~]$ echo ${X%%::*} # class 

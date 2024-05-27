@@ -1,9 +1,9 @@
-#// License:    None
-#// File Name:  ./install.sh
-#// Build Date: Tue Nov 14 04:08:48 PM CST 2023
-#// Version:    0.0.1
+#!/usr/bin/bash
 
-#!/bin/bash
+# License:    None
+# File Name:  ./install.sh
+# Build Date: Sun May 26 10:57:08 PM CDT 2024
+# Version:    0.1.0
 
 FILE='./install.sh'
 VERSION='0.1.7'
@@ -58,18 +58,18 @@ cp ./shared/* ~/bin
 
 # config
 chmod +x ~/bin/csk.sh
-chmod +x ~/bin/csk-a.sh  
+chmod +x ~/bin/csk-a.sh
 chmod +x ~/bin/skel*.sh
 chmod +x ~/bin/create.class.sh
 chmod +x ~/bin/run.create.class.sh
-chmod +x ~/bin/run.defaults.create.class.sh 
+chmod +x ~/bin/run.defaults.create.class.sh
 
 PRINT_INFO "create easy name soft link"
 rm -f ~/bin/csk ~/bin/csk-a ~/bin/ccl*
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
 ln -s ~/bin/csk-a.sh ~/bin/csk-a
-ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccl 
+ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccl
 # create new link with multi name option built into script
 ln -s ~/bin/run.create.class.sh ~/bin/ccl2
 
