@@ -1,7 +1,8 @@
-# License:    None
-# File Name:  ./makefile
-# Build Date: Sun May 26 10:57:08 PM CDT 2024
-# Version:    0.1.0
+# License:    ${LICENSE}
+# Author:     ${AUTHOR}
+# File Name:  ${FILE_NAME}
+# Build Date: ${BUILD_DATE}
+# Version:    ${VERSION}
 
 CXX=g++
 CXXFLAGS=-Wall -std=c++17 -DDEBUG -g
@@ -12,7 +13,7 @@ SRC=src
 
 all: $(BLD)/${APP_NAME}
 
-$(BLD)/${APP_NAME}: $(OBJ)/${APP_NAME}.o $(OBJ)/main.o #@@PREREQUISTE@@
+$(BLD)/${APP_NAME}: $(OBJ)/${APP_NAME}.o $(OBJ)/main.o #${PREREQUISTE}
 	 $(CXX) $(CXXFLAGS) $(OBJ)/${APP_NAME}.o $(OBJ)/main.o -o $(BLD)/${APP_NAME}
 
 $(OBJ)/${APP_NAME}.o: $(SRC)/${APP_NAME}.cpp
@@ -21,7 +22,7 @@ $(OBJ)/${APP_NAME}.o: $(SRC)/${APP_NAME}.cpp
 $(OBJ)/main.o: $(SRC)/main.cpp
 	$(CXX) $(CXXFLAGS) -c $(SRC)/main.cpp -o $(OBJ)/main.o
 
-#AUTO_INSERT_POINT_DO_NOT_REMOVE#
+#${NEW_TARGET}
 
 .PHONY: clean
 clean:
