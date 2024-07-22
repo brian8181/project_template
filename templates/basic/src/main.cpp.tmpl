@@ -34,10 +34,10 @@ int main(int argc, char* argv[])
 			std::string buffer;
 			std::cin >> buffer;
 			// add piped buffer to end of argv
-			char* argvtmp[sizeof(char*) * argc+1];
-			memcpy(argvtmp, argv, sizeof(char*) * argc);
-			argvtmp[argc] = &buffer[0];
-			argv = argvtmp;
+			char* tmp[sizeof(char*) * argc+1];
+			memcpy(tmp, argv, sizeof(char*) * argc);
+			argv = tmp;
+			argv[argc] = &buffer[0];
 			++argc;
 		}
 		return parse_options(argc, argv);
