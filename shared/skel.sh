@@ -19,7 +19,7 @@ VERBOSE=1
 DEBUG=1
 
 # Input Paramaters
-APP_NAME=$1 
+APP_NAME=$1
 TEMPLATE_NAME=$2
 LICENSE=$3
 AUTHOR=$4
@@ -80,13 +80,14 @@ touch .project  # create file that marks this a project folder
 
 PRINT_INFO "Create makefile ..."
 cat ./makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > makefile # create makefile
-# rm makefile.tmpl
+rm makefile.tmpl
+
 # auto tools files
 cat ./makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > makefile.am
 cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
 rm configure.ac.tmpl makefile.am.tmpl
 
-# ** PUSHD **               
+# ** PUSHD **
 pushd ./src > /dev/null
 PRINT_INFO "Enter \"$PWD\" directory ..."
 
@@ -97,7 +98,7 @@ rm makefile.am.tmpl
 PRINT_INFO "Add license headers to source files ..."
 if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
-	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl 
+	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl
 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.hpp.tmpl > ./@@APP_NAME@@.hpp.tmpl.tmp
 	mv ./@@APP_NAME@@.hpp.tmpl.tmp ./@@APP_NAME@@.hpp.tmpl
 	cat ~/bin/${LICENSE}_header.snip ./main.cpp.tmpl > ./main.cpp.tmpl.tmp
@@ -108,7 +109,7 @@ fi
 
 ADD_HEADERS "./main.cpp.tmpl"
 ADD_HEADERS "./bash_color.h.tmpl"
-ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl 
+ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl
 ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl
 
 # test file
@@ -118,7 +119,7 @@ ADD_HEADERS test.txt.tmpl
 PRINT_INFO "Leave source directory ..."
 popd > /dev/null
 
-# ** PUSHD **      
+# ** PUSHD **
 pushd ./man > /dev/null
 PRINT_INFO "Enter \"$PWD\" directory ..."
 
