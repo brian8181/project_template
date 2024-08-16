@@ -1,10 +1,7 @@
 #!/bin/bash
 FILE='./install.sh'
 VERSION='0.1.1'
-FILE_DATE='Febuary, 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brain1818@gmail.com'
-WWW='https://github.com/brian8181'
+FILE_DATE='Thu Aug 15 10:17:45 PM CDT 2024'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -25,9 +22,6 @@ then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
@@ -43,7 +37,6 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-
 ##{ BEGIN CODE  }##
 
 PRINT_INFO "remove existing project templates ..."
@@ -66,18 +59,11 @@ rm ~/bin/csk 2> /dev/null      # possible error
 PRINT_INFO "install project scripts ..."
 # copy scripts
 cp -f ./shared/csk.sh ~/bin/csk.sh
-#cp -f ./shared/cskd.sh ~/bin/cskd.sh   #DEBUG
 cp -f ./shared/skel.sh ~/bin/skel.sh	
-#cp -f ./shared/skeld.sh ~/bin/skeld.sh  #DEBUG
+
 # config
-<<<<<<< HEAD
-#cp -f ./shared/UserName ~/bin/UserName
-=======
->>>>>>> fc39be970bb2656a66c9bee0f16836ccafb82b9d
 chmod +x ~/bin/csk.sh  
-chmod +x ~/bin/cskd.sh                 #DEBUG
 chmod +x ~/bin/skel.sh
-chmod +x ~/bin/skeld.sh                #DEBUG
 
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
@@ -107,5 +93,4 @@ ln -s ~/bin/class_tmpl/create.class.sh ~/bin/ccl
 ln -s ~/bin/class_tmpl/run.create.class.sh ~/bin/ccl2
 
 ##{ END CODE  }##
-
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
