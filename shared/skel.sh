@@ -2,9 +2,6 @@
 FILE='./shared/skel.sh'
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brain1818@gmail.com'
-WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -13,21 +10,16 @@ PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
-# USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
-# END
 
 if [ -n $VERBOSE ]
 then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
@@ -57,18 +49,12 @@ cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
 touch $PROJECT_PATH/.project # create file that marks this a project folder
 pushd $PROJECT_PATH > /dev/null
 
-# do makefile
 cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
 cat Makefile.tmp | sed "s/@@CLASS_NAME@@//g" > Makefile
 rm Makefile.tmp*
 chmod 644 Makefile 
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
-
-	# do auto tools files
-	# cat ./configure.ac.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > configure.ac
-	# rm configure.ac.tmpl
-	# chmod 644 AUTHORS ChangeLog NEWS README* configure.ac Makefile.am
 
 	pushd ./src > /dev/null
 	cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp

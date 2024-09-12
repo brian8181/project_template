@@ -2,9 +2,6 @@
 FILE='./shared/csk.sh'
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -13,21 +10,16 @@ PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
-# USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=0
 DEBUG=1
-# END
 
 if [ -n $VERBOSE ]
 then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
@@ -44,16 +36,15 @@ function PRINT_INFO
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
 
-##{ BEGIN YOUR CODE  }##
+##{ BEGIN CODE }##
 
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
-# command line params
 APP_NAME=$1
 TEMPLATE_NAME=$2
 
 ~/bin/skel.sh ${APP_NAME} ${TEMPLATE_NAME}
 
-##{ END YOUR CODE  }##
+##{ END CODE }##
 
 PRINT_INFO "$FILE -> Exiting... @ $DATE"

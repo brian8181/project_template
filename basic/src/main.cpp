@@ -5,7 +5,6 @@
 #include <sys/select.h>     /* for pselect   */
 #include <string>
 #include <getopt.h>
-#include "main.hpp"
 
 int stdin_ready (int filedes)
 {
