@@ -15,7 +15,39 @@
             "request": "launch",
             "name": "Skel.sh-Debug",
             "program": "${workspaceFolder}/shared/skel.sh",
-            "args": ["abc", "basic"],
+            "args": ["abc", "basic", "GPL", "Brian K Preston", "August, 2023", "v0.9.9"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "ccl no base",
+            "program": "${workspaceFolder}/shared/create.class.sh",
+            "args": ["shape"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "ccl with base",
+            "program": "${workspaceFolder}/shared/create.class.sh",
+            "args": ["square::shape"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "run default ccl",
+            "program": "${workspaceFolder}/shared/run.defaults.create.class.sh",
+            "args": ["square::shape"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Mantis:0000111:add_header",
+            "program": "${workspaceFolder}/test/add_headers.sh",
+            "args": ["@@test@@.hpp.tmpl", "test", "basic", "GPL", "bob", "2023", "066"],
             "cwd": "${workspaceFolder}"
         }
     ]

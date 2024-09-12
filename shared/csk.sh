@@ -1,5 +1,7 @@
 #!/bin/bash
+
 FILE='./shared/csk.sh'
+<<<<<<< HEAD
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
 
@@ -40,11 +42,22 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
+=======
+FILE_DATE='Mon Jul 22 11:47:09 AM CDT 2024'
+BUILD_DATE=$(date)
+VERSION="3.6.7"
+
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778
 APP_NAME=$1
 TEMPLATE_NAME=$2
+LICENSE=$3
 
+<<<<<<< HEAD
 ~/bin/skel.sh ${APP_NAME} ${TEMPLATE_NAME}
 
 ##{ END CODE }##
 
 PRINT_INFO "$FILE -> Exiting... @ $DATE"
+=======
+~/bin/skel.sh "${APP_NAME}" "${TEMPLATE_NAME}" "${LICENSE:=GPL}" "" "${FILE_DATE}" "${VERSION}" "${BUILD_DATE}"
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778

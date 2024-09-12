@@ -1,7 +1,8 @@
 #!/bin/bash
+
 FILE='uninstall.sh'
-VERSION='0.1'
-FILE_DATE='12192022'
+VERSION='0.1.7'
+FILE_DATE='Tue Sep 12 09:50:26 AM CDT 2023'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -37,18 +38,19 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-
 ##{ BEGIN YOUR CODE  }##
 
 PRINT_INFO "remove existing project templates ..."
 # remove "project_templates" before update
-rm -rf ~/bin/project_templates
+rm -rf ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
-rm ~/bin/skel.sh  2> /dev/null # possible error
-rm ~/bin/csk.sh 2> /dev/null   # possible error
-rm ~/bin/csk 2> /dev/null      # possible error
+rm ~/bin/skel.sh  2> /dev/null           # possible error
+rm ~/bin/csk.sh 2> /dev/null             # possible error
+rm ~/bin/csk 2> /dev/null                # possible error
+rm ~/bin/csk-a.sh 2> /dev/null           # possible error
+rm ~/bin/csk-a 2> /dev/null              # possible error
 
 PRINT_INFO "remove existing class templates ..."
 # remove old scripts
@@ -57,8 +59,7 @@ rm ~/bin/ccl2 2>/dev/null                 # possible error
 rm ~/bin/create.class.sh 2>/dev/null      # possible error
 rm ~/bin/run.create.class.sh 2>/dev/null  # possible error
 rm ~/bin/class.?pp.tmpl 2>/dev/null       # possible error
-rm ~/bin/class.base.?pp.tmpl 2>/dev/null   # possible error
+rm ~/bin/class.base.?pp.tmpl 2>/dev/null  # possible error
 
 ##{ END YOUR CODE  }##
-
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"

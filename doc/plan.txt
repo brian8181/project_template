@@ -1,0 +1,144 @@
+*Create Project Templates*
+
+    This project contains scripts to create a c++ project from a template.
+
+    ** Templates **
+
+        *** Project Template:
+        
+            There a three templates at this point.
+
+                * Basic
+                * Minimal
+                * Gtk
+
+            There could be more but at this point there are only these three.
+
+        *** Class Templates:
+        
+            There is a create class scripts & template ...
+
+    ** Usage
+
+            csk, soft link to csk.sh, calls skel.sh
+            ccl, soft link to create.classs.sh
+
+            csk <project name>
+            ccl <class name>[::<base class name>] ...
+
+            Senerio 1;
+
+            csk:
+                user:~$ >csk abc
+                abc created ...
+                user:~$ > cd abc
+                user:~/abc $>ls
+                <todo>
+                user:~/abc $>make
+                <todo>
+                user:~/abc $>./abc
+                <todo>
+
+            ccl no base:
+                user:~$ >csk abc
+                abc created ...
+                user:~$ > cd abc
+                user:~/abc $>ls
+                <todo>
+                user:~/abc $>ccl shape
+                user:~/abc $>make
+                
+             ccl with base:
+                user:~$ >csk abc
+                abc created ...
+                user:~$ > cd abc
+                user:~/abc $>ls
+                <todo>
+                user:~/abc $>ccl shape
+                user:~/abc $>ccl square::shape
+                user:~/abc $>ccl circle::shape
+                user:~/abc $>ccl triangle:shape
+                user:~/abc $>make
+
+    ** Installation:
+
+        install.sh 
+
+            - Removes pervious versions from ~/bin
+            - Installs all to ~/bin 
+            - Sets permission on files based on files & user settings ...
+        
+        user:~/src/create_project_templates $>./install.sh
+        <todo>
+
+    ** Remove All
+        
+        unistall.sh
+        
+            - Removes all from ~/bin
+
+        user:~/src/create_project_templates $>./install.sh
+        <todo>
+
+    ** Detail:
+
+        *** Project Structure:
+
+            /templates
+            |   /basic
+                |   /scr
+                    |   /@@APP_NAME@@.cpp.tmpl
+                        /@@APP_NAME@@.hpp.tmpl
+                        /main.cpp
+                        /main.hpp
+                |   Makefile
+            |   /minimal
+                |   /scr
+                |   Makefile
+            |   /gtk
+            |   /scr
+                |   Makefile
+            /shared
+            |   csk.sh
+            |   skel.sh
+            |   csk -> csk.sh
+            |   create.class.sh
+            |   ccl -> create.class.sh
+            install.sh
+            |   /test 
+                |   csk_debug.sh
+                |   regx.txt
+            |   /doc 
+                |   plan.txt
+            install.sh
+            uninstall.sh
+            AUTHORS
+            NEWS
+            COPYING
+            NEWS
+            README
+            README.md
+            .gitignore
+
+
+        *** bin:
+
+            /templates
+            |   /basic
+                |   /scr
+                    |   /@@APP_NAME@@.cpp.tmpl
+                        /@@APP_NAME@@.hpp.tmpl
+                |   Makefile
+            |   /minimal
+                |   /scr
+                |   Makefile
+            |   /gtk
+            |   /scr
+                |   Makefile
+            csk.sh
+            skel.sh
+            csk -> csk.sh
+            create.class.sh
+            ccl -> create.class.sh
+
+        *** output
