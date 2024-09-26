@@ -1,10 +1,15 @@
 #!/bin/bash
 FILE='./shared/cskd.sh'
+<<<<<<< HEAD:shared/csk_debug.sh
+VERSION='0.1.1'
+FILE_DATE='Febuary, 2023'
+=======
 VERSION='0.1.6'
 FILE_DATE='March 8, 2023'
 AUTHOR='Brian K Preston'
 EMAIL='brian8181@gmail.com'
 WWW='https://github.com/brian8181'
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:test/csk_debug.sh
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -13,21 +18,16 @@ PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
 
-# USER SETTING
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
-# END
 
 if [ -n $VERBOSE ]
 then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
@@ -43,11 +43,15 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
+<<<<<<< HEAD:shared/csk_debug.sh
+
+##{ BEGIN CODE }##
+=======
 # DEBUG
 PRINT_DEBUG "$FILE -> Running... @ $DATE"
 ##{ BEGIN YOUR CODE  }##
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:test/csk_debug.sh
 
-#USER_NAME=$(cat ./UserName)
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
 # command line params
@@ -55,7 +59,7 @@ APP_NAME=$1
 TEMPLATE_NAME=$2
 TEST_DEBUG1=$3
 TEST_DEBUG2=$4
-# defaults
+
 SRC_ROOT="${USER_ROOT}/src"
 BIN="${USER_ROOT}/bin"
 TMP="{$USER_ROOT}/tmp"
@@ -77,7 +81,10 @@ echo "TEST_DEBUG2 : $TEST_DEBUG2"
 
 echo COMMAND : ${APP_NAME:-$DEFAULT_APP_NAME} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH} ${TEMPLATE_PATH:-$DEFAULT_TEMPLATE_PATH} 
 
+<<<<<<< HEAD:shared/csk_debug.sh
+##{ END CODE }##
+
+=======
 ##{ END YOUR CODE  }##
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:test/csk_debug.sh
 PRINT_INFO "$FILE -> Exiting... @ $DATE"
-# DEBUG
-PRINT_DEBUG "$FILE -> Exiting... @ $DATE"

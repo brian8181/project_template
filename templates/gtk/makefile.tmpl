@@ -1,7 +1,11 @@
+<<<<<<< HEAD:basic/makefile.tmpl
+# Mon Sep  2 10:54:00 PM CDT 2024
+=======
 # License:    None
 # File Name:  ./makefile
 # Build Date: Sun May 26 10:57:08 PM CDT 2024
 # Version:    0.1.0
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:templates/gtk/makefile.tmpl
 
 prefix = /usr/local
 mandir = $(prefix)/share/man
@@ -10,13 +14,39 @@ man1dir = $(mandir)/man1
 # Compiler settings - Can be customized.
 CXX = g++
 CXXFLAGS = -Wall -std=c++17 -DDEBUG -ggdb
+<<<<<<< HEAD:basic/makefile.tmpl
+
 # lib settings
 LDFLAGS = -static -lcppunit -L/usr/local/lib/
 INCLUDES = -I/usr/local/include/cppunit/
+# add addtional libs here
+=======
+# lib settings
+LDFLAGS = -static -lcppunit -L/usr/local/lib/
+INCLUDES = -I/usr/local/include/cppunit/
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:templates/gtk/makefile.tmpl
 
 # Makefile settings - Can be customized.
 APPNAME = @@APP_NAME@@
 EXT = cpp
+<<<<<<< HEAD:basic/makefile.tmpl
+ROOT=.
+BLD=./build
+OBJ=./build
+SRC=./src
+
+# compile & link for debug
+#debug: CXXFLAGS += -DDEBUG -g
+debug: all
+
+# compile & link for debug GDBversion variable
+#debuggdb: CXXFLAGS += -DDEBUG -ggdb # compile & link
+all: $(APPNAME) bash_color_test
+
+# link
+$(APPNAME): $(APPNAME).o main.o #@@PREREQUISTE@@
+	 $(CXX) $(CXXFLAGS) -o $(BLD)/$(APPNAME) $(BLD)/$(APPNAME).o $(BLD)/main.o #@@CLASS_NAME@@
+=======
 ROOT  = .
 BUILD = ./build
 OBJ = ./build
@@ -27,10 +57,19 @@ all: $(APPNAME) bash_color_test
 # link
 $(APPNAME): $(APPNAME).o main.o @@CLASS_NAME@@ #END
 	 $(CXX) $(CXXFLAGS) $(BUILD)/$(APPNAME).o $(BUILD)/main.o @@CLASS_NAME@@ -o $(BUILD)/$(APPNAME)
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:templates/gtk/makefile.tmpl
 
 # compile only
 $(APPNAME).o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/$(APPNAME).$(EXT) -o $(OBJ)/$(APPNAME).o
+<<<<<<< HEAD:basic/makefile.tmpl
+	
+main.o:
+	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(OBJ)/main.o
+
+bash_color_test: bash_color_test.o
+	$(CXX) $(CXXFLAGS) $(BLD)/bash_color_test.o -o $(BLD)/bash_color_test
+=======
 
 main.o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/main.$(EXT) -o $(BUILD)/main.o
@@ -48,6 +87,7 @@ $(APPNAME)_test.o:
 
 bash_color_test: bash_color_test.o
 	$(CXX) $(CXXFLAGS) $(BUILD)/bash_color_test.o -o $(BUILD)/bash_color_test
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:templates/gtk/makefile.tmpl
 
 bash_color_test.o:
 	$(CXX) $(CXXFLAGS) -c $(SRC)/bash_color_test.cpp -o $(OBJ)/bash_color_test.o
@@ -61,6 +101,15 @@ man:
 
 .PHONY: unman
 unman:
+<<<<<<< HEAD:basic/makefile.tmpl
+	-rm -rf $(man1dir)/$(APPNAME).1.gz
+	mandb
+
+# install 
+.PHONY: install
+install: man
+	cp $(BLD)/$(APPNAME) $(prefix)/bin/$(APPNAME)
+=======
 	rm $(man1dir)/$(APPNAME).1.gz
 	mandb
 
@@ -68,21 +117,45 @@ unman:
 .PHONY: install
 install: man
 	cp $(BUILD)/$(APPNAME) $(prefix)/bin/$(APPNAME)
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:templates/gtk/makefile.tmpl
 	rm $(prefix)/bin/$(APPNAME)
 
 # delete object files & app executable
 .PHONY: clean
 clean:
+<<<<<<< HEAD:basic/makefile.tmpl
+	-rm -rf $(OBJ)/*.o 
+	-rm -rf $(BLD)/$(APPNAME) 
+	-rm -rf $(BLD)/bash_color_test
+	-rm -rf $(BLD)/*.xml $(BLD)/$(APPNAME).$(BLD_VERSION).tar.gz
+	-rm -rf $(BLD)/$(APPNAME).core
+=======
 	-rm -f $(OBJ)/*.o
 	-rm -f $(BUILD)/$(APPNAME)
 	-rm -f $(BUILD)/$(APPNAME)_test
 	-rm -f $(BUILD)/bash_color_test
 	-rm -f $(BUILD)/*.xml $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
 	-rm -f $(BUILD)/$(APPNAME).core
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:templates/gtk/makefile.tmpl
 
 # delete object files, app, executables, & all automake/autoconf generated files
 .PHONY: distclean
 distclean: clean
+<<<<<<< HEAD:basic/makefile.tmpl
+	-rm -rf $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure 
+	-rm -rf $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
+	-rm -rf $(SRC)/Makefile $(SRCS)/Makefile.in
+	-rm -rf $(ROOT)/autom4te.cache $(SRCS)/.deps $(SRCS)/.libs
+
+clean-local:
+	-rm -rf config.status configure config.log
+	-rm -rf autom4te.cache/
+	-rm =-rf aclocal.m4
+	-rm -rf compile install-sh missing Makefile.in
+	
+dist: 
+	git archive HEAD | gzip > $(BLD)/$(APPNAME).$(BLD_VERSION).tar.gz
+=======
 	-rm -f $(ROOT)/config.* $(ROOT)/Makefile $(ROOT)/Makefile.in $(ROOT)/INSTALL $(ROOT)/configure
 	-rm -f $(ROOT)/stamp-h1 $(ROOT)/aclocal.m4 $(ROOT)/compile $(ROOT)/install-sh $(ROOT)/libtool $(ROOT)/ltmain.sh $(ROOT)/stamp-h1 $(ROOT)/missing $(ROOT)/depcomp
 	-rm -f $(SRC)/Makefile $(SRC)/Makefile.in
@@ -96,5 +169,6 @@ clean-local:
 
 dist:
 	git archive HEAD | gzip > $(BUILD)/$(APPNAME).$(BUILD_VERSION).tar.gz
+>>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:templates/gtk/makefile.tmpl
 
 dist-gz: dist
