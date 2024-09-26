@@ -6,8 +6,8 @@ function ADD_HEADERS
     echo "adding file ${FILE} ..."
 
 	cat  ./${FILE} \
-		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
+		# | sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+		# | sed "s/@@AUTHOR@@/${AUTHOR}/g" \
 		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" #\
