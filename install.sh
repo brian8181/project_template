@@ -1,8 +1,7 @@
 #!/usr/bin/bash
 
-# License:    None
 # File Name:  ./install.sh
-# Build Date: Sun May 26 10:57:08 PM CDT 2024
+# Build Date: Wed Sep 25 11:00:12 PM CDT 2024
 # Version:    0.1.0
 
 FILE='./install.sh'

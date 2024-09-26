@@ -60,9 +60,6 @@ then
 	PRINT_INFO ${VERBOSE:+"File - $FILE"}
 	PRINT_INFO ${VERBOSE:+"Version - $VERSION"}
 	PRINT_INFO ${VERBOSE:+"Date - $FILE_DATE"}
-	PRINT_INFO ${VERBOSE:+"Author - $AUTHOR"}
-	PRINT_INFO ${VERBOSE:+"Email - $EMAIL"}
-	PRINT_INFO ${VERBOSE:+"www - $WWW"}
 fi
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
