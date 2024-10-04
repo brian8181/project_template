@@ -3,9 +3,6 @@
 
 FILE='./shared/csk-a.sh'
 FILE_DATE=$(date)
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
 BUILD_DATE=$(date)
 VERSION="3.6.7"
 USER_NAME=$(whoami)

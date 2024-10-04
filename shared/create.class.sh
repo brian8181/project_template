@@ -2,9 +2,7 @@
 FILE='create.class.sh'
 VERSION='08.28.2023.0'
 FILE_DATE='Mon Aug 28 09:41:28 AM CDT 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
+
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -22,9 +20,6 @@ then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
@@ -44,8 +39,6 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 # USER SETTING
 USER_NAME=$(whoami)
 INPUT=$1
-LICENSE=$2
-AUTHOR=$3
 BUILD_DATE=$4
 VERSION=$5
 
@@ -76,16 +69,12 @@ then
 
 			cat ~/bin/class.cpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ./src/${CLASS_NAME}.cpp
 
 			cat ~/bin/class.hpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.hpp
@@ -104,8 +93,6 @@ then
 			cat ~/bin/class.base.hpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
 				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ./src/${CLASS_NAME}.hpp
@@ -113,8 +100,6 @@ then
 			cat ~/bin/class.base.cpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
 				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ./src/${CLASS_NAME}.cpp

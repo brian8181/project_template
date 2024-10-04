@@ -88,16 +88,12 @@ then
 		else    # has a base class
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.hpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" /\
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl
 
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"}/class.base.cpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl	
@@ -105,16 +101,12 @@ then
 			# now replace base class tag
 			cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp.tmpl \
 				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 
 			cat ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp.tmpl \
 				| sed "s/@@BASE_CLASS_NAME@@/${BASE_CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp	

@@ -1,15 +1,7 @@
 #!/bin/bash
 FILE='./shared/cskd.sh'
-<<<<<<< HEAD:shared/csk_debug.sh
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
-=======
-VERSION='0.1.6'
-FILE_DATE='March 8, 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
->>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:test/csk_debug.sh
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -43,14 +35,8 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
-<<<<<<< HEAD:shared/csk_debug.sh
 
 ##{ BEGIN CODE }##
-=======
-# DEBUG
-PRINT_DEBUG "$FILE -> Running... @ $DATE"
-##{ BEGIN YOUR CODE  }##
->>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:test/csk_debug.sh
 
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
@@ -81,10 +67,6 @@ echo "TEST_DEBUG2 : $TEST_DEBUG2"
 
 echo COMMAND : ${APP_NAME:-$DEFAULT_APP_NAME} ${PROJECT_PATH:-$DEFAULT_PROJECT_PATH} ${TEMPLATE_PATH:-$DEFAULT_TEMPLATE_PATH} 
 
-<<<<<<< HEAD:shared/csk_debug.sh
 ##{ END CODE }##
 
-=======
-##{ END YOUR CODE  }##
->>>>>>> 2ee88bdf43d57d20741313181bba6426831c6778:test/csk_debug.sh
 PRINT_INFO "$FILE -> Exiting... @ $DATE"

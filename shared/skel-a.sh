@@ -3,8 +3,8 @@
 # File info
 FILE='./shared/skel-a.sh'
 FILE_NAME=$FILE
-VERSION='0.1.8'
-FILE_DATE='Wed Sep 25 11:00:12 PM CDT 2024'
+VERSION='0.1.7'
+FILE_DATE='Tue Aug 22 01:30:16 PM CDT 2023'
 
 # Debug Info
 FMT_FG_RED='\e[31m'
@@ -50,8 +50,6 @@ function ADD_HEADERS
 
 	cat  "./${TMPL_NAME}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-		| sed "s/@@LICENSE@@/${LICENSE}/g" \
 		| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 		| sed "s/@@FILE_NAME@@/no file name/g" > "./${REAL_NAME}"
@@ -63,9 +61,6 @@ then
 	PRINT_INFO ${VERBOSE:+"File - $FILE"}
 	PRINT_INFO ${VERBOSE:+"Version - $VERSION"}
 	PRINT_INFO ${VERBOSE:+"Date - $FILE_DATE"}
-	PRINT_INFO ${VERBOSE:+"Author - $AUTHOR"}
-	PRINT_INFO ${VERBOSE:+"Email - $EMAIL"}
-	PRINT_INFO ${VERBOSE:+"www - $WWW"}
 fi
 
 PRINT_INFO "$FILE -> Running... @ $DATE"
@@ -90,24 +85,24 @@ pushd ./src > /dev/null
 PRINT_INFO "Enter \"$PWD\" directory ..."
 
 PRINT_INFO "Add license headers to source files ..."
-if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
-	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
-	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl 
-	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.hpp.tmpl > ./@@APP_NAME@@.hpp.tmpl.tmp
-	mv ./@@APP_NAME@@.hpp.tmpl.tmp ./@@APP_NAME@@.hpp.tmpl
-	cat ~/bin/${LICENSE}_header.snip ./main.cpp.tmpl > ./main.cpp.tmpl.tmp
-	mv ./main.cpp.tmpl.tmp ./main.cpp.tmpl
-	cat ~/bin/${LICENSE}_header.snip ./bash_color.h.tmpl > ./bash_color.h.tmpl.tmp
-	mv ./bash_color.h.tmpl.tmp ./bash_color.h.tmpl
-fi
+# if [[ ${LICENSE:="None"} = "GPL" || ${LICENSE:="None"} = "BSD" ]]; then
+# 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.cpp.tmpl > ./@@APP_NAME@@.cpp.tmpl.tmp
+# 	mv ./@@APP_NAME@@.cpp.tmpl.tmp ./@@APP_NAME@@.cpp.tmpl 
+# 	cat ~/bin/${LICENSE}_header.snip ./@@APP_NAME@@.hpp.tmpl > ./@@APP_NAME@@.hpp.tmpl.tmp
+# 	mv ./@@APP_NAME@@.hpp.tmpl.tmp ./@@APP_NAME@@.hpp.tmpl
+# 	cat ~/bin/${LICENSE}_header.snip ./main.cpp.tmpl > ./main.cpp.tmpl.tmp
+# 	mv ./main.cpp.tmpl.tmp ./main.cpp.tmpl
+# 	cat ~/bin/${LICENSE}_header.snip ./bash_color.h.tmpl > ./bash_color.h.tmpl.tmp
+# 	mv ./bash_color.h.tmpl.tmp ./bash_color.h.tmpl
+# fi
 
-ADD_HEADERS "./main.cpp.tmpl"
-ADD_HEADERS "./bash_color.h.tmpl"
-ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl 
-ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl
+# ADD_HEADERS "./main.cpp.tmpl"
+# ADD_HEADERS "./bash_color.h.tmpl"
+# ADD_HEADERS ./@@APP_NAME@@.cpp.tmpl 
+# ADD_HEADERS ./@@APP_NAME@@.hpp.tmpl
 
-# test file
-ADD_HEADERS test.txt.tmpl
+# # test file
+# ADD_HEADERS test.txt.tmpl
 
 # ** POPD **
 PRINT_INFO "Leave source directory ..."

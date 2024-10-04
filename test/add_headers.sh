@@ -3,11 +3,8 @@
 FILE_NAME=$1
 APP_NAME=$2 
 TEMPLATE_NAME=$3
-LICENSE=$4
-AUTHOR=$5
 BUILD_DATE=$(date)
 VERSION=$7
-WWW=$8
 FILE_DATE=$(date)
 USER_NAME=$(whoami)
 USER_ROOT="/home/${USER_NAME}"
@@ -21,12 +18,9 @@ function ADD_HEADERS
 	echo $REAL_NAME
 	cat  "./${TMPL_NAME}" \
 		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
-		| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-		| sed "s/@@LICENSE@@/${LICENSE}/g" \
-		| sed "s/@@VERSION@@/${VERSION}/g" \
+				| sed "s/@@VERSION@@/${VERSION}/g" \
 		| sed "s/@@FILE_DATE@@/${FILE_DATE}/g" \
 		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
-		| sed "s/@@WWW@@/${WWW}/g" \
 		| sed "s/@@FILE_NAME@@/todo/g" > "./${REAL_NAME}"
 	rm ./${TMPL_NAME}
 }
