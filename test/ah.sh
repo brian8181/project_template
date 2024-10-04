@@ -2,9 +2,7 @@
 FILE='./test/ah.sh'
 VERSION='6.6.6'
 FILE_DATE='March 8, 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
+
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -25,9 +23,7 @@ then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
+
 fi
 
 function PRINT_DEBUG
@@ -52,14 +48,12 @@ USER_ROOT="/home/${USER_NAME}"
 TEST_FILE=$1
 APP_NAME=$2
 TEMPLATE_NAME=$3
-LICENSE=$4
-AUTHOR="MyName"
 BUILD_DATE=$(date)
 VERSION="3.6.7"
 
 echo "HERE ..."
 
-./add_headers.sh "${TEST_FILE:=test.hpp.tmpl}" "${APP_NAME:=ABC}" "${TEMPLATE_NAME:=basic}" "${LICENSE:=GPL}" "${AUTHOR:=bob}" "${BUILD_DATE:=2023}" "${VERSION:=01}"
+./add_headers.sh "${TEST_FILE:=test.hpp.tmpl}" "${APP_NAME:=ABC}" "${TEMPLATE_NAME:=basic}" "" " "${BUILD_DATE:=2023}" "${VERSION:=01}"
 
 ##{ END YOUR CODE  }##
 PRINT_INFO "$FILE -> Exiting... @ $DATE"

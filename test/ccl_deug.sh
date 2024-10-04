@@ -2,9 +2,7 @@
 FILE='create.class.sh'
 VERSION='08.28.2023.0'
 FILE_DATE='Mon Aug 28 09:41:28 AM CDT 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
+
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -22,9 +20,6 @@ then
 	echo ${VERBOSE:+"File - $FILE"}
 	echo ${VERBOSE:+"Version - $VERSION"}
 	echo ${VERBOSE:+"Date - $FILE_DATE"}
-	echo ${VERBOSE:+"Author - $AUTHOR"}
-	echo ${VERBOSE:+"Email - $EMAIL"}
-	echo ${VERBOSE:+"www - $WWW"}
 fi
 
 function PRINT_DEBUG
@@ -46,8 +41,6 @@ USER_NAME=$(whoami)
 INPUT=$1
 #INPUT_PATH=$2
 #OUTPUT_PATH=$3
-LICENSE=$4
-AUTHOR=$5
 BUILD_DATE=$6
 VERSION=$7
 
@@ -73,16 +66,12 @@ then
 
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin/"}class.cpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.hpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.hpp
 
 			cat ${INPUT_PATH:-"/home/$USER_NAME/bin"/}class.hpp.tmpl \
 				| sed "s/@@CLASS_NAME@@/${CLASS_NAME}/g" \
-				| sed "s/@@AUTHOR@@/${AUTHOR}/g" \
-				| sed "s/@@LICENSE@@/${LICENSE}/g" \
 				| sed "s/@@VERSION@@/${VERSION}/g" \
 				| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
 				| sed "s/@@FILE_NAME@@/${CLASS_NAME}.cpp/g" > ${OUTPUT_PATH:-"."}/src/${CLASS_NAME}.cpp
