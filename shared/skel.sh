@@ -1,7 +1,10 @@
 #!/bin/bash
+<<<<<<< HEAD
 FILE='./shared/skel.sh'
 VERSION='0.1.1'
 FILE_DATE='Febuary, 2023'
+=======
+>>>>>>> 82b3b6bb7c4a7964082013b4b260a4a9ddc5a60a
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -9,12 +12,19 @@ FMT_RESET='\e[0m'
 PRINT_RED_DEBUG=${FMT_FG_RED}DEBUG${FMT_RESET}
 PRINT_GREEN_INFO=${FMT_FG_GREEN}INFO${FMT_RESET}
 DATE=$(date "+%H:%M:%S:%s")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 82b3b6bb7c4a7964082013b4b260a4a9ddc5a60a
 DEBUG_MSG="$PRINT_RED_DEBUG: "
 INFO_MSG="$PRINT_GREEN_INFO: "
 VERBOSE=1
 DEBUG=1
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 82b3b6bb7c4a7964082013b4b260a4a9ddc5a60a
 if [ -n $VERBOSE ]
 then
 	echo ${VERBOSE:+"File - $FILE"}
@@ -71,6 +81,22 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	rm *.tmpl
 	chmod 644 install.sh Makefile* ${APP_NAME}.1
 	popd > /dev/null
+<<<<<<< HEAD
+=======
+
+	cat  "./${TMPL_NAME}" \
+		| sed "s/@@APP_NAME@@/${APP_NAME}/g" \
+		| sed "s/@@VERSION@@/${VERSION}/g" \
+		| sed "s/@@BUILD_DATE@@/${BUILD_DATE}/g" \
+		| sed "s/@@FILE_NAME@@/no file name/g" > "./${REAL_NAME}"
+	rm ./${TMPL_NAME}
+}
+if [ -n $VERBOSE ]
+then
+	PRINT_INFO ${VERBOSE:+"File - $FILE"}
+	PRINT_INFO ${VERBOSE:+"Version - $VERSION"}
+	PRINT_INFO ${VERBOSE:+"Date - $FILE_DATE"}
+>>>>>>> 82b3b6bb7c4a7964082013b4b260a4a9ddc5a60a
 fi
 
 mv gitignore_template .gitignore

@@ -3,11 +3,8 @@
 # File info
 FILE='./shared/skel-a.sh'
 FILE_NAME=$FILE
-VERSION='0.1.7'
-FILE_DATE='Tue Aug 22 01:30:16 PM CDT 2023'
-AUTHOR='Brian K Preston'
-EMAIL='brian8181@gmail.com'
-WWW='https://github.com/brian8181'
+VERSION='0.1.8'
+FILE_DATE='Wed Sep 25 11:00:12 PM CDT 2024'
 
 # Debug Info
 FMT_FG_RED='\e[31m'
