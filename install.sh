@@ -45,14 +45,17 @@ PRINT_INFO "$FILE -> Running... @ $DATE"
 
 PRINT_INFO "remove existing project templates ..."
 # remove "templates" before update
-rm -rf ~/bin/templates
+rm -rf ~/bin/project_templates
 PRINT_INFO "install project templates ..."
 # copy templates
-mkdir ~/bin/templates
-cp -r ./basic ~/bin/templates
-# cp -r ./minimal ~/bin/templates
-# cp -r ./gtk ~/bin/templates
-cp -r ./shared ~/bin/templates
+mkdir ~/bin/project_templates
+cp -r ./templates/basic ~/bin/project_templates
+# cp -r ./minimal ~/bin/project_templates
+# cp -r ./gtk ~/bin/project_templates
+
+# one or the OTHER!
+cp -r ./shared ~/bin
+cp -r ./shared ~/bin/project_templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links
@@ -71,11 +74,11 @@ chmod +x ~/bin/skel.sh
 
 # create easy name soft link
 ln -s ~/bin/csk.sh ~/bin/csk
-mkdir ~/bin/templates
-cp -r ./templates/basic ~/bin/templates
-cp -r ./templates/basic_nam ~/bin/templates
-cp -r ./templates/minimal ~/bin/templates
-cp -r ./templates/gtk ~/bin/templates
+# mkdir ~/bin/templates
+# cp -r ./templates/basic ~/bin/templates
+# cp -r ./templates/basic_nam ~/bin/templates
+# cp -r ./templates/minimal ~/bin/templates
+# cp -r ./templates/gtk ~/bin/templates
 
 PRINT_INFO "remove existing class templates ..."
 PRINT_INFO "copy shared files to mbin ..."

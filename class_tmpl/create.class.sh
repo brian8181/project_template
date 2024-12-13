@@ -2,7 +2,7 @@
 FILE='create.class.sh'
 VERSION='0.1.2.'
 FILE_DATE='December 26, 2022'
-
+-
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
 FMT_RESET='\e[0m'

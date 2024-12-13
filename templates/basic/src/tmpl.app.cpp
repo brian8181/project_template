@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <getopt.h>
-#include "bash_color.h"
+#include "bash_color.hpp"
 #include "@@APP_NAME@@.hpp"
 
 using namespace std;
