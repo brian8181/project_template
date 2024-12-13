@@ -49,7 +49,7 @@ touch $PROJECT_PATH/.project # create file that marks this a project folder
 pushd $PROJECT_PATH/ #> /dev/null
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
-
+	
 	cat ./tmpl.makefile | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./tmpl.makefile.tmp
 	cat ./tmpl.makefile.tmp | sed "s/@@CLASS_NAME@@//g" > makefile
 	chmod 644 makefile 
@@ -72,6 +72,21 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	# rm *.tmpl
 	# chmod 644 install.sh Makefile* ${APP_NAME}.1
 	# popd > /dev/null
+fi
+
+if [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
+
+	cat ./tmpl.makefile | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./tmpl.makefile.tmp
+	cat ./tmpl.makefile.tmp | sed "s/@@CLASS_NAME@@//g" > makefile
+	chmod 644 makefile 
+	mv tmpl..gitignore .gitignore
+	rm ./tmpl.*
+
+	pushd ./src # > /dev/null
+	cat  ./tmpl.app.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
+	chmod 644 *.cpp
+	rm ./tmpl.*
+	popd #> /dev/null
 fi
 
 ##{ END YOUR CODE  }##

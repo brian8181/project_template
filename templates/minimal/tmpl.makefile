@@ -11,14 +11,11 @@ SRC=src
 
 all: $(BLD)/@@APP_NAME@@
 
-$(BLD)/@@APP_NAME@@: $(OBJ)/@@APP_NAME@@.o $(OBJ)/main.o #@@PREREQUISTE@@
-	 $(CXX) $(CXXFLAGS) $(OBJ)/@@APP_NAME@@.o $(OBJ)/main.o -o $(BLD)/@@APP_NAME@@
+$(BLD)/@@APP_NAME@@: $(OBJ)/@@APP_NAME@@.o #@@PREREQUISTE@@
+	 $(CXX) $(CXXFLAGS) $(OBJ)/@@APP_NAME@@.o -o $(BLD)/@@APP_NAME@@
 
 $(OBJ)/@@APP_NAME@@.o: $(SRC)/@@APP_NAME@@.cpp
 	$(CXX) $(CXXFLAGS) -c $(SRC)/@@APP_NAME@@.cpp -o $(OBJ)/@@APP_NAME@@.o
-
-$(OBJ)/main.o: $(SRC)/main.cpp
-	$(CXX) $(CXXFLAGS) -c $(SRC)/main.cpp -o $(OBJ)/main.o
 
 #AUTO_INSERT_POINT_DO_NOT_REMOVE#
 

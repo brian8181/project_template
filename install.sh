@@ -50,7 +50,7 @@ PRINT_INFO "install project templates ..."
 # copy templates
 mkdir ~/bin/project_templates
 cp -r ./templates/basic ~/bin/project_templates
-# cp -r ./minimal ~/bin/project_templates
+cp -r ./templates/minimal ~/bin/project_templates
 # cp -r ./gtk ~/bin/project_templates
 
 # one or the OTHER!
