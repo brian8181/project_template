@@ -38,6 +38,8 @@ function PRINT_INFO
     echo -e ${VERBOSE:+"$MSG"}
 }
 
+CWD=$PWD
+
 PRINT_INFO "$FILE -> Running... @ $DATE"
 ##{ BEGIN CODE  }##
 
@@ -46,11 +48,11 @@ PRINT_INFO "remove existing project templates ..."
 rm -rf ~/bin/templates
 PRINT_INFO "install project templates ..."
 # copy templates
-mkdir ~/bin/project_templates
-cp -r ./basic ~/bin/project_templates
-cp -r ./minimal ~/bin/project_templates
-cp -r ./gtk ~/bin/project_templates
-cp -r ./shared ~/bin/project_templates
+mkdir ~/bin/templates
+cp -r ./basic ~/bin/templates
+# cp -r ./minimal ~/bin/templates
+# cp -r ./gtk ~/bin/templates
+cp -r ./shared ~/bin/templates
 
 PRINT_INFO "remove existing project scripts ..."
 # remove old scripts & links

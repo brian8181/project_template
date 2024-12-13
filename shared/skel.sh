@@ -48,31 +48,29 @@ cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
 touch $PROJECT_PATH/.project # create file that marks this a project folder
 pushd $PROJECT_PATH > /dev/null
 
-cat ./Makefile.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.tmp
-cat Makefile.tmp | sed "s/@@CLASS_NAME@@//g" > Makefile
-rm Makefile.tmp*
-chmod 644 Makefile 
+cat ./tmpl.makefile | sed "s/@@APP_NAME@@/${APP_NAME}/g" > makefile.tmp
+cat ./tmpl.makefile | sed "s/@@CLASS_NAME@@//g" > makefile
+rm makefile.tmp*
+chmod 644 makefile 
 
 if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 
 	pushd ./src > /dev/null
-	cat  ./app.cpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
-	cat  ./app.hpp.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
-	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
-	rm *.tmpl
+	cat  ./tmpl.app.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.cpp
+	cat  ./tmpl.app.hpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.hpp
+	rm tmpl.*
 	chmod 644 *.cpp *.hpp Makefile*
 	popd > /dev/null
 
 	pushd ./man > /dev/null
-	cat  ./app.1.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
-	cat  ./install.sh.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
-	cat  ./Makefile.am.tmpl | sed "s/@@APP_NAME@@/${APP_NAME}/g" > Makefile.am
+	cat  ./tmpl.app.1 | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1
+	cat  ./tmpl.install.sh | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
 	rm *.tmpl
 	chmod 644 install.sh Makefile* ${APP_NAME}.1
 	popd > /dev/null
 fi
 
-mv gitignore_template .gitignore
+mv tmp..gitignore .gitignore
 popd > /dev/null
 
 ##{ END YOUR CODE  }##
