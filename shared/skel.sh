@@ -8,19 +8,13 @@
 
 source color.sh
 
-APP_NAME=$1 
-TEMPLATE_NAME=$2
-USER_NAME=$(whoami)
-USER_ROOT="/home/${USER_NAME}"
-TEMPLATE_PATH="${USER_ROOT}/bin/project_templates/${TEMPLATE_NAME:=basic}"
-PROJECT_PATH=$(pwd)/$APP_NAME
-
-mkdir -p $PROJECT_PATH
-cp -rf $TEMPLATE_PATH/* $PROJECT_PATH/
-touch $PROJECT_PATH/.project # create file that marks this a project folder
-pushd $PROJECT_PATH/ > /dev/null
-
-if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
+function create_basic
+{
+	APP_NAME=$1
+	mkdir -p $APP_NAME
+	pushd ./${APP_NAME}
+	cp -rf $TEMPLATE_PATH/basic/* .
+	touch .project 
 	
 	cat ./tmpl.makefile | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./tmpl.makefile.tmp
 	cat ./tmpl.makefile.tmp | sed "s/@@CLASS_NAME@@//g" > makefile
@@ -28,11 +22,9 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	mv tmpl..gitignore .gitignore
 	rm ./tmpl.*
 
-	pushd ./src > /dev/null
+	
+	pushd ./src  > /dev/null
 	cat  ./tmpl.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
-	# cat  ./tmpl.app.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
-	# cat  ./tmpl.app.hpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.hpp
-	# cat  ./tmpl.main.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./main.cpp
 	chmod 644 *.cpp
 	mv tmpl.bash_color.hpp bash_color.hpp
 	rm ./tmpl.*
@@ -44,9 +36,16 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	chmod 644 ${APP_NAME}.1
 	rm ./tmpl.*
 	popd > /dev/null
-fi
+	popd 
+}
 
-if [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
+function create_minimal
+{
+	APP_NAME=$1
+	mkdir -p $APP_NAME
+	pushd ./${APP_NAME}
+	cp -rf $TEMPLATE_PATH/minimal/* .
+	touch .project 
 
 	cat ./tmpl.makefile | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./tmpl.makefile.tmp
 	cat ./tmpl.makefile.tmp | sed "s/@@CLASS_NAME@@//g" > makefile
@@ -59,6 +58,36 @@ if [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
 	chmod 644 *.cpp
 	rm ./tmpl.*
 	popd > /dev/null
-fi
+	popd
+}
 
-echo "project created @ $PROJECT_PATH"
+OPTSTRING="vhbm"
+while getopts ${OPTSTRING} opt; do
+    case ${opt} in
+        v)
+            ;;
+        h)
+            ;;
+		b)
+			CMD="create_basic"
+            ;;
+		m)
+			CMD="create_minimal"
+            ;;
+		:)
+            echo "Option -${OPTARG} requires an argument."
+            exit 1
+            ;;
+        ?)
+            echo "Invalid option: -${OPTARG}."
+            exit 1
+            ;;
+	esac
+done
+shift $(($OPTIND-1))
+
+APP_NAME=$1
+TEMPLATE_PATH="${HOME}/bin/project_templates/"
+
+${CMD:=create_basic} $APP_NAME
+echo "project created @ $APP_NAME"

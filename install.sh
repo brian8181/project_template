@@ -39,67 +39,21 @@ function PRINT_INFO
 }
 
 CWD=$PWD
-
-PRINT_INFO "$FILE -> Running... @ $DATE"
-##{ BEGIN CODE  }##
-
+PRINT_INFO "Installing templates, ..."
 PRINT_INFO "remove existing project templates ..."
 # remove "templates" before update
 rm -rf ~/bin/project_templates
-PRINT_INFO "install project templates ..."
-# copy templates
-mkdir ~/bin/project_templates
-cp -r ./templates/basic ~/bin/project_templates
-cp -r ./templates/minimal ~/bin/project_templates
-# cp -r ./gtk ~/bin/project_templates
 
-# one or the OTHER!
+PRINT_INFO "copying project templates ..."
 cp -r ./shared ~/bin
-cp -r ./shared ~/bin/project_templates
+cp -r ./templates ~/bin/project_templates
 
-PRINT_INFO "remove existing project scripts ..."
-# remove old scripts & links
-rm ~/bin/skel.sh  2> /dev/null # possible error
-rm ~/bin/csk.sh 2> /dev/null   # possible error
-rm ~/bin/csk 2> /dev/null      # possible error
-
-PRINT_INFO "install project scripts ..."
-# copy scripts
-cp -f ./shared/csk.sh ~/bin/csk.sh
-cp -f ./shared/skel.sh ~/bin/skel.sh	
-
-# config
-chmod +x ~/bin/csk.sh  
+PRINT_INFO "set permissions ..."
 chmod +x ~/bin/skel.sh
 
+PRINT_INFO "create links (csk) ..."
+rm ~/bin/csk
 # create easy name soft link
-ln -s ~/bin/csk.sh ~/bin/csk
-# mkdir ~/bin/templates
-# cp -r ./templates/basic ~/bin/templates
-# cp -r ./templates/basic_nam ~/bin/templates
-# cp -r ./templates/minimal ~/bin/templates
-# cp -r ./templates/gtk ~/bin/templates
+ln -s ~/bin/skel.sh ~/bin/csk
 
-PRINT_INFO "remove existing class templates ..."
-PRINT_INFO "copy shared files to mbin ..."
-cp ./shared/* ~/bin
-
-# config
-chmod +x ~/bin/csk.sh
-chmod +x ~/bin/csk-a.sh
-chmod +x ~/bin/skel*.sh
-chmod +x ~/bin/create.class.sh
-chmod +x ~/bin/run.create.class.sh
-chmod +x ~/bin/run.defaults.create.class.sh
-
-PRINT_INFO "create easy name soft link"
-rm -f ~/bin/csk ~/bin/csk-a ~/bin/ccl*
-# create easy name soft link
-ln -s ~/bin/csk.sh ~/bin/csk
-ln -s ~/bin/csk-a.sh ~/bin/csk-a
-ln -s ~/bin/run.defaults.create.class.sh ~/bin/ccl
-# create new link with multi name option built into script
-ln -s ~/bin/class_tmpl/run.create.class.sh ~/bin/ccl2
-
-##{ END CODE  }##
-PRINT_INFO "$FILE -> Exiting.   @ $DATE"
+PRINT_INFO "done."
