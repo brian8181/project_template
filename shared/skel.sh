@@ -16,21 +16,20 @@ function create_basic
 
 	pushd ${APP_NAME} > /dev/null
 	touch .project 
-	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > tmpl.makefile.tmp
-	cat tmpl.makefile.tmp | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${CLASS_NAME}|g" > makefile
+	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > makefile
 	chmod 644 makefile 
 	mv tmpl..gitignore .gitignore
 	rm tmpl.*
 	
 	pushd src  > /dev/null
-	cat  tmpl.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|$APP_NAME|g" > ${APP_NAME}.cpp
+	cat  tmpl.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > ${APP_NAME}.cpp
 	chmod 644 *.cpp
 	mv tmpl.bash_color.hpp bash_color.hpp
 	rm tmpl.*
 	popd > /dev/null
 
 	pushd man > /dev/null
-	cat  tmpl.app.1 | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|$APP_NAME|g" > ${APP_NAME}.1 
+	cat  tmpl.app.1 | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > ${APP_NAME}.1 
  	chmod 644 ${APP_NAME}.1
 	rm tmpl.*
 	popd > /dev/null
@@ -43,14 +42,13 @@ function create_minimal
 	pushd ./${APP_NAME}
 	cp -rf $TEMPLATE_PATH/minimal/* .
 	touch .project 
-	cat ./tmpl.makefile | sed "s|/*~${APP_NAME}~*/|${APP_NAME}|g" > ./tmpl.makefile.tmp
-	cat ./tmpl.makefile.tmp | sed "s|/*~${CLASS_NAME}~*/|${CLASS_NAME}|g" > makefile
+	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > makefile
 	chmod 644 makefile 
 	mv tmpl..gitignore .gitignore
 	rm ./tmpl.*
 
 	pushd ./src > /dev/null
-	cat  ./tmpl.app.cpp | sed "s|/*~${APP_NAME}~*/|${APP_NAME}|g" > ./${APP_NAME}.cpp
+	cat  ./tmpl.app.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > ./${APP_NAME}.cpp
 	chmod 644 *.cpp
 	rm ./tmpl.*
 	popd > /dev/null
