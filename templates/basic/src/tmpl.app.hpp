@@ -2,8 +2,8 @@
 // Build Date: @@BUILD_DATE@@
 // Version:    @@VERSION@@
 
-#ifndef _@@APP_NAME@@_HPP
-#define _@@APP_NAME@@_HPP
+#ifndef _/*~${APP_NAME}~*/_HPP
+#define __/*~${APP_NAME}~*/_HPP
 
 #include <string>
 

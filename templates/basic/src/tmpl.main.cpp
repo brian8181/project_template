@@ -9,14 +9,12 @@
 #include <sys/select.h>     /* for pselect   */
 #include <string>
 #include <getopt.h>
-#include "@@APP_NAME@@.hpp"
+/*~ #include "${APP_NAME}.hpp" ~*/
 
 int stdin_ready (int filedes)
 {
 	fd_set set;
-	// declare/initialize zero timeout
 	struct timespec timeout = { .tv_sec = 0 };
-	// initialize the file descriptor set
 	FD_ZERO(&set);
 	FD_SET(filedes, &set);
 	// check stdin_ready is ready on filedes

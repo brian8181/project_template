@@ -6,7 +6,7 @@
 #include <string>
 #include <getopt.h>
 #include "bash_color.hpp"
-#include "@@APP_NAME@@.hpp"
+/*~ #include "${APP_NAME}.hpp" ~*/
 
 using namespace std;
 
@@ -20,7 +20,7 @@ void print_version()
 void print_help()
 {
 	cout << "Usage: "
-		 << FMT_BOLD      << "@@APP_NAME@@" << FMT_RESET << " "
+		 << FMT_BOLD      << /*~ "${APP_NAME}" << ~*/ FMT_RESET << " "
 		 << FMT_UNDERLINE << "[OPTION]..."  << FMT_RESET << " "
 		 <<  endl;
 }
