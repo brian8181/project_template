@@ -56,7 +56,6 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	mv tmpl..gitignore .gitignore
 	rm ./tmpl.*
 
-
 	pushd ./src # > /dev/null
 	cat  ./tmpl.app.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
 	cat  ./tmpl.app.hpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.hpp
@@ -66,12 +65,12 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	rm ./tmpl.*
 	popd #> /dev/null
 
-	# pushd ./man > /dev/null
-	# cat  ./tmpl.app.1 | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1 
-	# cat  ./tmpl.install.sh | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
-	# rm *.tmpl
-	# chmod 644 install.sh Makefile* ${APP_NAME}.1
-	# popd > /dev/null
+	pushd ./man > /dev/null
+	cat  ./tmpl.app.1 | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1 
+	#cat  ./tmpl.install.sh | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
+	chmod 644 ${APP_NAME}.1
+	rm ./tmpl.*
+	popd > /dev/null
 fi
 
 if [[ ${TEMPLATE_PATH##/*/} = "minimal" ]]; then
