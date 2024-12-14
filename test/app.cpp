@@ -1,14 +1,17 @@
 // std c
 #include <stdlib.h>
+#include <fmt/color.h>
 #include <unistd.h>         /* for STDIN_FILENO */
 #include <sys/select.h>     /* for pselect   */
 #include <getopt.h>
-#include <cstring>
+// std cpp
 #include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
+// local 
 #include "bash_color.hpp"
+
 
 using std::string;
 using std::stringstream;
@@ -18,7 +21,7 @@ using std::cerr;
 using std::endl;
 
 const string VERSION_STRING = "0.0.1";
-const int DEFAULT_ARGC = 0;
+const int DEFAULT_ARGC = 2;
 const unsigned short VERBOSE          = 0x01;
 const unsigned short DEFAULTS         = 0x00;
 const unsigned short FIELDS           = 0x02;
@@ -43,8 +46,10 @@ void print_help()
 {
 	cout	<< endl 
 			<< FMT_BOLD << FMT_FG_GREEN << "Usage: "            << FMT_RESET << endl
+			<< FMT_BOLD << FMT_FG_BLUE  << "split"              << FMT_RESET << " "
 			<< FMT_FG_BLUE              << "[-hvr][...]"        << FMT_RESET << " "
-         														<<  endl << endl;
+			                            << "FILE [FILE2 ... ]" << FMT_RESET << " "
+																<<  endl << endl;
 }
 
 int parse_options(int argc, char* argv[])
@@ -70,8 +75,7 @@ int parse_options(int argc, char* argv[])
 		return -1;
 	}
 
-	string path = argv[0];   // get exe file path
-	cout << argv[0] << endl; 
+	string path = argv[optind]; // get file path
 
 	return 0;
 }
@@ -79,7 +83,9 @@ int parse_options(int argc, char* argv[])
 int stdin_ready (int filedes)
 {
 	fd_set set;
+	// declare/initialize zero timeout 
 	struct timespec timeout = { .tv_sec = 0 };
+	// initialize the file descriptor set
 	FD_ZERO(&set);
 	FD_SET(filedes, &set);
 	// check stdin_ready is ready on filedes 

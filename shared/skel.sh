@@ -57,10 +57,11 @@ if [[ ${TEMPLATE_PATH##/*/} = "basic" || ${TEMPLATE_PATH##/*/} = "gtk" ]]; then
 	rm ./tmpl.*
 
 	pushd ./src # > /dev/null
-	cat  ./tmpl.app.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
-	cat  ./tmpl.app.hpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.hpp
-	cat  ./tmpl.main.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./main.cpp
-	chmod 644 *.cpp *.hpp
+	cat  ./tmpl.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
+	# cat  ./tmpl.app.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
+	# cat  ./tmpl.app.hpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.hpp
+	# cat  ./tmpl.main.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./main.cpp
+	chmod 644 *.cpp
 	mv tmpl.bash_color.hpp bash_color.hpp
 	rm ./tmpl.*
 	popd #> /dev/null
