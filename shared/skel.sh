@@ -7,66 +7,81 @@
 # Info: create project skeleton
 
 source color.sh
+VERSION="0.0.1"
 
 function create_basic
 {
-	APP_NAME=$1
-	mkdir -p $APP_NAME
-	pushd ./${APP_NAME}
-	cp -rf $TEMPLATE_PATH/basic/* .
+	local APP_NAME=$1
+	cp -rf $TEMPLATE_PATH/basic/* ${APP_NAME}
+
+	pushd ${APP_NAME} > /dev/null
 	touch .project 
-	
-	cat ./tmpl.makefile | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./tmpl.makefile.tmp
-	cat ./tmpl.makefile.tmp | sed "s/@@CLASS_NAME@@//g" > makefile
+	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > tmpl.makefile.tmp
+	cat tmpl.makefile.tmp | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${CLASS_NAME}|g" > makefile
 	chmod 644 makefile 
 	mv tmpl..gitignore .gitignore
-	rm ./tmpl.*
-
+	rm tmpl.*
 	
-	pushd ./src  > /dev/null
-	cat  ./tmpl.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
+	pushd src  > /dev/null
+	cat  tmpl.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|$APP_NAME|g" > ${APP_NAME}.cpp
 	chmod 644 *.cpp
 	mv tmpl.bash_color.hpp bash_color.hpp
-	rm ./tmpl.*
+	rm tmpl.*
 	popd > /dev/null
 
-	pushd ./man > /dev/null
-	cat  ./tmpl.app.1 | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ${APP_NAME}.1 
-	#cat  ./tmpl.install.sh | sed "s/@@APP_NAME@@/${APP_NAME}/g" > install.sh
-	chmod 644 ${APP_NAME}.1
-	rm ./tmpl.*
+	pushd man > /dev/null
+	cat  tmpl.app.1 | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|$APP_NAME|g" > ${APP_NAME}.1 
+ 	chmod 644 ${APP_NAME}.1
+	rm tmpl.*
 	popd > /dev/null
-	popd 
+	popd > /dev/null
 }
 
 function create_minimal
 {
-	APP_NAME=$1
-	mkdir -p $APP_NAME
+	local APP_NAME=$1
 	pushd ./${APP_NAME}
 	cp -rf $TEMPLATE_PATH/minimal/* .
 	touch .project 
-
-	cat ./tmpl.makefile | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./tmpl.makefile.tmp
-	cat ./tmpl.makefile.tmp | sed "s/@@CLASS_NAME@@//g" > makefile
+	cat ./tmpl.makefile | sed "s|/*~${APP_NAME}~*/|${APP_NAME}|g" > ./tmpl.makefile.tmp
+	cat ./tmpl.makefile.tmp | sed "s|/*~${CLASS_NAME}~*/|${CLASS_NAME}|g" > makefile
 	chmod 644 makefile 
 	mv tmpl..gitignore .gitignore
 	rm ./tmpl.*
 
 	pushd ./src > /dev/null
-	cat  ./tmpl.app.cpp | sed "s/@@APP_NAME@@/${APP_NAME}/g" > ./${APP_NAME}.cpp
+	cat  ./tmpl.app.cpp | sed "s|/*~${APP_NAME}~*/|${APP_NAME}|g" > ./${APP_NAME}.cpp
 	chmod 644 *.cpp
 	rm ./tmpl.*
 	popd > /dev/null
-	popd
+	popd > /dev/null
+}
+
+function Print_usage
+{
+	VERSION=$1
+	echo -en "\n"
+	echo -en "Usage:\n\n"
+	echo -en "csk [-[vhbmd:]] PROJECT_NAME\n\n"
+	echo -en "\t-v print version\n\n"
+	echo -en "\t-h print help\n\n"
+	echo -en	"\t-b basic project\n\n"
+	echo -en "\t-m minimal project\n\n"
+	echo -en "\t-g gtk project\n\n"
+	echo -en "\t-d project directory, default is current directory\n\n"
+	echo -en "csk - version - ${VERSION} - $(date)\n\n"
 }
 
 OPTSTRING="vhbm"
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
         v)
+			echo "version $VERSION"
+			exit 0;
             ;;
         h)
+			Print_usage $VERSION
+			exit 0;
             ;;
 		b)
 			CMD="create_basic"
@@ -89,5 +104,9 @@ shift $(($OPTIND-1))
 APP_NAME=$1
 TEMPLATE_PATH="${HOME}/bin/project_templates/"
 
-${CMD:=create_basic} $APP_NAME
+if [[ -n $CMD ]]; then
+	mkdir -p $APP_NAME
+	${CMD} $APP_NAME
+fi
+
 echo "project created @ $APP_NAME"

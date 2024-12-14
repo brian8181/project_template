@@ -38,21 +38,21 @@ function PRINT_INFO
     echo -e ${VERBOSE:+"$MSG"}
 }
 
-CWD=$PWD
 PRINT_INFO "Installing templates, ..."
 PRINT_INFO "remove existing project templates ..."
 # remove "templates" before update
 rm -rf ~/bin/project_templates
+rm ~/bin/skel.sh
+rm ~/bin/csk
 
 PRINT_INFO "copying project templates ..."
-cp -r ./shared ~/bin
+cp ./shared/* ~/bin
 cp -r ./templates ~/bin/project_templates
 
 PRINT_INFO "set permissions ..."
 chmod +x ~/bin/skel.sh
 
 PRINT_INFO "create links (csk) ..."
-rm ~/bin/csk
 # create easy name soft link
 ln -s ~/bin/skel.sh ~/bin/csk
 

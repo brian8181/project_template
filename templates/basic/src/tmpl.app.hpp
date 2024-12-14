@@ -3,7 +3,7 @@
 // Version:    @@VERSION@@
 
 #ifndef _/*~${APP_NAME}~*/_HPP
-#define __/*~${APP_NAME}~*/_HPP
+#define _/*~${APP_NAME}~*/_HPP
 
 #include <string>
 
