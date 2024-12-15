@@ -4,11 +4,28 @@ CLASS_NAME=$1
 BASE_CLASS_NAME=$2
 PREFIX=./templates/class
 
+# function replace_tag
+# {
+#     local SRC=$1
+#     local DST=$2
+#     local TAG=$2
+#     local REPL=$TAG  
+#     local EXPR='/\\*~\\$\\{${TAG}\\}~\\*'      
+#     REPL="\${${TAG}}"
+#     echo "$EXPR - $REPL"
+#     #cat $PREFIX/{class.tmpl}.cpp | sed -E "s|${EXPR}/|${REPL}|g" > ${REPL}.cpp
+# }
+
 function create_class
 {
     local CLASS_NAME=$1
-    cat $PREFIX/{class.tmpl}.cpp | sed -E "s|/\\*~\\$\\{CLASS_NAME\\}~\\*/|${CLASS_NAME}|g" > ${CLASS_NAME}.cpp
-    cat $PREFIX/{class.tmpl}.hpp | sed -E "s|/\\*~\\$\\{CLASS_NAME\\}~\\*/|${CLASS_NAME}|g" > ${CLASS_NAME}.hpp
+    EXPR="/\\*~\\$\\{CLASS_NAME\\}~\\*/"
+    REPL=${CLASS_NAME}
+
+    echo "$EXPR -- $REPL"
+    #replace_tag $PREFIX/{class.tmpl}.cpp 'CLASS_NAME' ${CLASS_NAME}
+    cat $PREFIX/{class.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > ${CLASS_NAME}.cpp
+    cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > ${CLASS_NAME}.hpp
 }
 
 function create_sub_class
