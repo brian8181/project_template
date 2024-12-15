@@ -26,6 +26,20 @@ function create_class
     #replace_tag $PREFIX/{class.tmpl}.cpp 'CLASS_NAME' ${CLASS_NAME}
     cat $PREFIX/{class.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > ${CLASS_NAME}.cpp
     cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > ${CLASS_NAME}.hpp
+
+    BEG_ESC='\s*/*~\s*'
+    END_ESC='\s*~*/\s*'
+
+    # /*~$TAG~*/
+
+    cat script/makefile | sed "s|#PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #PREREQUISTE#|g" > script/makefile.tmp 
+
+    # try to update makefile with new rule
+    MAKE_RULE=$(cat script/make.class.snip.tmpl | sed -E "s|/\\*~\\$\\{CLASS_NAME\\}~\\*/|${CLASS_NAME}|g")
+    # make a backup of makefile for now
+    cat script/makefile.tmp | sed -E "s|#AUTO_INSERT_POINT_DO_NOT_REMOVE#|${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#|g" > script/my_makefile
+    
+    #rm  makefile
 }
 
 function create_sub_class
