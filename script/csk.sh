@@ -14,20 +14,20 @@ function create_basic
 	cp -rf $TEMPLATE_PATH/basic/* .
 
 	touch .project
-	cat tmpl.makefile | sed -E "s|#/\\*~\\$\\{APP_NAME\\}~\\*/#|${APP_NAME}|g" > makefile
+	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > makefile
 	chmod 644 makefile 
 	mv tmpl..gitignore .gitignore
 	rm tmpl.*
 	
 	pushd src  > /dev/null
-	cat  tmpl.cpp | sed -E "s|/\\*~\\$\\{APP_NAME\\}~\\*/|	|g" > ${APP_NAME}.cpp
+	cat  tmpl.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > ${APP_NAME}.cpp
 	chmod 644 *.cpp
 	mv tmpl.bash_color.hpp bash_color.hpp
 	rm tmpl.*
 	popd > /dev/null
 
 	pushd man > /dev/null
-	cat  tmpl.app.1 | sed -E "s|//\\*~\\$\\{APP_NAME\\}~\\*/|${APP_NAME}|g" > ${APP_NAME}.1 
+	cat  tmpl.app.1 | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > ${APP_NAME}.1 
  	chmod 644 ${APP_NAME}.1
 	rm tmpl.*
 	popd > /dev/null
@@ -38,13 +38,13 @@ function create_minimal
 	local APP_NAME=$1
 	cp -rf $TEMPLATE_PATH/minimal/* .
 	touch .project 
-	cat tmpl.makefile | sed -E "s|#/\\*~\\$\\{APP_NAME\\}~\\*/#|${APP_NAME}|g" > makefile
+	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > makefile
 	chmod 644 makefile 
 	mv tmpl..gitignore .gitignore
 	rm ./tmpl.*
 
 	pushd src > /dev/null
-	cat  tmpl.app.cpp | sed -E "s|/\\*~\\$\\{APP_NAME\\}~\\*/|${APP_NAME}|g" > "${APP_NAME}.cpp"
+	cat  tmpl.app.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > "${APP_NAME}.cpp"
 	chmod 644 "${APP_NAME}.cpp"
 	rm tmpl.*
 	popd > /dev/null
@@ -103,7 +103,7 @@ done
 shift $(($OPTIND-1))
 
 APP_NAME=$1
-TEMPLATE_PATH="${HOME}/bin/project_templates"
+TEMPLATE_PATH="${HOME}/bin/templates"
 
 if [[ -n $CMD && -n "${APP_NAME}" ]]; then
 	mkdir -p "${PREFIX:=${PWD}}/${APP_NAME}"
