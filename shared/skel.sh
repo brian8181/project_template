@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 # File Name:  skel.sh
 # Build Date: Sat Dec 14 09:24:01 AM CST 2024
