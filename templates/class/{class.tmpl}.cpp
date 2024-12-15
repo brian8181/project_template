@@ -1,14 +1,10 @@
-s// File Name:  ${FILE_NAME}
-// Build Date: ${BUILD_DATE}
-// Version:    ${VERSION}
+#include "/*~${CLASS_NAME}~*/.hpp"
 
-#include "${CLASS_NAME}.hpp"
-
-${CLASS_NAME}::${CLASS_NAME}()
+/*~${CLASS_NAME}~*/::/*~${CLASS_NAME}~*/()
 {
 }
 
-${CLASS_NAME}::~${CLASS_NAME}()
+/*~${CLASS_NAME}~*/::~/*~${CLASS_NAME}~*/()
 {
 
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
-FILE='create.class.sh'
-VERSION='08.28.2023.0'
-FILE_DATE='Mon Aug 28 09:41:28 AM CDT 2023'
+# FILE='create.class.sh'
+# VERSION='08.28.2023.0'
+# FILE_DATE='Mon Aug 28 09:41:28 AM CDT 2023'
 
 
 FMT_FG_RED='\e[31m'
@@ -15,12 +15,12 @@ DEBUG_MSG="$PRINT_RED_DEBUG: "
 VERBOSE=1
 DEBUG=1
 
-if [ -n $VERBOSE ]
-then
-	echo ${VERBOSE:+"File - $FILE"}
-	echo ${VERBOSE:+"Version - $VERSION"}
-	echo ${VERBOSE:+"Date - $FILE_DATE"}
-fi
+# if [ -n $VERBOSE ]
+# then
+# 	echo ${VERBOSE:+"File - $FILE"}
+# 	echo ${VERBOSE:+"Version - $VERSION"}
+# 	echo ${VERBOSE:+"Date - $FILE_DATE"}
+# fi
 
 function PRINT_DEBUG
 {
@@ -33,8 +33,6 @@ function PRINT_INFO
     MSG=${INFO_MSG}$1
     echo -e ${VERBOSE:+"$MSG"}
 }
-
-PRINT_INFO "$FILE -> Running... @ $DATE"
 
 # USER SETTING
 USER_NAME=$(whoami)
@@ -50,9 +48,6 @@ BASE_CLASS_NAME=${INPUT##*::}
 
 ## DEBUG BEGIN ##
 
-PRINT_DEBUG '$PWD'=$PWD
-#cd ~/tmp/abc
-# #pushd ~/tmp/abc
 PRINT_DEBUG '$PWD'=$PWD
 echo '${CLASS_NAME}'=${CLASS_NAME}
 echo '${BASE_CLASS_NAME}'=${BASE_CLASS_NAME}

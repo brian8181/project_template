@@ -11,7 +11,7 @@ for i in "$@"; do
 
     INPUT=$i
     CLASS_NAME=${INPUT%%*::}
-    BASE_CLASS_NAME$=${INPUT##::*}
+    BASE_CLASS_NAME=${INPUT##::*}
     ${INPUT_PATH}/create.class.sh ${CLASS_NAME} ${BASE_CLASS_NAME}
 
 done
