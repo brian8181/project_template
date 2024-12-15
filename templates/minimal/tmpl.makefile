@@ -1,5 +1,5 @@
-# File Name:  ./makefile
-# Build Date: Sun May 26 10:57:08 PM CDT 2024
+# File:  ./makefile
+# Date: Sun May 26 10:57:08 PM CDT 2024
 # Version:    0.1.0
 
 CXX=g++
@@ -11,7 +11,7 @@ SRC=src
 
 all: $(BLD)/#\*~${APP_NAME}~*\#
 
-$(BLD)/#\*~${APP_NAME}~*\#: $(OBJ)/#\*~${APP_NAME}~*\#.o #@@PREREQUISTE@@
+$(BLD)/#\*~${APP_NAME}~*\#: $(OBJ)/#\*~${APP_NAME}~*\#.o #PREREQUISTE#
 	 $(CXX) $(CXXFLAGS) $(OBJ)/#\*~${APP_NAME}~*\#.o -o $(BLD)/#\*~${APP_NAME}~*\#
 
 $(OBJ)/#\*~${APP_NAME}~*\#.o: $(SRC)/#\*~${APP_NAME}~*\#.cpp

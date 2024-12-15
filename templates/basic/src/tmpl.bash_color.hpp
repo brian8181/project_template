@@ -1,6 +1,6 @@
-// File Name:  @@FILE_NAME@@
-// Build Date: @@BUILD_DATE@@
-// Version:    @@VERSION@@
+// File:    bash_color.hpp
+// Date:    Sun Dec 15 05:46:02 PM CST 2024
+// Version: 0.0.1
 
 #ifndef _BASH_COLOR_HPP
 #define _BASH_COLOR_HPP

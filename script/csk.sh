@@ -57,7 +57,7 @@ function Print_usage
 	echo -en "NAME:\n\tcsk\n\n"
 	echo -en "DESCRIPTION:\n\tcreate skeleton c++ project\n\n"
 	echo -en "SYNOPSIS:\n\t"
-	echo -en "csk -[vhbmga] [-d DIR] PROJECT_NAME [...]\n\n"
+	echo -en "csk -[vhbmga] [[-u][[-d DIR][-p PARAMS]]] PROJECT_NAME [...]\n\n"
 	echo -en "OPTIONS:\n\t"
 	echo -en "-v, print version\n\n"
 	echo -en "\t-h, print help\n\n"
@@ -66,8 +66,10 @@ function Print_usage
 	echo -en "\t-g, gtk project\n\n"
 	echo -en "\t-a, bash project\n\n"
 	echo -en "\t-d, project directory, default is current directory\n\n"
+	echo -en "\t-u, gernerate cppunit test classes\n\n"
+	echo -en "\t-p, add parameters (comma separated list)\n\n"
 	echo -en "VERSION:\n\t"
-	echo -en "csk - version - ${VERSION} - $(date)\n\n"
+	echo -en "csk - version - ${VERSION} - copyright $(date)\n\n"
 }
 
 OPTSTRING="vhbmd:"

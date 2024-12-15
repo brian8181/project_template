@@ -1,4 +1,7 @@
-// std c
+//    File:    makefile
+//    Date:    Sun Dec 15 05:46:02 PM CST 2024
+// Version:    0.0.1
+
 #include <stdlib.h>
 #include <unistd.h>         /* for STDIN_FILENO */
 #include <sys/select.h>     /* for pselect   */
