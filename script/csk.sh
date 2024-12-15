@@ -105,11 +105,14 @@ shift $(($OPTIND-1))
 APP_NAME=$1
 TEMPLATE_PATH="${HOME}/bin/templates"
 
-if [[ -n $CMD && -n "${APP_NAME}" ]]; then
-	mkdir -p "${PREFIX:=${PWD}}/${APP_NAME}"
-	pushd "${PREFIX}/${APP_NAME}" > /dev/null
-	${CMD} ${APP_NAME}
-	popd > /dev/null
+if [[ -z $CMD || -z "${APP_NAME}" ]]; then
+	echo "incorrect options, no command set ..."
+	echo "example '-b' for basic" 
+	exit 1
 fi
 
+mkdir -p "${PREFIX:=${PWD}}/${APP_NAME}"
+pushd "${PREFIX}/${APP_NAME}" > /dev/null
+${CMD} ${APP_NAME}
+popd > /dev/null
 echo "project created @ ${PREFIX}/${APP_NAME}"
