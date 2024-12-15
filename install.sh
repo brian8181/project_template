@@ -42,18 +42,25 @@ PRINT_INFO "Installing templates, ..."
 PRINT_INFO "remove existing project templates ..."
 # remove "templates" before update
 rm -rf ~/bin/project_templates
+rm -rf ~/bin/templates
 rm ~/bin/skel.sh
 rm ~/bin/csk
+rm ~/bin/ccsk.sh
+rm ~/bin/ccsk
 
 PRINT_INFO "copying project templates ..."
 cp ./shared/* ~/bin
 cp -r ./templates ~/bin/project_templates
+cp -r ./templates ~/bin/templates
+cp ./script/* ~/bin
 
 PRINT_INFO "set permissions ..."
 chmod +x ~/bin/skel.sh
+chmod +x ~/bin/ccsk.sh
 
 PRINT_INFO "create links (csk) ..."
 # create easy name soft link
 ln -s ~/bin/skel.sh ~/bin/csk
+ln -s ~/bin/ccsk.sh ~/bin/ccsk
 
 PRINT_INFO "done."

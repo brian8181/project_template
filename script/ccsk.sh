@@ -2,7 +2,15 @@
 
 CLASS_NAME=$1
 BASE_CLASS_NAME=$2
-PREFIX=./templates/class
+PREFIX=$HOME/bin/templates/class
+
+# BEG_ESC='\s*[[~\s*'
+# END_ESC='\s*~]]\s*'
+
+BEG_ESC='\s*/*~\s*'
+END_ESC='\s*~*/\s*'
+# /*~$TAG~*/
+
 
 # function replace_tag
 # {
@@ -19,27 +27,17 @@ PREFIX=./templates/class
 function create_class
 {
     local CLASS_NAME=$1
-    EXPR="/\\*~\\$\\{CLASS_NAME\\}~\\*/"
-    REPL=${CLASS_NAME}
+    local EXPR="/\\*~\\$\\{CLASS_NAME\\}~\\*/"
+    local REPL=${CLASS_NAME}
 
-    echo "$EXPR -- $REPL"
-    #replace_tag $PREFIX/{class.tmpl}.cpp 'CLASS_NAME' ${CLASS_NAME}
-    cat $PREFIX/{class.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > ${CLASS_NAME}.cpp
-    cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > ${CLASS_NAME}.hpp
-
-    BEG_ESC='\s*/*~\s*'
-    END_ESC='\s*~*/\s*'
-
-    # /*~$TAG~*/
-
-    cat script/makefile | sed "s|#PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #PREREQUISTE#|g" > script/makefile.tmp 
-
+    cat $PREFIX/{class.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.cpp
+    cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.hpp
+    cat makefile | sed "s|#PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #PREREQUISTE#|g" > makefile.tmp 
     # try to update makefile with new rule
-    MAKE_RULE=$(cat script/make.class.snip.tmpl | sed -E "s|/\\*~\\$\\{CLASS_NAME\\}~\\*/|${CLASS_NAME}|g")
+    MAKE_RULE=$(cat $PREFIX/make.class.snip.tmpl | sed -E "s|/\\*~\\$\\{CLASS_NAME\\}~\\*/|${CLASS_NAME}|g")
     # make a backup of makefile for now
-    cat script/makefile.tmp | sed -E "s|#AUTO_INSERT_POINT_DO_NOT_REMOVE#|${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#|g" > script/my_makefile
-    
-    #rm  makefile
+    cat makefile.tmp | sed -E "s|#AUTO_INSERT_POINT_DO_NOT_REMOVE#|${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#|g" > makefile
+    rm makefile.tmp
 }
 
 function create_sub_class
