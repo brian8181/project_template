@@ -12,10 +12,9 @@ VERSION="0.0.1"
 function create_basic
 {
 	local APP_NAME=$1
-	cp -rf $TEMPLATE_PATH/basic/* ${APP_NAME}
+	cp -rf $TEMPLATE_PATH/basic/* .
 
-	pushd ${APP_NAME} > /dev/null
-	touch .project 
+	touch .project
 	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > makefile
 	chmod 644 makefile 
 	mv tmpl..gitignore .gitignore
@@ -33,13 +32,11 @@ function create_basic
  	chmod 644 ${APP_NAME}.1
 	rm tmpl.*
 	popd > /dev/null
-	popd > /dev/null
 }
 
 function create_minimal
 {
 	local APP_NAME=$1
-	pushd ./${APP_NAME}
 	cp -rf $TEMPLATE_PATH/minimal/* .
 	touch .project 
 	cat tmpl.makefile | sed -E "s|#\\\\\*~\\$\\{APP_NAME\\}~\\*\\\#|${APP_NAME}|g" > makefile
@@ -47,11 +44,10 @@ function create_minimal
 	mv tmpl..gitignore .gitignore
 	rm ./tmpl.*
 
-	pushd ./src > /dev/null
-	cat  ./tmpl.app.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > ./${APP_NAME}.cpp
-	chmod 644 *.cpp
-	rm ./tmpl.*
-	popd > /dev/null
+	pushd src > /dev/null
+	cat  tmpl.app.cpp | sed -E "s|\\\\\*~\\$\\{APP_NAME\\}~\\*\\\|${APP_NAME}|g" > "${APP_NAME}.cpp"
+	chmod 644 "${APP_NAME}.cpp"
+	rm tmpl.*
 	popd > /dev/null
 }
 
@@ -59,18 +55,22 @@ function Print_usage
 {
 	VERSION=$1
 	echo -en "\n"
-	echo -en "Usage:\n\n"
-	echo -en "csk [-[vhbmd:]] PROJECT_NAME\n\n"
-	echo -en "\t-v print version\n\n"
-	echo -en "\t-h print help\n\n"
-	echo -en	"\t-b basic project\n\n"
-	echo -en "\t-m minimal project\n\n"
-	echo -en "\t-g gtk project\n\n"
-	echo -en "\t-d project directory, default is current directory\n\n"
+	echo -en "NAME:\n\tcsk\n\n"
+	echo -en "DESCRIPTION:\n\tcreate skeleton c++ project\n\n"
+	echo -en "SYNOPSIS:\n\t"
+	echo -en "csk [-[vhbmgd:]]... PROJECT_NAME\n\n"
+	echo -en "OPTIONS:\n\t"
+	echo -en "-v, print version\n\n"
+	echo -en "\t-h, print help\n\n"
+	echo -en "\t-b, basic project\n\n"
+	echo -en "\t-m, minimal project\n\n"
+	echo -en "\t-g, gtk project\n\n"
+	echo -en "\t-d, project directory, default is current directory\n\n"
+	echo -en "VERSION:\n\t"
 	echo -en "csk - version - ${VERSION} - $(date)\n\n"
 }
 
-OPTSTRING="vhbm"
+OPTSTRING="vhbmd:"
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
         v)
@@ -87,6 +87,10 @@ while getopts ${OPTSTRING} opt; do
 		m)
 			CMD="create_minimal"
             ;;
+		d)
+			PREFIX=$OPTARG
+			echo "PREFIX=$PREFIX"
+			;;
 		:)
             echo "Option -${OPTARG} requires an argument."
             exit 1
@@ -100,11 +104,13 @@ done
 shift $(($OPTIND-1))
 
 APP_NAME=$1
-TEMPLATE_PATH="${HOME}/bin/project_templates/"
+TEMPLATE_PATH="${HOME}/bin/project_templates"
 
-if [[ -n $CMD ]]; then
-	mkdir -p $APP_NAME
-	${CMD} $APP_NAME
+if [[ -n $CMD && -n "${APP_NAME}" ]]; then
+	mkdir -p "${PREFIX:=${PWD}}/${APP_NAME}"
+	pushd "${PREFIX}/${APP_NAME}" > /dev/null
+	${CMD} ${APP_NAME}
+	popd > /dev/null
 fi
 
-echo "project created @ $APP_NAME"
+echo "project created @ ${PREFIX}/${APP_NAME}"
