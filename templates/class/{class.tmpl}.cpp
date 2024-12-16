@@ -17,5 +17,5 @@
 
 bool /*~${CLASS_NAME}~*/::operator<( const /*~${CLASS_NAME}~*/& that)
 {
-
+    return false;
 }
