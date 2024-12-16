@@ -48,7 +48,6 @@ rm ~/bin/ccsk.sh
 rm ~/bin/ccsk
 
 PRINT_INFO "copying project templates ..."
-cp ./shared/* ~/bin
 cp -r ./templates ~/bin/templates
 cp ./script/* ~/bin
 

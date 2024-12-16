@@ -11,13 +11,13 @@ SRC=src
 
 all: $(BLD)/#\*~${APP_NAME}~*\#
 
-$(BLD)/#\*~${APP_NAME}~*\#: $(OBJ)/#\*~${APP_NAME}~*\#.o #PREREQUISTE#
-	 $(CXX) $(CXXFLAGS) -o $(BLD)/#\*~${APP_NAME}~*\# $(OBJ)/#\*~${APP_NAME}~*\#.o #PREREQUISTE#
+$(BLD)/#\*~${APP_NAME}~*\#: $(OBJ)/#\*~${APP_NAME}~*\#.o #CCSK_PREREQUISTE#
+	 $(CXX) $(CXXFLAGS) -o $(BLD)/#\*~${APP_NAME}~*\# $(OBJ)/#\*~${APP_NAME}~*\#.o #CCSK_PREREQUISTE#
 
 $(OBJ)/#\*~${APP_NAME}~*\#.o: $(SRC)/#\*~${APP_NAME}~*\#.cpp
 	$(CXX) $(CXXFLAGS) -c $(SRC)/#\*~${APP_NAME}~*\#.cpp -o $(OBJ)/#\*~${APP_NAME}~*\#.o
 
-#AUTO_INSERT_POINT_DO_NOT_REMOVE#
+#CCSK_RULE#
 
 .PHONY: clean
 clean:

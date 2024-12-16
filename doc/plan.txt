@@ -20,11 +20,11 @@
 
     ** Usage
 
-            csk, soft link to csk.sh, calls skel.sh
-            ccl, soft link to create.classs.sh
+            csk, soft link to csk.sh, calls csk.sh
+            ccsk, soft link to ccsks.sh
 
             csk <project name>
-            ccl <class name>[::<base class name>] ...
+            ccsk <class name>[::<base class name>] ...
 
             Senerio 1;
 
@@ -39,25 +39,25 @@
                 user:~/abc $>./abc
                 <todo>
 
-            ccl no base:
+            ccsk no base:
                 user:~$ >csk abc
                 abc created ...
                 user:~$ > cd abc
                 user:~/abc $>ls
                 <todo>
-                user:~/abc $>ccl shape
+                user:~/abc $>ccsk shape
                 user:~/abc $>make
                 
-             ccl with base:
+             ccsk with base:
                 user:~$ >csk abc
                 abc created ...
                 user:~$ > cd abc
                 user:~/abc $>ls
                 <todo>
-                user:~/abc $>ccl shape
-                user:~/abc $>ccl square::shape
-                user:~/abc $>ccl circle::shape
-                user:~/abc $>ccl triangle:shape
+                user:~/abc $>ccsk shape
+                user:~/abc $>ccsk square::shape
+                user:~/abc $>ccsk circle::shape
+                user:~/abc $>ccsk triangle:shape
                 user:~/abc $>make
 
     ** Installation:
@@ -68,7 +68,7 @@
             - Installs all to ~/bin 
             - Sets permission on files based on files & user settings ...
         
-        user:~/src/create_project_templates $>./install.sh
+        user:~/src/project_templates $>./install.sh
         <todo>
 
     ** Remove All
@@ -77,7 +77,7 @@
         
             - Removes all from ~/bin
 
-        user:~/src/create_project_templates $>./install.sh
+        user:~/src/project_templates $>./install.sh
         <todo>
 
     ** Detail:
@@ -87,10 +87,10 @@
             /templates
             |   /basic
                 |   /scr
-                    |   /@@APP_NAME@@.cpp.tmpl
-                        /@@APP_NAME@@.hpp.tmpl
-                        /main.cpp
-                        /main.hpp
+                    |   @@APP_NAME@@.cpp.tmpl
+                        @@APP_NAME@@.hpp.tmpl
+                        main.cpp
+                        main.hpp
                 |   Makefile
             |   /minimal
                 |   /scr
@@ -98,12 +98,11 @@
             |   /gtk
             |   /scr
                 |   Makefile
-            /shared
+            /script
             |   csk.sh
-            |   skel.sh
             |   csk -> csk.sh
-            |   create.class.sh
-            |   ccl -> create.class.sh
+            |   ccsk.sh
+            |   ccsk -> ccsk.sh
             install.sh
             |   /test 
                 |   csk_debug.sh
@@ -136,9 +135,8 @@
             |   /scr
                 |   Makefile
             csk.sh
-            skel.sh
             csk -> csk.sh
-            create.class.sh
-            ccl -> create.class.sh
+            ccsk.sh
+            ccsk -> ccsk.sh
 
         *** output

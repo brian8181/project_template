@@ -33,11 +33,11 @@ function create_class
 
     cat $PREFIX/{class.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.cpp
     cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.hpp
-    cat makefile | sed "s|#PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #PREREQUISTE#|g" > makefile.tmp 
+    cat makefile | sed "s|#CCSK_PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #CCSK_PREREQUISTE#|g" > makefile.tmp 
     # try to update makefile with new rule
     MAKE_RULE=$(cat $PREFIX/make.class.snip.tmpl | sed -E "s|/\\*~\\$\\{CLASS_NAME\\}~\\*/|${CLASS_NAME}|g")
     # make a backup of makefile for now
-    cat makefile.tmp | sed -E "s|#AUTO_INSERT_POINT_DO_NOT_REMOVE#|${MAKE_RULE}\n#AUTO_INSERT_POINT_DO_NOT_REMOVE#|g" > makefile
+    cat makefile.tmp | sed -E "s|#CCSK_RULE#|${MAKE_RULE}\n#CCSK_RULE#|g" > makefile
     rm makefile.tmp
 }
 
