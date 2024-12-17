@@ -24,8 +24,18 @@ END_ESC='\s*~*/\s*'
 #     #cat $PREFIX/{class.tmpl}.cpp | sed -E "s|${EXPR}/|${REPL}|g" > ${REPL}.cpp
 # }
 
+function is_project_directory
+{
+    if [ ! -f ".project" ]; then
+        echo "error: not a project directory!"
+        exit 1;
+    fi
+}
+
 function create_class
 {
+    is_project_directory
+
     local CLASS_NAME=$1
     local EXPR="/\\*~\\$\\{CLASS_NAME\\}~\\*/"
     local BASE_EXPR="/\\*~\\$\\{BASE_CLASS_NAME\\}~\\*/"
@@ -42,6 +52,8 @@ function create_class
 
 function create_sub_class
 {
+    is_project_directory
+
     local CLASS_NAME=$1
     local BASE_CLASS_NAME=$2
     create_class $BASE_CLASS_NAME
