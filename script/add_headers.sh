@@ -12,7 +12,7 @@ function ADD_HEADERS
 		#| sed "s/@@FILE_NAME@@/${FILE%%.tmpl}/g" > ${FILE%%.tmpl}
 }
 
-pushd ~/src/create_project_template/shared
+pushd ~/src/project_template/shared
 
 ADD_HEADERS class.cpp.tmpl
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CLASS_NAME=$1
-BASE_CLASS_NAME=$2
+BASE_CLASS_NAME=
 PREFIX=$HOME/bin/templates/class
 
 # BEG_ESC='\s*[[~\s*'
@@ -41,7 +41,11 @@ if [ ! -f ".project" ]; then
 fi
 
 if [[ -z $BASE_CLASS_NAME ]]; then
-    create_class $CLASS_NAME
+
+    for name in "$@"; do 
+        create_class $name
+    done 
+
 else
     create_sub_class $CLASS_NAME $BASE_CLASS_NAME
 fi
