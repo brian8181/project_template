@@ -1,15 +1,12 @@
-// std c
 #include <stdlib.h>
 #include <fmt/color.h>
 #include <unistd.h>         /* for STDIN_FILENO */
 #include <sys/select.h>     /* for pselect   */
 #include <getopt.h>
-// std cpp
 #include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
-// local 
 #include "bash_color.hpp"
 
 

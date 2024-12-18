@@ -7,6 +7,7 @@
 
 source color.sh
 VERSION="0.0.1"
+EXPR='\\\\\*~\\$\\{APP_NAME\\}~\\*\\\'
 AUTO_MODE=
 
 function create_basic
