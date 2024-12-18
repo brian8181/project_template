@@ -30,11 +30,6 @@ function create_class
     cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.hpp
 
     AppendMakeRule $CLASS_NAME
-    # # add prerequistes
-    # cat makefile | sed "s|#CCSK_PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #CCSK_PREREQUISTE#|g" > makefile.tmp 
-    # # add new make rule
-    # cat makefile.tmp | sed -E "s|#CCSK_RULE#|$(cat $PREFIX/make.rule.frag | sed -E "s|$EXPR|${CLASS_NAME}|g")\n#CCSK_RULE#|g" > makefile
-    # rm makefile.tmp
 }
 
 function create_sub_class
@@ -52,11 +47,6 @@ function create_sub_class
     cat src/${CLASS_NAME}.cpp.tmp | sed -E "s|$BASE_EXPR|${BASE_CLASS_NAME}|g" > src/${CLASS_NAME}.cpp
 
     AppendMakeRule $CLASS_NAME
-    #  # add prerequistes
-    # cat makefile | sed "s|#CCSK_PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #CCSK_PREREQUISTE#|g" > makefile.tmp 
-    # # add new make rule
-    # cat makefile.tmp | sed -E "s|#CCSK_RULE#|$(cat $PREFIX/make.rule.frag | sed -E "s|$EXPR|${CLASS_NAME}|g")\n#CCSK_RULE#|g" > makefile
-    # rm makefile.tmp
 }
 
 if [ ! -f ".project" ]; then
