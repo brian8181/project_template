@@ -7,6 +7,7 @@
 
 source color.sh
 VERSION="0.0.1"
+AUTO_MODE=
 
 function create_basic
 {
@@ -71,7 +72,45 @@ function Print_usage
 	echo -en "VERSION:\n\t"
 	echo -en "csk - version - ${VERSION} - copyright $(date)\n\n"
 }
- 
+
+OPTSTRING="vhbamd:"
+while getopts ${OPTSTRING} opt; do
+    case ${opt} in
+        v)
+			echo "version $VERSION"
+			exit 0;
+            ;;
+        h)
+			Print_usage $VERSION
+			exit 0;
+            ;;
+		b)
+			CMD="create_basic"
+            ;;
+		m)
+			CMD="create_minimal"
+            ;;
+		a)
+			AUTO_MODE=TRUE
+			echo "auto-mode ..."
+			;;
+		d)
+			PREFIX=$OPTARG
+			echo "PREFIX=$PREFIX"
+			;;
+		:)
+            echo "Option -${OPTARG} requires an argument."
+            exit 1
+            ;;
+        ?)
+            echo "Invalid option: -${OPTARG}."
+            exit 1
+            ;;
+	esac
+done
+shift $(($OPTIND-1))
+
+
 APP_NAME=$1
 TEMPLATE_PATH="${HOME}/bin/templates"
 
@@ -86,3 +125,9 @@ pushd "${PREFIX}/${APP_NAME}" > /dev/null
 ${CMD} ${APP_NAME}
 popd > /dev/null
 echo "project created @ ${PREFIX}/${APP_NAME}"
+
+# if [ -n AUTO_MODE ]; then
+# 	cd ${PREFIX}/${APP_NAME}
+# 	mkdir build
+# 	make
+# fi

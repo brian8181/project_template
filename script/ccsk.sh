@@ -24,7 +24,6 @@ function create_class
 {
     local CLASS_NAME=$1
     local EXPR="/\\*~\\$\\{CLASS_NAME\\}~\\*/"
-    local BASE_EXPR="/\\*~\\$\\{BASE_CLASS_NAME\\}~\\*/"
     #local REPL=${CLASS_NAME}
     cat $PREFIX/{class.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.cpp
     cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.hpp
@@ -39,7 +38,6 @@ function create_sub_class
     local EXPR="/\\*~\\$\\{CLASS_NAME\\}~\\*/"
     local BASE_EXPR="/\\*~\\$\\{BASE_CLASS_NAME\\}~\\*/"
     #local REPL=${CLASS_NAME}
-
     create_class $BASE_CLASS_NAME
     cat $PREFIX/{class.base.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.hpp.tmp
     cat $PREFIX/{class.base.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.cpp.tmp
@@ -62,6 +60,7 @@ for name in "$@"; do
     echo "'base=' is $base"
 
     if [ "$class" = "$base" ]; then
+        # no base, set base null 
         base=
     fi
 
