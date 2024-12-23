@@ -132,10 +132,11 @@ ${CMD} ${APP_NAME}
 popd > /dev/null
 echo "project created @ ${PREFIX}/${APP_NAME}"
 
-echo $AUTO_MODE
 if [[ -n "$AUTO_MODE" ]]; then
 	pushd ${PREFIX}/${APP_NAME}
-	mkdir build
+	if [ ![ -d "build" ] ]
+		mkdir build
+	fi
 	make
 	popd
 fi
