@@ -5,8 +5,8 @@
 # Version:    0.1.0
 
 FILE='./install.sh'
-VERSION='0.1.1'
-FILE_DATE='Thu Aug 15 10:17:45 PM CDT 2024'
+VERSION='0.2.0'
+FILE_DATE='Mon Dec 23 12:53:57 PM CST 2024'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
