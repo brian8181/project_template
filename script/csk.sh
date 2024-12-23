@@ -134,7 +134,7 @@ echo "project created @ ${PREFIX}/${APP_NAME}"
 
 if [[ -n "$AUTO_MODE" ]]; then
 	pushd ${PREFIX}/${APP_NAME}
-	if [ ![ -d "build" ] ]
+	if [ ![ -d "build" ] ]; then
 		mkdir build
 	fi
 	make
