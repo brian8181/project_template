@@ -3,12 +3,17 @@
 # Version:    0.1.0
 
 CXX=g++
-CXXFLAGS=-Wall -std=c++17 -DDEBUG -g
+CXXFLAGS=-Wall -std=c++17
 CXXEXTRA=-fPIC
 APP_NAME=\*~${APP_NAME}~*\
 BLD=build
 OBJ=build
 SRC=src
+DEBUG=1
+
+ifdef DEBUG
+	CXXFLAGS += -g -DDEBUG
+endif
 
 all: $(BLD)/\*~${APP_NAME}~*\ $(BLD)/lib\*~${APP_NAME}~*\.so $(BLD)/lib\*~${APP_NAME}~*\.a 
 
