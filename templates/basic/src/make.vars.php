@@ -1,0 +1,3 @@
+<?php
+    $APPNAME="MyApp"
+    ?>
