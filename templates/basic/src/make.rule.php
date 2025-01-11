@@ -1,1 +1,1 @@
-$(BLD)//*~${CLASS_NAME}~*/.o: $(SRC)//*~${CLASS_NAME}~*/.cpp \n\t $(CXX) $(CXXFLAGS) -c $(SRC)//*~${CLASS_NAME}~*/.cpp -o $(BLD)//*~${CLASS_NAME}~*/.o \n
+$(BLD)/<?php echo $CLASSNAME ?>.o: $(SRC)/<?php echo $CLASSNAME ?>.cpp \n\t $(CXX) $(CXXFLAGS) -c $(SRC)/<?php echo $CLASSNAME ?>.cpp -o $(BLD)/<?php echo $CLASSNAME ?>.o \n
