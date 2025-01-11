@@ -18,6 +18,8 @@ OBJ=build
 SRC=src
 DEBUG=1
 
+# INSERT <?php echo("\r$DATE"); ?>
+
 ifdef DEBUG
 	CXXFLAGS += -g -DDEBUG
 endif

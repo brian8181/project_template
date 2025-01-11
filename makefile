@@ -5,7 +5,7 @@
 
 all: reinstall
 
-reinstall: uninstall
+reinstall: uninstall # INSERT <?php echo("\r$DATE"); ?>
 	./install.sh
 
 install: uninstall

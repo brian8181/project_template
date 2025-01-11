@@ -29,6 +29,8 @@ $(BLD):
 
     ?>
 
+#<?php echo "\b\bTEST" ?>
+
 .PHONY: all clean
 clean:
 	-rm -f $(OBJ)/*.
