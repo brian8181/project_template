@@ -1,3 +1,4 @@
+<php? # basic class definition ?>
 #include "<?php echo $CLASSNAME ?>.hpp"
 
 <?php echo $CLASSNAME ?>::<?php echo $CLASSNAME ?>()

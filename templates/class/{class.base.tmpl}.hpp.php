@@ -1,3 +1,5 @@
+<php? # basic class definition with base class  ?>
+
 #ifndef __<?php echo $CLASSNAME ?>_HPP
 #define __<?php echo $CLASSNAME ?>_HPP
 

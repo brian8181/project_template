@@ -1,3 +1,5 @@
+<php? # make template ?>
+
 <?
     include_once "make.vars.php"
     include "make.header.php"
