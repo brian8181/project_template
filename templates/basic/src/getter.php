@@ -1,0 +1,1 @@
+<php? # property getter ?>

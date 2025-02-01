@@ -1,3 +1,5 @@
+<php? # main with getlongopts  ?>
+
 //    File:    makefile
 //    Date:    Sun Dec 15 05:46:02 PM CST 2024
 // Version:    0.0.1

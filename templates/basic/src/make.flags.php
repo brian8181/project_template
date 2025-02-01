@@ -1,3 +1,5 @@
+<php? # make flags ?>
+
 CXX=g++
 CXXFLAGS=-Wall -std=c++17
 CXXEXTRA=-fPIC
