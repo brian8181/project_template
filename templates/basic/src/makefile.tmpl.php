@@ -1,7 +1,16 @@
-<?
-    include_once "make.vars.php"
-    include "make.header.php"
-    include "make.flags.php"
+#!/bin/php
+
+<?php
+    $APPNAME=$argv[1];
+    $DEPENDS=$argv[2];
+    $CLASSNAME=$APPNAME;
+    $DATE=date("l") ;
+    ?>
+
+<?php
+    include_once "make.vars.php";
+    include "make.header.php";
+    include "make.flags.php";
     ?>
 
 
@@ -16,16 +25,16 @@ $(BLD):
 	#-if not exist $(BLD) mkdir "./$(BLD)"
 	exit 1
 
-<?
+<?php
 
-    include "make.all.php"
+    include "make.all.php";
 
     ?>
 
-<?
+<?php
 
     // ccsk rules
-    include "make.rule.php"
+    include "make.rule.php";
 
     ?>
 
