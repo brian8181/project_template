@@ -1,5 +1,3 @@
-<php? # make all  ?>
-
 $(BLD)/<?php echo $APPNAME ?>: $(SRC)/<?php echo $APPNAME ?>.o <?php echo $DEPENDS ?>.o
     $(CXX) $(CXXFLAGS) -c $(SRC)/<?php echo $APPNAME ?>.o <?php echo $DEPENDS ?>.o -o $(BLD)/<?php echo $APPNAME ?>.o
 

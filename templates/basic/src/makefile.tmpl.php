@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/php
 
 <?php
@@ -9,17 +8,9 @@
     ?>
 
 <?php
+    include_once "make.header.php";
     include_once "make.vars.php";
-    include "make.header.php";
-    include "make.flags.php";
-=======
-<php? # make template ?>
-
-<?
-    include_once "make.vars.php"
-    include "make.header.php"
-    include "make.flags.php"
->>>>>>> a49a0a10ef28fff82fb177765bc0093e17e8fcaf
+    include_once "make.flags.php";
     ?>
 
 

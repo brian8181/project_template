@@ -1,4 +1,6 @@
-<php? # make flags ?>
+<?php 
+	// testing
+	?>
 
 CXX=g++
 CXXFLAGS=-Wall -std=c++17
