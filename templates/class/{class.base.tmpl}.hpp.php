@@ -12,6 +12,14 @@ public:
 	<?php echo $CLASSNAME ?>();
 	virtual ~<?php echo $CLASSNAME ?>();
 
+	<?php 
+		
+		if( $COPY_CTOR )
+		{
+			include_once "copy_constructor.php" 
+		}
+
+		?>
 private:
 
 };

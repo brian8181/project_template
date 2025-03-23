@@ -1,11 +1,11 @@
-<?php 
+<?php
 	// testing
 	?>
 
 CXX=g++
 CXXFLAGS=-Wall -std=c++17
 CXXEXTRA=-fPIC
-APP_NAME=<?php echo $APPNAME ?>
+APP_NAME=<?php echo "$APPNAME\n" ?>
 BLD=build
 OBJ=build
 SRC=src

@@ -13,12 +13,7 @@
     include_once "make.flags.php";
     ?>
 
-
-ifdef DEBUG
-	CXXFLAGS += -g -DDEBUG
-endif
-
-all: $(BLD)/<?php echo $APPNAME ?> $(BLD)/lib<?php echo $APPNAME ?>.so $(BLD)/lib<?php echo $APPNAME ?>.a 
+all: $(BLD)/<?php echo $APPNAME ?> $(BLD)/lib<?php echo $APPNAME ?>.so $(BLD)/lib<?php echo $APPNAME ?>.a
 
 $(BLD):
 	-echo testing ...
@@ -38,7 +33,7 @@ $(BLD):
 
     ?>
 
-#<?php echo "\b\bTEST" ?>
+<?php echo "#TEST" ?>
 
 .PHONY: all clean
 clean:
