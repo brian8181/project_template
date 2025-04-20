@@ -10,12 +10,12 @@ BEG_ESC='\s*/*~\s*'
 END_ESC='\s*~*/\s*'
 EXPR='/\\*~\\$\\{CLASS_NAME\\}~\\*/'
 
-function AppendMakeRule
+function append_make_rule
 {
     local CLASS_NAME=$1
     local EXPR="/\\*~\\$\\{CLASS_NAME\\}~\\*/"
     # add prerequistes
-    cat makefile | sed "s|#CCSK_PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #CCSK_PREREQUISTE#|g" > makefile.tmp 
+    cat makefile | sed "s|#CCSK_PREREQUISTE#|\\$\\(BLD\\)/${CLASS_NAME}.o #CCSK_PREREQUISTE#|g" > makefile.tmp
     # add new make rule
     cat makefile.tmp | sed -E "s|#CCSK_RULE#|$(cat $PREFIX/make.rule.frag | sed -E "s|$EXPR|${CLASS_NAME}|g")\n#CCSK_RULE#|g" > makefile
     rm makefile.tmp
@@ -28,8 +28,8 @@ function create_class
     #local REPL=${CLASS_NAME}
     cat $PREFIX/{class.tmpl}.cpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.cpp
     cat $PREFIX/{class.tmpl}.hpp | sed -E "s|$EXPR|${CLASS_NAME}|g" > src/${CLASS_NAME}.hpp
-    
-    AppendMakeRule $CLASS_NAME
+
+    append_make_rule $CLASS_NAME
 }
 
 function create_sub_class
@@ -45,7 +45,7 @@ function create_sub_class
     cat src/${CLASS_NAME}.hpp.tmp | sed -E "s|$BASE_EXPR|${BASE_CLASS_NAME}|g" > src/${CLASS_NAME}.hpp
     cat src/${CLASS_NAME}.cpp.tmp | sed -E "s|$BASE_EXPR|${BASE_CLASS_NAME}|g" > src/${CLASS_NAME}.cpp
 
-    AppendMakeRule $CLASS_NAME
+    append_make_rule $CLASS_NAME
     rm src/*.?pp.tmp
 }
 
@@ -54,7 +54,7 @@ if [ ! -f ".project" ]; then
     exit 1;
 fi
 
-for name in "$@"; do 
+for name in "$@"; do
 
     class=${name##*:}
     echo "'class=' is $class"
@@ -62,12 +62,12 @@ for name in "$@"; do
     echo "'base=' is $base"
 
     if [ "$class" = "$base" ]; then
-        # no base, set base null 
+        # no base, set base null
         base=
     fi
 
     if [ -f "./src/${class}.hpp" ] || [ -f "./src/${class}.cpp" ]; then
-        echo "class \"$class\" exist" 
+        echo "class \"$class\" exist"
         continue
     fi
 
@@ -79,9 +79,4 @@ for name in "$@"; do
             create_sub_class $class $base
     fi
 
-done 
-
-
-
-
-
+done

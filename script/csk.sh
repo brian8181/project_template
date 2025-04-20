@@ -19,10 +19,10 @@ function create_basic
 	touch .project
 	cat tmpl.makefile | sed -E "s|${EXPR2}|$(date)|g" > tmpl.makefile.tmp
 	cat tmpl.makefile.tmp | sed -E "s|${EXPR}|${APP_NAME}|g" > makefile
-	chmod 644 makefile 
+	chmod 644 makefile
 	mv tmpl..gitignore .gitignore
 	rm tmpl.*
-	
+
 	pushd src  > /dev/null
 	cat  tmpl.cpp | sed -E "s|${EXPR}|${APP_NAME}|g" > ${APP_NAME}.cpp
 	chmod 644 *.cpp
@@ -31,7 +31,7 @@ function create_basic
 	popd > /dev/null
 
 	pushd man > /dev/null
-	cat  tmpl.app.1 | sed -E "s|${EXPR}|${APP_NAME}|g" > ${APP_NAME}.1 
+	cat  tmpl.app.1 | sed -E "s|${EXPR}|${APP_NAME}|g" > ${APP_NAME}.1
  	chmod 644 ${APP_NAME}.1
 	rm tmpl.*
 	popd > /dev/null
@@ -41,11 +41,11 @@ function create_minimal
 {
 	local APP_NAME=$1
 	local EXPR="\\\\\*~\\$\\{APP_NAME\\}*~\\*\\\\"
-	
+
 	cp -rf $TEMPLATE_PATH/minimal/* .
-	touch .project 
+	touch .project
 	cat tmpl.makefile | sed -E "s|${EXPR}|${APP_NAME}|g" > makefile
-	chmod 644 makefile 
+	chmod 644 makefile
 	mv tmpl..gitignore .gitignore
 	rm ./tmpl.*
 
@@ -56,7 +56,7 @@ function create_minimal
 	popd > /dev/null
 }
 
-function Print_usage
+function print_usage
 {
 	VERSION=$1
 	echo -en "\n"
@@ -87,7 +87,7 @@ while getopts ${OPTSTRING} opt; do
 			exit 0;
             ;;
         h)
-			Print_usage $VERSION
+			print_usage $VERSION
 			exit 0;
             ;;
 		b)
@@ -122,7 +122,7 @@ TEMPLATE_PATH="${HOME}/bin/templates"
 
 if [[ -z $CMD || -z "${APP_NAME}" ]]; then
 	echo "incorrect options, no command set ..."
-	echo "example '-b' for basic" 
+	echo "example '-b' for basic"
 	exit 1
 fi
 
