@@ -12,5 +12,9 @@ SRC=src
 DEBUG=1
 
 ifdef DEBUG
-	CXXFLAGS += -g -DDEBUG
+	CXXFLAGS +=-g -DDEBUG
+endif
+
+ifdef CYGWIN
+	CXXFLAGS += -DCYGWIN
 endif

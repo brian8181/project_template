@@ -1,3 +1,6 @@
+
+all: $(BLD)/<?php echo $APPNAME ?> $(BLD)/lib<?php echo $APPNAME ?>.so $(BLD)/lib<?php echo $APPNAME ?>.a
+
 $(BLD)/<?php echo $APPNAME ?>: $(SRC)/<?php echo $APPNAME ?>.o <?php echo $DEPENDS ?>.o
     $(CXX) $(CXXFLAGS) -c $(SRC)/<?php echo $APPNAME ?>.o <?php echo $DEPENDS ?>.o -o $(BLD)/<?php echo $APPNAME ?>.o
 
@@ -11,3 +14,8 @@ $(BLD)/lib<?php echo $APPNAME ?>.so: $(BLD)/<?php echo $APPNAME ?>.o
 $(BLD)/lib<?php echo $APPNAME ?>.a: $(BLD)/<?php echo $APPNAME ?>.o
 	-ar rvs $(BLD)/lib<?php echo $APPNAME ?>.a $(BLD)/<?php echo $APPNAME ?>.o
 	-chmod 755 $(BLD)/lib<?php echo $APPNAME ?>.a
+
+.PHONY: all clean
+clean:
+	-rm -f $(OBJ)/*.
+	-rm -f $(BLD)/*

@@ -9,11 +9,11 @@
 
 <?php
     include_once "make.header.php";
-    include_once "make.vars.php";
+    //include_once "make.vars.php";
     include_once "make.flags.php";
     ?>
 
-all: $(BLD)/<?php echo $APPNAME ?> $(BLD)/lib<?php echo $APPNAME ?>.so $(BLD)/lib<?php echo $APPNAME ?>.a
+
 
 $(BLD):
 	-echo testing ...
@@ -28,14 +28,10 @@ $(BLD):
 
 <?php
 
-    // ccsk rules
-    include "make.rule.php";
-
+// ccsk rules
+// include "make.class.rule.php";
     ?>
 
-<?php echo "#TEST" ?>
-
-.PHONY: all clean
-clean:
-	-rm -f $(OBJ)/*.
-	-rm -f $(BLD)/*
+<?php
+	//echo "#TEST"
+	?>
