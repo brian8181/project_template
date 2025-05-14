@@ -13,23 +13,18 @@
     include_once "make.flags.php";
     ?>
 
-
-
 $(BLD):
 	-echo testing ...
 	#-if not exist $(BLD) mkdir "./$(BLD)"
 	exit 1
 
 <?php
-
     include "make.all.php";
-
     ?>
 
 <?php
-
-// ccsk rules
-// include "make.class.rule.php";
+	// ccsk rules
+	// include "make.class.rule.php";
     ?>
 
 <?php

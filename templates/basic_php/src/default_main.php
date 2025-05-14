@@ -1,4 +1,6 @@
-<php? # basic main ?>
+<?php
+	// basic main
+	?>
 
 // File Name:  @@FILE_NAME@@
 // Build Date: @@BUILD_DATE@@
