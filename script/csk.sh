@@ -109,7 +109,7 @@ function print_usage
 	echo -en "csk - version - ${VERSION} - copyright $(date)\n\n"
 }
 
-OPTSTRING="vhbamd:"
+OPTSTRING="vhbamnd:"
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
         v)
