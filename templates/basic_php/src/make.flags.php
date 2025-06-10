@@ -5,16 +5,21 @@
 CXX=g++
 CXXFLAGS=-Wall -std=c++17
 CXXEXTRA=-fPIC
-APP_NAME=<?php echo "$APPNAME\n" ?>
-BLD=build
-OBJ=build
-SRC=src
-DEBUG=1
 
-ifdef DEBUG
+# lib settings
+LIBS = -L/usr/local/lib/
+INCLUDES = -I/usr/local/include/cppunit/
+LDFLAGS = $(LIBS) $(INCLUDES)
+
+APP_NAME=<?php echo "$APPNAME\n" ?>
+SRC=src
+BLD?=build
+OBJ?=build
+
+ifndef RELEASE
 	CXXFLAGS +=-g -DDEBUG
 endif
 
 ifdef CYGWIN
-	CXXFLAGS += -DCYGWIN
+	CXXFLAGS +=-DCYGWIN
 endif
