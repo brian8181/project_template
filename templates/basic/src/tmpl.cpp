@@ -46,7 +46,7 @@ void print_help()
 {
 	cout	<< endl 
 			<< FMT_BOLD      << FMT_FG_GREEN << "Usage: " << FMT_RESET << endl
-			<< FMT_BOLD      << /*~ "${APP_NAME}"         << ~*/ FMT_RESET << " "
+			<< FMT_BOLD      << "/*~${APP_NAME}~*/" << FMT_RESET << " "
 			<< FMT_FG_BLUE   << "[-hvr][...]"             << FMT_RESET << " "
          												  <<  endl << endl;
 }
