@@ -1,10 +1,10 @@
-# File Name:  ${APP_NAME}/makefile
+# File Name:  \*~${APP_NAME}~*\/makefile
 # Build Date: Wed Apr 23 22:44:01 CDT 2025
 # Version:    0.1.1
 
-APP=${APP_NAME}
+APP=\*~${APP_NAME}~*\
 CXX=g++
-CXXFLAGS=-Wall -pedantic -std=c++20 -Wno-vla
+CXXFLAGS=-Wall -std=c++20 -fPIC
 SRC=src
 BLD?=build
 OBJ?=build
@@ -21,15 +21,15 @@ ifdef CYGWIN
 	CXXFLAGS += -DCYGWIN
 endif
 
-all: ./$(BLD)/\*~${APP_NAME}~*\ ./$(BLD)/\*~${APP_NAME}_test~*\ ./$(BLD)/lib\*~${APP_NAME}~*\.so ./$(BLD)/lib\*~${APP_NAME}~*\.a
+all: ./$(BLD)/\*~${APP_NAME}~*\ ./$(BLD)/lib\*~${APP_NAME}~*\.so ./$(BLD)/lib\*~${APP_NAME}~*\.a
 
 rebuild: clean all
 
 ./$(BLD)/\*~${APP_NAME}~*\: ./$(OBJ)/\*~${APP_NAME}~*\.o #CCSK_PREREQUISTE#
 	 $(CXX) $(CXXFLAGS) -o ./$(BLD)/\*~${APP_NAME}~*\ ./$(OBJ)/\*~${APP_NAME}~*\.o #CCSK_PREREQUISTE#
 
-./$(BLD)/\*~${APP_NAME}_test~*\: ./$(OBJ)/\*~${APP_NAME}_test~*\.o #CCSK_PREREQUISTE#
-	 $(CXX) $(CXXFLAGS) -o ./$(BLD)/\*~${APP_NAME}_test~*\ ./$(OBJ)/\*~${APP_NAME}_test~*\.o #CCSK_PREREQUISTE#
+#./$(BLD)/\*~${APP_NAME}~*\_test: ./$(OBJ)/\*~${APP_NAME}~*\_test.o #CCSK_PREREQUISTE#
+#	 $(CXX) $(CXXFLAGS) -o ./$(BLD)/\*~${APP_NAME}~*\_test ./$(OBJ)/\*~${APP_NAME}~*\_test.o #CCSK_PREREQUISTE#
 
 ./$(BLD)/lib\*~${APP_NAME}~*\.so: ./$(BLD)/\*~${APP_NAME}~*\.o
 	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared ./$(BLD)/\*~${APP_NAME}~*\.o -o ./$(BLD)/lib\*~${APP_NAME}~*\.so
