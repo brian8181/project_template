@@ -2,7 +2,7 @@
 
 <?php
     $APPNAME=$argv[1];
-    $DEPENDS=$argv[2];
+    //$DEPENDS=$argv[2];
     $CLASSNAME=$APPNAME;
     $DATE=date("l") ;
     ?>

@@ -1,11 +1,11 @@
 
 all: ././$(BLD)/<?php echo $APPNAME ?> ./$(BLD)/lib<?php echo $APPNAME ?>.so ./$(BLD)/lib<?php echo $APPNAME ?>.a
 
-./$(BLD)/<?php echo $APPNAME ?>: ./$(SRC)/<?php echo $APPNAME ?>.o <?php echo $DEPENDS ?>.cpp
+./$(BLD)/<?php echo $APPNAME ?>: ./$(SRC)/<?php echo $APPNAME ?>.o main.cpp
     $(CXX) $(CXXFLAGS) -c ./$(SRC)/<?php echo $APPNAME ?>.o <?php echo $DEPENDS ?>.o -o ./$(BLD)/<?php echo $APPNAME ?>
 
 ./$(BLD)/<?php echo $APPNAME ?>_test: ./$(SRC)/<?php echo $APPNAME ?>_test.o
-    $(CXX) $(CXXFLAGS) -c ./$(SRC)/<?php echo $APPNAME ?>_test.o <?php echo $DEPENDS ?>.o -o ./$(BLD)/<?php echo $APPNAME ?>_test
+    $(CXX) $(CXXFLAGS) -c ./$(SRC)/<?php echo $APPNAME ?>_test.o main.o -o ./$(BLD)/<?php echo $APPNAME ?>_test
 
 ./$(BLD)/lib<?php echo $APPNAME ?>.so: ./$(BLD)/<?php echo $APPNAME ?>.o
 	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared ./$(BLD)/<?php echo $APPNAME ?>.o -o ./$(BLD)/lib<?php echo $APPNAME ?>.so
