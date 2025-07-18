@@ -40,13 +40,8 @@ function PRINT_INFO
 
 PRINT_INFO "Installing templates, ..."
 PRINT_INFO "remove existing project templates ..."
-
-# disable debug
-set +x
-# disable echo 
-set +v
 # remove "templates" before update
-rm -rf ~/bin/templates > /dev/null
+rm -rf ~/bin/templates
 rm ~/bin/csk.sh
 rm ~/bin/csk
 rm ~/bin/ccsk.sh

@@ -19,7 +19,7 @@ $(BLD):
 	exit 1
 
 <?php
-    include "make.all.php";
+    include_once "make.all.php";
     ?>
 
 <?php

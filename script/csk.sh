@@ -37,34 +37,6 @@ function create_basic
 	popd > /dev/null
 }
 
-function create_new
-{
-	local APP_NAME=$1
-	local EXPR="\\\\\*~\\$\\{APP_NAME\\}*~\\*\\\\"
-	local EXPR2="\\\\\*~\\$\\{DATE\\}*~\\*\\\\"
-	cp -rf $TEMPLATE_PATH/new/* .
-
-	touch .project
-	cat tmpl.makefile | sed -E "s|${EXPR2}|$(date)|g" > tmpl.makefile.tmp
-	cat tmpl.makefile.tmp | sed -E "s|${EXPR}|${APP_NAME}|g" > makefile
-	chmod 644 makefile
-	mv tmpl..gitignore .gitignore
-	rm tmpl.*
-
-	pushd src  > /dev/null
-	cat  tmpl.cpp | sed -E "s|${EXPR}|${APP_NAME}|g" > ${APP_NAME}.cpp
-	chmod 644 *.cpp
-	mv tmpl.bash_color.hpp bash_color.hpp
-	rm tmpl.*
-	popd > /dev/null
-
-	pushd man > /dev/null
-	cat  tmpl.app.1 | sed -E "s|${EXPR}|${APP_NAME}|g" > ${APP_NAME}.1
- 	chmod 644 ${APP_NAME}.1
-	rm tmpl.*
-	popd > /dev/null
-}
-
 function create_minimal
 {
 	local APP_NAME=$1
@@ -83,8 +55,6 @@ function create_minimal
 	rm tmpl.*
 	popd > /dev/null
 }
-
-
 
 function print_usage
 {
@@ -109,7 +79,7 @@ function print_usage
 	echo -en "csk - version - ${VERSION} - copyright $(date)\n\n"
 }
 
-OPTSTRING="vhbamnd:"
+OPTSTRING="vhbamd:"
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
         v)
@@ -126,9 +96,6 @@ while getopts ${OPTSTRING} opt; do
 		m)
 			CMD="create_minimal"
             ;;
-		n)
-			CMD="create_new"
-            ;;		
 		a)
 			AUTO_MODE=TRUE
 			echo "auto-mode ..."

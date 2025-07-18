@@ -19,7 +19,7 @@ ifdef DEBUG
 endif
 
 ifdef CYGWIN
-	CXXFLAGS +=-DCYGWIN
+	CXXFLAGS += -DCYGWIN
 endif
 
 all: $(BLD)/$(APP) $(BLD)/$(APP)_test $(BLD)/lib$(APP).so $(BLD)/lib$(APP).a
