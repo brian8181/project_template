@@ -82,12 +82,19 @@ int parse_options(int argc, char* argv[])
 
 int stdin_ready (int filedes)
 {
+	// initialize the file descriptor set
 	fd_set set;
-	struct timespec timeout = { .tv_sec = 0 };
 	FD_ZERO(&set);
 	FD_SET(filedes, &set);
-	// check stdin_ready is ready on filedes 
+#ifndef CYGWIN
+	// declare/initialize timespec
+	struct timespec timeout = { .tv_sec = 0 };
 	return pselect(filedes + 1, &set, NULL, NULL, &timeout, NULL);
+#else
+	// declare/initialize timeout
+	struct timeval timeout = { .tv_sec = 0 };
+	return select(filedes + 1, &set, NULL, NULL, &timeout);
+#endif
 }
 
 int main(int argc, char* argv[])
