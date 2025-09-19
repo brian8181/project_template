@@ -19,13 +19,9 @@
     $CLASS_NAME=$argv[1];
     $DATE=$argv[2];
 	$VERSION=$argv[3];
+
+	include 'header.php'
     ?>
-/**
- * @file <?php echo "$CLASS_NAME" ?>.hpp
- * @version <?php echo "$VERSION\n" ?>
- * @date <?php echo "\n" ?>
- * @brief Smart pointer implementation with reference counting.
- */
 
 #ifndef _<?php echo $CLASS_NAME ?>_HPP_
 #define _<?php echo $CLASS_NAME ?>_HPP_
