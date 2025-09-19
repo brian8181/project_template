@@ -5,6 +5,8 @@
 	*  @date Fri Sep 19 08:08:55 CDT 2025
 	*  @version 0.0.1
 	*/
+	?>
+<?php
 	if($argv[1] == '--help' || $argv[1] == '-h')
 	{
 		echo "\n";
