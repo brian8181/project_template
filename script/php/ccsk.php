@@ -19,6 +19,7 @@
     $CLASS_NAME=$argv[1];
     $DATE=$argv[2];
 	$VERSION=$argv[3];
+	$INFO=$argv[4];
 
 	include 'file_header.php'
     ?>
