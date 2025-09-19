@@ -22,8 +22,8 @@
     $INFO=$argv[4]
     ?>
 /**
- * @file <?php echo "$NAME" ?>.hpp
+ * @file    <?php echo "$NAME" ?>.hpp
  * @version <?php echo "$VERSION\n" ?>
- * @date <?php echo "$DATE\n" ?>
- * @info <?php echo "$INFO\n" ?>
+ * @date    <?php echo "$DATE\n" ?>
+ * @info    <?php echo "$INFO\n" ?>
  */
