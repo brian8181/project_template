@@ -1,10 +1,26 @@
-# File Name:  balanced_tree/makefile
-# Build Date: Wed Apr 23 22:44:01 CDT 2025
-# Version:    0.1.1
+# * @File: makefile
+# * @Date: Mon Sep  8 00:03:12 CDT 2025
+# * @Version: 0.0.0
+
+# g++ warnings
+#-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror -Wundef
+#-fsanitize=undefined,address -Wfloat-equal -Wformat-nonliteral
+#-Wformat-security -Wformat-y2k -Wformat=2 -Wimport -Winvalid-pch
+#-Wlogical-op -Wmissing-declarations -Wmissing-field-initializers
+#-Wmissing-format-attribute -Wmissing-include-dirs -Wmissing-noreturn
+#-Wnested-externs -Wpacked -Wpointer-arith -Wredundant-decls
+#-Wstack-protector -Wstrict-null-sentinel -Wswitch-enum -Wwrite-strings
+
+SHELL:=bash
 
 APP=balanced_tree
 CXX=g++
 CXXFLAGS=-Wall -std=c++20 -fPIC -g
+CXXEXTRA=-Wno-template-body
+CXXCPP?=
+LDFLAGS?=
+LIBS?=
+
 SRC=src
 BLD?=build
 OBJ?=build
@@ -25,7 +41,7 @@ all: ./$(BLD)/balanced_tree #./$(BLD)/libbalanced_tree.so ./$(BLD)/libbalanced_t
 
 rebuild: clean all
 
-./$(BLD)/balanced_tree: ./$(OBJ)/balanced_tree.o 
+./$(BLD)/balanced_tree: ./$(OBJ)/balanced_tree.o
 	 $(CXX) $(CXXFLAGS) ./$(OBJ)/balanced_tree.o -o ./$(BLD)/balanced_tree
 
 #./$(BLD)/balanced_tree_test: ./$(OBJ)/balanced_tree_test.o #CCSK_PREREQUISTE#
@@ -57,6 +73,8 @@ clean:
 	-rm -f ./$(OBJ)/*.o
 	-rm -f ./$(BLD)/*.o
 	-rm -f ./$(BLD)/balanced_tree*
+
+
 
 
 .PHONY: help

@@ -2,23 +2,47 @@
 # Build Date: Wed Apr 23 22:44:01 CDT 2025
 # Version:    0.1.1
 
+# * @File: makefile
+# * @Date: Mon Sep  8 00:03:12 CDT 2025
+# * @Version: 0.1.0
+
+# g++ warnings
+#-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror -Wundef
+#-fsanitize=undefined,address -Wfloat-equal -Wformat-nonliteral
+#-Wformat-security -Wformat-y2k -Wformat=2 -Wimport -Winvalid-pch
+#-Wlogical-op -Wmissing-declarations -Wmissing-field-initializers
+#-Wmissing-format-attribute -Wmissing-include-dirs -Wmissing-noreturn
+#-Wnested-externs -Wpacked -Wpointer-arith -Wredundant-decls
+#-Wstack-protector -Wstrict-null-sentinel -Wswitch-enum -Wwrite-strings
+
+SHELL:=bash
+
 APP=${APP_NAME}
 CXX=g++
-CXXFLAGS=-Wall -std=c++20
-SRC=src
+CXXFLAGS=-Wall -std=c++20 -fPIC -DNDEBUG
+CXXEXTRA=-Wno-template-body
+CXXCPP?=
+LDFLAGS?=
+LIBS?=
+
+SRC?=src
 BLD?=build
 OBJ?=build
 
 # lib settings
-LDFLAGS = -static -lcppunit -L/usr/local/lib/
-INCLUDES = -I/usr/local/include/cppunit/
+LIBS=-L/usr/lib -L/usr/lib64 -L/usr/local/lib -L/usr/local/lib64
+INCLUDES=-I/usr/local/include/cppunit/
+LDFLAGS=$(INCLUDES) $(LIBS)
 
-ifdef DEBUG
+ifndef RELEASE
 	CXXFLAGS +=-g -DDEBUG
 endif
 
 ifdef CYGWIN
-	CXXFLAGS += -DCYGWIN
+	CXXFLAGS +=-DCYGWIN
+	LDFLAGS += -lfmt -lcppunit.dll
+else
+	LDFLAGS += -lfmt -lcppunit
 endif
 
 all: ./$(BLD)/\*~${APP_NAME}~*\ ./$(BLD)/\*~${APP_NAME}_test~*\ ./$(BLD)/lib\*~${APP_NAME}~*\.so ./$(BLD)/lib\*~${APP_NAME}~*\.a
@@ -53,19 +77,21 @@ uninstall:
 	-rm ./$(prefix)/bin/\*~${APP_NAME}~*\
 
 .PHONY: clean
-clean:
-	-rm -f ./$(OBJ)/*.o
-	-rm -f ./$(BLD)/*.o
-	-rm -f ./$(BLD)/\*~${APP_NAME}~*\*
 
+clean:
+	-rm -f $(OBJ)/*
+	-rm -f $(BLD)/*
 
 .PHONY: help
 help:
-	@echo  '  all         - build all'
-	@echo  '  \*~${APP_NAME}~*\          - build \*~${APP_NAME}~*\ executable'
-	@echo  '  \*~${APP_NAME}~*\.o        - build not link'
-	@echo  '  \*~${APP_NAME}~*\_test     - build cppunit test'
-	@echo  '  \*~${APP_NAME}~*\_test.o   - build cppunit test'
-	@echo  '  clean                      - remove all files from build dir'
-	@echo  '  install                    - copy files to usr/local'
-	@echo  '  dist                       - create distribution, tar.gz'
+	@echo
+	@echo  'Project: $(APP) simple "$(APP)" framework.'
+	@echo
+	@echo  '    make [-f] [target]'
+	@echo
+	@echo  '   *make targets ...'
+	@echo
+	@echo  '*        all                    - build all'
+	@echo  '*        $(BLD)/$(APP):         - re/build $(APP)'
+	@echo  '*        $(BLD)/$(APP)_utest:   - re/build $(APP)_utest, unit testing'
+	@echo  '*        clean                  - remove most generated files but keep the config'
