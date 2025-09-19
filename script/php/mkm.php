@@ -70,7 +70,9 @@ $(BLD)/lib<?php echo $APPNAME ?>.a: $(BLD)/<?php echo $APPNAME ?>.o
 $(OBJ)/<?php echo $APPNAME ?>.o: $(SRC)/<?php echo $APPNAME ?>.cpp
 	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?php echo $APPNAME ?>.cpp -o $(OBJ)/<?php echo $APPNAME ?>.o
 
-./$(OBJ)/%.o: ./$(SRC)/%.cpp
+# new rules <?php echo '<?php echo "\nNEW RULE TEST\n ?>' ?>
+
+$(OBJ)/%.o: ./$(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 #CCSK_RULE#

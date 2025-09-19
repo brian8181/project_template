@@ -21,7 +21,7 @@
 	$VERSION=$argv[3];
 	$INFO=$argv[4];
 
-	include 'file_header.php'
+	include 'cstyle_file_header.php'
     ?>
 
 #ifndef _<?php echo $CLASS_NAME ?>_HPP_
