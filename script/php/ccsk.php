@@ -20,7 +20,7 @@
     $DATE=$argv[2];
 	$VERSION=$argv[3];
 
-	include 'header.php'
+	include 'file_header.php'
     ?>
 
 #ifndef _<?php echo $CLASS_NAME ?>_HPP_
