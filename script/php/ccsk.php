@@ -47,6 +47,9 @@ public:
 	  */
 
 private:
+
+	//<?php echo '<?php echo "\e[2K$argv[1]\n"; ?>'; ?>
+
 };
 
 #endif

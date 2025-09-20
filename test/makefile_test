@@ -1,0 +1,82 @@
+# @name     Test
+# @file:    makefile
+# @date:    Today
+# @version: 0.0.69
+
+# g++ warnings
+#-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror -Wundef
+#-fsanitize=undefined,address -Wfloat-equal -Wformat-nonliteral
+#-Wformat-security -Wformat-y2k -Wformat=2 -Wimport -Winvalid-pch
+#-Wlogical-op -Wmissing-declarations -Wmissing-field-initializers
+#-Wmissing-format-attribute -Wmissing-include-dirs -Wmissing-noreturn
+#-Wnested-externs -Wpacked -Wpointer-arith -Wredundant-decls
+#-Wstack-protector -Wstrict-null-sentinel -Wswitch-enum -Wwrite-strings
+
+SHELL:=bash
+
+APP=TestCXX=g++
+CXXFLAGS=-Wall -std=c++20 -fPIC -DNDEBUG
+CXXEXTRA=-Wno-template-body
+CXXCPP?=
+LDFLAGS?=
+LIBS?=
+
+SRC?=src
+BLD?=build
+OBJ?=build
+
+# lib settings
+LIBS=-L/usr/lib -L/usr/lib64 -L/usr/local/lib -L/usr/local/lib64
+INCLUDES=-I/usr/local/include/cppunit/
+LDFLAGS=$(INCLUDES) $(LIBS)
+
+ifndef RELEASE
+	CXXFLAGS +=-g -DDEBUG
+endif
+
+ifdef CYGWIN
+	CXXFLAGS +=-DCYGWIN
+	LDFLAGS += -lfmt -lcppunit.dll
+else
+	LDFLAGS += -lfmt -lcppunit
+endif
+
+.PHONY all: help
+all: $(BLD)/Test $(BLD)/libTest.so $(BLD)/libTest.a
+
+$(BLD)/Test: $(OBJ)/Test.o #CCSK_PREREQUISTE#
+	 $(CXX) $(CXXFLAGS) -o $(BLD)/Test $(OBJ)/Test.o #CCSK_PREREQUISTE#
+
+$(BLD)/libTest.so: $(BLD)/Test.o
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared $(BLD)/Test.o -o $(BLD)/libTest.so
+	-chmod 755 $(BLD)/libTest.so
+
+$(BLD)/libTest.a: $(BLD)/Test.o
+	-ar rvs $(BLD)/libTest.a $(BLD)/Test.o
+	-chmod 755 $(BLD)/libTest.a
+
+$(OBJ)/Test.o: $(SRC)/Test.cpp
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/Test.cpp -o $(OBJ)/Test.o
+
+# new rules <?php echo "\nNEW RULE TEST\n ?>
+$(OBJ)/%.o: ./$(SRC)/%.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+#CCSK_RULE#
+
+.PHONY: rebuild clean
+rebuild: clean all
+
+.PHONY: install
+install:
+	cp ./$(BLD)/Test ./$(prefix)/bin/Test
+.PHONY: uninstall
+uninstall:
+	-rm ./$(prefix)/bin/Test
+.PHONY: clean
+clean:
+	-rm -f $(OBJ)/*
+	-rm -f $(BLD)/*
+
+.PHONY: help
+help:
