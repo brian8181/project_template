@@ -44,7 +44,7 @@ void print_version()
 
 void print_help()
 {
-	cout	<< endl 
+	cout	<< endl
 			<< FMT_BOLD      << FMT_FG_GREEN << "Usage: " << FMT_RESET << endl
 			<< FMT_BOLD      << /*~ "${APP_NAME}"         << ~*/ FMT_RESET << " "
 			<< FMT_FG_BLUE   << "[-hvr][...]"             << FMT_RESET << " "
@@ -75,7 +75,7 @@ int parse_options(int argc, char* argv[])
 	}
 
 	string path = argv[0];   // get exe file path
-	cout << argv[0] << endl; 
+	cout << argv[0] << endl;
 
 	return 0;
 }
@@ -86,7 +86,7 @@ int stdin_ready (int filedes)
 	struct timespec timeout = { .tv_sec = 0 };
 	FD_ZERO(&set);
 	FD_SET(filedes, &set);
-	// check stdin_ready is ready on filedes 
+	// check stdin_ready is ready on filedes
 	return pselect(filedes + 1, &set, NULL, NULL, &timeout, NULL);
 }
 

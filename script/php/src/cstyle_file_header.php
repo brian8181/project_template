@@ -20,8 +20,8 @@
     $NAME=$argv[1];
     ?>
 /**
- * @file    <?php echo "$NAME\n" ?>
- * @version <?php echo "$VERSION\n" ?>
- * @date    <?php echo "$DATE\n" ?>
+ * @file    <?php echo "${NAME}.hpp\n" ?>
+ * @version <?php echo "${VERSION}\n" ?>
+ * @date    <?php echo "${DATE}\n" ?>
  * @info    <?php echo "???\n" ?>
  */

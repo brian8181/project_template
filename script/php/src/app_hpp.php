@@ -14,14 +14,15 @@
     ?>
 
 
-#ifndef _@@APP_NAME@@_HPP
-#define _@@APP_NAME@@_HPP
+#ifndef _<?php echo "$NAME" ?>_HPP
+#define _<?php echo "$NAME" ?>_HPP
 
 #include <string>
 
 using std::string;
 
 void print_help();
+void print_version();
 int parse_options(int argc, char* argv[]);
 
 #endif

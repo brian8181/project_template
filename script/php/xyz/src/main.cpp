@@ -1,17 +1,9 @@
-<?php
-	/*
-    *  @brief create skeleton
-	*  @file csk.php
-	*  @date Fri Sep 19 08:08:55 CDT 2025
-	*  @version 0.0.1
-	*/
-    $NAME="main.cpp";
-    $DATE=$argv[1];
-	$VERSION="version 0.0.1";
-    //$INFO="main"
-
-    include "cstyle_file_header.php"
-    ?>
+/**
+ * @file    xyz.hpp
+ * @version version 0.0.1
+ * @date    Sat, Sep 20, 2025  2:21:14 PM
+ * @info    ???
+ */
 #include <iostream>
 #include <cstring>
 #include <string>
@@ -19,8 +11,8 @@
 #include <sys/select.h>     /* for pselect   */
 #include <string>
 #include <getopt.h>
-#include "run_auto_ptr.hpp"
-#include "config.h"
+#include "config.hpp"
+#include "xyz.hpp""
 
 /**
  * @brief  stdin_ready function

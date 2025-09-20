@@ -46,13 +46,13 @@ rm ~/bin/*csk_
 
 mkdir -p ~/bin/skel
 PRINT_INFO "copying project templates ..."
-cp *.php ~/bin/skel
-cp _*csk.sh ~/bin/skel
-cp gitingnore.php ~/bin/skel
+cp src/*.php ~/bin/skel
+cp src/_*csk.sh ~/bin/skel
+cp src/gitignore.php ~/bin/skel
 
 PRINT_INFO "set permissions ..."
-chmod +x ~/bin/*csk.sh
-chmod +x ~/bin/*.php
+chmod +x ~/bin/skel/*csk.sh
+chmod +x ~/bin/skel/*.php
 
 PRINT_INFO "create links (csk_ & ccsk_) ..."
 # create easy name soft link

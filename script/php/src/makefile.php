@@ -25,7 +25,7 @@
 
 SHELL:=bash
 
-APP=<?php echo $APPNAME ?>
+APP=<?php echo "$APPNAME\n"; ?>
 CXX=g++
 CXXFLAGS=-Wall -std=c++20 -fPIC -DNDEBUG
 CXXEXTRA=-Wno-template-body
@@ -54,21 +54,21 @@ else
 endif
 
 .PHONY all: help
-all: $(BLD)/<?php echo $APPNAME ?> $(BLD)/lib<?php echo $APPNAME ?>.so $(BLD)/lib<?php echo $APPNAME ?>.a
+all: $(BLD)/<?php echo $APPNAME; ?> $(BLD)/lib<?php echo $APPNAME; ?>.so $(BLD)/lib<?php echo $APPNAME; ?>.a
 
-$(BLD)/<?php echo $APPNAME ?>: $(OBJ)/<?php echo $APPNAME ?>.o #CCSK_PREREQUISTE#
-	 $(CXX) $(CXXFLAGS) -o $(BLD)/<?php echo $APPNAME ?> $(OBJ)/<?php echo $APPNAME ?>.o #CCSK_PREREQUISTE#
+$(BLD)/<?php echo $APPNAME; ?>: $(OBJ)/main.o $(OBJ)/<?php echo $APPNAME; ?>.o
+	 $(CXX) $(CXXFLAGS) $(OBJ)/main.o $(OBJ)/<?php echo $APPNAME; ?>.o -o $(BLD)/<?php echo $APPNAME; ?>
 
-$(BLD)/lib<?php echo $APPNAME ?>.so: $(BLD)/<?php echo $APPNAME ?>.o
-	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared $(BLD)/<?php echo $APPNAME ?>.o -o $(BLD)/lib<?php echo $APPNAME ?>.so
-	-chmod 755 $(BLD)/lib<?php echo $APPNAME ?>.so
+$(BLD)/lib<?php echo $APPNAME; ?>.so: $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o -o $(BLD)/lib<?php echo $APPNAME; ?>.so
+	-chmod 755 $(BLD)/lib<?php echo $APPNAME; ?>.so
 
-$(BLD)/lib<?php echo $APPNAME ?>.a: $(BLD)/<?php echo $APPNAME ?>.o
-	-ar rvs $(BLD)/lib<?php echo $APPNAME ?>.a $(BLD)/<?php echo $APPNAME ?>.o
-	-chmod 755 $(BLD)/lib<?php echo $APPNAME ?>.a
+$(BLD)/lib<?php echo $APPNAME; ?>.a: $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o
+	-ar rvs $(BLD)/lib<?php echo $APPNAME; ?>.a $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o
+	-chmod 755 $(BLD)/lib<?php echo $APPNAME; ?>.a
 
-$(OBJ)/<?php echo $APPNAME ?>.o: $(SRC)/<?php echo $APPNAME ?>.cpp
-	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?php echo $APPNAME ?>.cpp -o $(OBJ)/<?php echo $APPNAME ?>.o
+$(OBJ)/<?php echo $APPNAME; ?>.o: $(SRC)/<?php echo $APPNAME; ?>.cpp
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?php echo $APPNAME; ?>.cpp -o $(OBJ)/<?php echo $APPNAME; ?>.o
 
 # new rules <?php echo '<?php echo "\nNEW RULE TEST\n ?>' ?>
 
@@ -82,11 +82,11 @@ rebuild: clean all
 
 .PHONY: install
 install:
-	cp ./$(BLD)/<?php echo $APPNAME ?> ./$(prefix)/bin/<?php echo $APPNAME ?>
+	cp ./$(BLD)/<?php echo $APPNAME; ?> ./$(prefix)/bin/<?php echo $APPNAME; ?>
 
 .PHONY: uninstall
 uninstall:
-	-rm ./$(prefix)/bin/<?php echo $APPNAME ?>
+	-rm ./$(prefix)/bin/<?php echo $APPNAME; ?>
 
 .PHONY: clean
 clean:
@@ -97,13 +97,13 @@ clean:
 .PHONY: help
 help:
 	@echo
-	@echo  'Project: <?php echo "$APPNAME : $VERSION : $DATE" ?> simple "<?php echo $APPNAME ?>" framework.'
+	@echo  'Project: <?php echo "$APPNAME; : $VERSION : $DATE" ?> simple "<?php echo $APPNAME; ?>" framework.'
 	@echo
 	@echo  '    make [-f] [target]'
 	@echo
 	@echo  '   *make targets ...'
 	@echo
 	@echo  '*        all                    - build all'
-	@echo  '*        $(BLD)/<?php echo $APPNAME ?>:         - re/build <?php echo $APPNAME ?>'
-	@echo  '*        $(BLD)/<?php echo $APPNAME ?>_utest:   - re/build <?php echo $APPNAME ?>_utest, unit testing'
+	@echo  '*        $(BLD)/<?php echo $APPNAME; ?>:         - re/build <?php echo $APPNAME; ?>'
+	@echo  '*        $(BLD)/<?php echo $APPNAME; ?>_utest:   - re/build <?php echo $APPNAME; ?>_utest, unit testing'
 	@echo  '*        clean                  - remove most generated files but keep the config'
