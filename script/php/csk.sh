@@ -10,6 +10,8 @@ touch readme readme.md news copying authors changelog
 pushd src
 touch ${NAME}.hpp ${NAME}.cpp ${NAME}_test.hpp ${NAME}_test.cpp
 #php ./main.php "$(date)" > main.cpp
+#php ./app_hpp.php "$(date)" > $NAME.hpp
+#php ./app_cpp.php "$(date)" > $NAME.cpp
 
 popd
 popd
