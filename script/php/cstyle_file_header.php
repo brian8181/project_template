@@ -16,14 +16,10 @@
         echo "ccsk [options] <name> <date> <version>\n\n";
         exit(0);
     }
-    $NAME=$argv[1];
-    $DATE=$argv[2];
-    $VERSION=$argv[3];
-    $INFO=$argv[4]
     ?>
 /**
- * @file    <?php echo "$NAME" ?>.hpp
+ * @file    <?php echo "$NAME\n" ?>
  * @version <?php echo "$VERSION\n" ?>
  * @date    <?php echo "$DATE\n" ?>
- * @info    <?php echo "$INFO\n" ?>
+ * @info    <?php echo "\n" ?>
  */

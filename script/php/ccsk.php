@@ -48,7 +48,7 @@ public:
 
 private:
 
-	//<?php echo '<?php echo "\e[2K$argv[1]\n"; ?>'; ?>
+	//<?php $CODE='//<?php echo "\e[1K$argv[2]\n"; ?>'; echo '<?php echo "//<?php echo ''"\e[1K$argv[1]"''"; ?>'; echo "\e[1K$argv[1]\n"; ?>'; ?>
 
 };
 
