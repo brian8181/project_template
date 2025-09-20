@@ -16,10 +16,12 @@
         echo "ccsk [options] <name> <date> <version>\n\n";
         exit(0);
     }
+
+    $NAME=$argv[1];
     ?>
 /**
  * @file    <?php echo "$NAME\n" ?>
  * @version <?php echo "$VERSION\n" ?>
  * @date    <?php echo "$DATE\n" ?>
- * @info    <?php echo "\n" ?>
+ * @info    <?php echo "???\n" ?>
  */
