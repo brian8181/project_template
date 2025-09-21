@@ -43,8 +43,11 @@ PRINT_INFO "$FILE -> Running ... @ $DATE"
 PRINT_INFO "remove existing project templates ..."
 
 # uninstall
-rm -rf ~/bin/skel
-rm ~/bin/*csk_
+rm -rf "${HOME}/.config/csk"
+rm "${HOME}/bin/csk.sh"
+rm "${HOME}/bin/ccsk.sh"
+rm "${HOME}/bin/csk"
+rm "${HOME}/bin/ccsk"
 
 PRINT_INFO "Finished uninstalling."
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"

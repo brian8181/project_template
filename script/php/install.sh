@@ -55,19 +55,23 @@ PRINT_INFO "Installing scripts ..."
 # unintsall before existing files
 ./uninstall.sh
 
-mkdir -p ~/bin/skel
 PRINT_INFO "copying project templates ..."
-cp src/*.php ~/bin/skel
-cp src/_*csk.sh ~/bin/skel
-cp src/gitignore.php ~/bin/skel
+mkdir -p "${HOME}/.config/csk"
+# install to .config
+cp src/*.php "${HOME}/.config/csk"
+#  install to local bin
+cp "src/csk.sh" "${HOME}/bin/"
+cp "src/ccsk.sh" "${HOME}/bin/"
 
 PRINT_INFO "set permissions ..."
-chmod +x ~/bin/skel/*csk.sh
-chmod +x ~/bin/skel/*.php
+# set exe perm just in case
+chmod +x "${HOME}/bin/csk.sh"
+chmod +x "${HOME}/bin/ccsk.sh"
+chmod +x "${HOME}"/.config/csk/*.php
 
-PRINT_INFO "create links (csk_ & ccsk_) ..."
+PRINT_INFO "create links (csk & ccsk) ..."
 # create easy name soft link
-ln -s ~/bin/skel/_csk.sh ~/bin/csk_
-ln -s ~/bin/skel/_ccsk.sh ~/bin/ccsk_
+ln -s "${HOME}/bin/csk.sh" "${HOME}/bin/csk"
+ln -s "${HOME}/bin/ccsk.sh" "${HOME}/bin/ccsk"
 PRINT_INFO "Finished installing."
 PRINT_INFO "$FILE -> Exiting.   @ $DATE"
