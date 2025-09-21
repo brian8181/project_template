@@ -39,6 +39,16 @@ function PRINT_INFO
 }
 
 PRINT_INFO "$FILE -> Running ... @ $DATE"
+
+DIR=$(dirname "$0")
+NAME=$(basename "$0")
+
+if [[ "$DIR" != "." && "NAME" != "install.sh" ]]; then
+    PRINT_DEBUG "Error: must be run from project directory ..."
+    PRINT_DEBUG "$FILE -> Exiting.   @ $DATE"
+    exit -1
+fi
+
 # install
 PRINT_INFO "Installing scripts ..."
 

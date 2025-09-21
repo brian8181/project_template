@@ -7,6 +7,7 @@
 
 NAME=$1
 INFO=$2
+VERSION="version 0.0.1";
 
 mkdir -p ${NAME}/{src,test,man,doc}
 pushd ${NAME}

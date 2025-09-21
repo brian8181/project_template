@@ -9,7 +9,6 @@
 	$APPNAME=$argv[1];
     $DATE=$argv[2];
 	$VERSION="version 0.0.1";
-
     include "cstyle_file_header.php"
     ?>
 #include <iostream>

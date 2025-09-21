@@ -5,9 +5,9 @@
 	*  @date Sat, Sep 20, 2025  9:24:24 PM
 	*  @version 0.0.1
 	*/
-    $APPNAME=$argv[1];
+    $NAME=$argv[1];
     $DATE=$argv[2];
-	$VERSION=$argv[3];
+	$VERSION="version 0.0.1";
 	include "cstyle_file_header.php"
     ?>
 /**
