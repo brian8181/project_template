@@ -1,12 +1,12 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # File Name:  ./install.sh
-# Build Date: Wed Sep 25 11:00:12 PM CDT 2024
-# Version:    0.1.0
+# Build Date: Sat, Sep 20, 2025  9:52:45 PM
+# Version:    0.0.1
 
 FILE='./install.sh'
-VERSION='0.2.0'
-FILE_DATE='Mon Dec 23 12:53:57 PM CST 2024'
+VERSION='0.0.1'
+FILE_DATE='Sat, Sep 20, 2025  9:52:45 PM'
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
@@ -38,11 +38,12 @@ function PRINT_INFO
     echo -e ${VERBOSE:+"$MSG"}
 }
 
-PRINT_INFO "Installing templates, ..."
-PRINT_INFO "remove existing project templates ..."
-# remove "templates" before update
-rm -rf ~/bin/skel
-rm ~/bin/*csk_
+PRINT_INFO "$FILE -> Running ... @ $DATE"
+# install
+PRINT_INFO "Installing scripts ..."
+
+# unintsall before existing files
+./uninstall.sh
 
 mkdir -p ~/bin/skel
 PRINT_INFO "copying project templates ..."
@@ -58,5 +59,5 @@ PRINT_INFO "create links (csk_ & ccsk_) ..."
 # create easy name soft link
 ln -s ~/bin/skel/_csk.sh ~/bin/csk_
 ln -s ~/bin/skel/_ccsk.sh ~/bin/ccsk_
-
-PRINT_INFO "done."
+PRINT_INFO "Finished installing."
+PRINT_INFO "$FILE -> Exiting.   @ $DATE"

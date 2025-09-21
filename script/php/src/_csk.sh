@@ -1,3 +1,10 @@
+#!/bin/bash
+
+# File Name:  _csk.sh
+# Build Date: # File Name:  skel.sh
+# Build Date: Sat, Sep 20, 2025  9:24:24 PM
+# Version:    0.0.1
+
 NAME=$1
 INFO=$2
 

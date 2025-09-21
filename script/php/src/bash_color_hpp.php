@@ -8,8 +8,6 @@
     $NAME=$argv[1];
     $DATE=$argv[2];
 	$VERSION="version 0.0.1";
-    //$INFO="main"
-
     include "cstyle_file_header.php"
    ?>
 #ifndef _BASH_COLOR_HPP

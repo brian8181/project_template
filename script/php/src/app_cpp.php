@@ -1,18 +1,15 @@
 <?php
 	/*
-    *  @brief create skeleton
-	*  @file app_hpp.php
-	*  @date Fri Sep 19 08:08:55 CDT 2025
+    *  @brief app skeleton code
+	*  @file app_cpp.php
+	*  @date Sat, Sep 20, 2025  9:26:21 PM
 	*  @version 0.0.1
 	*/
     $NAME=$argv[1];
     $DATE=$argv[2];
 	$VERSION="version 0.0.1";
-    //$INFO="main"
-
     include "cstyle_file_header.php"
    ?>
-
 #include <iostream>
 #include <getopt.h>
 #include "<?php echo "$NAME" ?>.hpp"

@@ -23,7 +23,6 @@
 
 	include 'cstyle_file_header.php'
     ?>
-
 #ifndef _<?php echo $CLASS_NAME ?>_HPP_
 #define _<?php echo $CLASS_NAME ?>_HPP_
 

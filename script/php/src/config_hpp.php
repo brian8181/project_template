@@ -1,3 +1,15 @@
+<?php
+	/*
+    *  @brief create skeleton
+	*  @file config_hpp.php
+	*  @date Sat, Sep 20, 2025  9:24:24 PM
+	*  @version 0.0.1
+	*/
+    $APPNAME=$argv[1];
+    $DATE=$argv[2];
+	$VERSION=$argv[3];
+	include "cstyle_file_header.php"
+    ?>
 /**
  * @brief settings for the scanner project.
  * @file config.hpp
