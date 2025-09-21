@@ -53,7 +53,6 @@ else
 	LDFLAGS += -lfmt -lcppunit
 endif
 
-.PHONY all: help
 all: $(BLD)/<?php echo $APPNAME; ?> $(BLD)/lib<?php echo $APPNAME; ?>.so $(BLD)/lib<?php echo $APPNAME; ?>.a
 
 $(BLD)/<?php echo $APPNAME; ?>: $(OBJ)/main.o $(OBJ)/<?php echo $APPNAME; ?>.o
@@ -70,31 +69,28 @@ $(BLD)/lib<?php echo $APPNAME; ?>.a: $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?
 $(OBJ)/<?php echo $APPNAME; ?>.o: $(SRC)/<?php echo $APPNAME; ?>.cpp
 	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?php echo $APPNAME; ?>.cpp -o $(OBJ)/<?php echo $APPNAME; ?>.o
 
-# new rules <?php echo '<?php echo "\nNEW RULE TEST\n ?>' ?>
+# rules <?php echo '<?php echo "\nTEST\n ?>' ?>
 
 $(OBJ)/%.o: ./$(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 #CCSK_RULE#
 
-.PHONY: rebuild clean
+.PHONY: all clean install unintsall rebuild help
+
 rebuild: clean all
 
-.PHONY: install
 install:
 	cp ./$(BLD)/<?php echo $APPNAME; ?> ./$(prefix)/bin/<?php echo $APPNAME; ?>
 
-.PHONY: uninstall
 uninstall:
 	-rm ./$(prefix)/bin/<?php echo $APPNAME; ?>
 
-.PHONY: clean
 clean:
 	@ECHO "removing files ..."
 	-rm -f $(OBJ)/*
 	-rm -f $(BLD)/*
 
-.PHONY: help
 help:
 	@echo
 	@echo  'Project: <?php echo "$APPNAME; : $VERSION : $DATE" ?> simple "<?php echo $APPNAME; ?>" framework.'

@@ -43,7 +43,7 @@ public:
 		echo "  * @brief c++ comment ...\n\t";
 		echo "  * @brief place future addtions here ...\n\t  *\n";
 	?>
-	  */
+	*/
 
 private:
 
