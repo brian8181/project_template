@@ -97,9 +97,9 @@ help:
 	@echo
 	@echo  '    make [-f] [target]'
 	@echo
-	@echo  '   *make targets ...'
+	@echo  '   -Make Targets ...'
 	@echo
-	@echo  '*        all                    - build all'
+	@echo  '*        all                                     - build all'
 	@echo  '*        $(BLD)/<?php echo $APPNAME; ?>:         - re/build <?php echo $APPNAME; ?>'
 	@echo  '*        $(BLD)/<?php echo $APPNAME; ?>_utest:   - re/build <?php echo $APPNAME; ?>_utest, unit testing'
-	@echo  '*        clean                  - remove most generated files but keep the config'
+	@echo  '*        clean                                   - remove most generated files but keep the config'

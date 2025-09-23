@@ -6,7 +6,7 @@
 # Info: create class skeleton
 
 NAME=$1
-INFO=$2
-VERSION="version 0.0.1";
+BASE_NAME=$2
 
-php ./ccsk.php "${NAME}" "$(date)" "version 0.0.1" "${INFO}"
+php "$HOME/.config/csk/class.hpp.php" "${NAME}" "${BASE_NAME}" "$(date)" "${VERSION}" > "${NAME}.hpp"
+php "$HOME/.config/csk/class.cpp.php" "${NAME}" "${BASE_NAME}" "$(date)" "${VERSION}" > "${NAME}.cpp"
