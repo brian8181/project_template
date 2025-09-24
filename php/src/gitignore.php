@@ -7,7 +7,7 @@
 	*/
     $APPNAME=$argv[1];
     $DATE=$argv[2];
-	$VERSION=$argv[3];
+	$VERSION="0.0.1";
     ?>
 # @name     <?php echo "$APPNAME\n"; ?>
 # @file:    makefile
