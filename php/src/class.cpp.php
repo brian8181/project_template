@@ -1,5 +1,4 @@
 #!#/bin/php
-
 <?php
 	/*
     *  @brief create class skeleton
@@ -8,9 +7,8 @@
 	*  @version 0.0.1
 	*/
     $NAME=$argv[1];
-    $DATE=$argv[2];
-	$VERSION=$argv[3];
-
+    $VERSION="0.0.1";
+	$INFO="auto generated with ccsk, create class skeleton";
 	include 'cstyle_file_header.php';
     ?>
 #include "<?php echo "$NAME"; ?>.hpp"

@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/php
 <?php
 	/*
     *  @brief create class skeleton
@@ -9,18 +8,19 @@
 	*/
     $NAME=$argv[1];
 	$BASE_NAME=$argv[2];
-    $DATE=$argv[3];
-	$VERSION=$argv[4];
-
+    $VERSION="0.0.1";
+	$INFO="auto generated with ccsk, create class skeleton";
 	include 'cstyle_file_header.php'
     ?>
 #ifndef _<?php echo "$NAME"; ?>_HPP_
 #define _<?php echo "$NAME"; ?>_HPP_
+#include <iostream>
+<?php if(!empty($BASE_NAME)) echo "#include \"$BASE_NAME.hpp\"\n"; ?>
 
 /**
   * @brief class <?php echo "$NAME\n"; ?>
   */
-class <?php echo "$NAME"; if(isset($BASE_NAME)) echo " : public $BASE_NAME\n"; ?>
+class <?php echo "$NAME"; if(!empty($BASE_NAME)) echo " : public $BASE_NAME"; echo "\n"; ?>
 {
 public:
 	<?php echo "$NAME"; ?>();
