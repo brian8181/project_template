@@ -20,23 +20,53 @@
 /**
   * @brief class <?php echo "$NAME\n"; ?>
   */
+template< class T>
 class <?php echo "$NAME"; if(!empty($BASE_NAME)) echo " : public $BASE_NAME"; echo "\n"; ?>
 {
 public:
-	/**
+    /**
      * @brief : default ctor
      */
-	<?php echo "$NAME"; ?>();
+    <?php echo "$NAME"; ?>()
+    {
 
-	/**
+    }
+
+    /**
      * @brief : copy ctor
      */
-	<?php echo "$NAME"; ?>( const <?php echo "$NAME"; ?>& src );
+    <?php echo "$NAME"; ?>( const <?php echo "$NAME"; ?>& src )
+    {
 
-  	/**
-  	 * @brief : destructor
-  	 */
-	virtual ~<?php echo "$NAME"; ?>();
+    }
+
+    /**
+     * @brief : destructor
+     */
+    virtual ~<?php echo "$NAME"; ?>()
+    {
+
+    }
+
+    /**
+     *  @name : get_val
+     *  @param : none`
+     *  @return : T
+     */
+    T get_val()
+    {
+        return _val;
+    }
+
+    /**
+     *  @name : set_val
+     *  @param : const T& val
+     *  @return : void
+     */
+    void set_val(const T& val)
+    {
+        _val = val;
+    }
 
 	/**
 	<?php
@@ -47,7 +77,7 @@ public:
 	*/
 
 private:
-
+    T _val;
 };
 
 #endif
