@@ -8,5 +8,5 @@
 NAME=$1
 BASE_NAME=$2
 
-php "$HOME/.config/csk/class.hpp.php" "${NAME}" "${BASE_NAME}" "0.0.1" > "${NAME}.hpp"
-php "$HOME/.config/csk/class.cpp.php" "${NAME}" "${BASE_NAME}" "0.0.1" > "${NAME}.cpp"
+php "$HOME/.config/csk/class.hpp.php" "${NAME}" "${BASE_NAME}" "0.0.1" | tee "${NAME}.hpp"
+php "$HOME/.config/csk/class.cpp.php" "${NAME}" "${BASE_NAME}" "0.0.1" | tee "${NAME}.cpp"
