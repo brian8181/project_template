@@ -14,6 +14,7 @@ pushd "${NAME}"
 touch readme readme.md news copying authors changelog
 php $HOME/.config/csk/makefile.php "${NAME}" "$(date)" "version 0.0.1" > makefile
 php $HOME/.config/csk/gitignore.php "${NAME}" "$(date)" "version 0.0.1" > .gitignore
+php $HOME/.config/csk/CMakeLists.txt.php "${NAME}" > CMakeLists.txt
 
 pushd ./src
 touch "${NAME}.hpp" "${NAME}.cpp" "${NAME}_test.hpp" "${NAME}_test.cpp"
