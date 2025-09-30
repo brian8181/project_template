@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# File Name:  _csk.sh
-# Build Date: # File Name:  skel.sh
-# Build Date: Sat, Sep 20, 2025  9:24:24 PM
-# Version:    0.0.1
-
+# @file: csk (csk.sh)
+# @date: Sat, Sep 20, 2025  9:24:24 PM
+# @version:    0.0.1
+# @info: create project skeleton
 
 FMT_FG_RED='\e[31m'
 FMT_FG_GREEN='\e[32m'
