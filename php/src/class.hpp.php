@@ -8,6 +8,8 @@
 	*/
     $NAME=$argv[1];
 	$BASE_NAME=$argv[2];
+	$DTOR=$argv[3];
+	$CCTOR=$argv[4];
     $VERSION="0.0.1";
 	$INFO="auto generated with ccsk, create class skeleton";
 	include 'cstyle_file_header.php'
@@ -24,19 +26,23 @@ class <?php echo "$NAME"; if(!empty($BASE_NAME)) echo " : public $BASE_NAME"; ec
 {
 public:
 	/**
-     * @brief : default ctor
-     */
+	* @brief : default ctor
+	*/
 	<?php echo "$NAME"; ?>();
 
+	<?php if($CCTOR == "TRUE"): ?>
 	/**
-     * @brief : copy ctor
-     */
+	* @brief : copy ctor
+	*/
 	<?php echo "$NAME"; ?>( const <?php echo "$NAME"; ?>& src );
+	<?php endif ?>
 
-  	/**
-  	 * @brief : destructor
-  	 */
+	<?php if($CCTOR == "TRUE"): ?>
+	/**
+	* @brief : destructor
+	*/
 	virtual ~<?php echo "$NAME"; ?>();
+	<?php endif ?>
 
 	/**
 	<?php

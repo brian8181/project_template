@@ -16,8 +16,10 @@ DEBUG=
 
 CMAKE=
 CPPUNIT=
+DTOR=TRUE
+CCTOR=TRUE
 
-OPTSTRING="vht"
+OPTSTRING="vcdh"
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
         v)
@@ -29,11 +31,11 @@ while getopts ${OPTSTRING} opt; do
             HELP
             exit 0;
             ;;
-        t)
-            CPPUNIT="TRUE"
-            ;;
         c)
-            CMAKE="TRUE"
+            CCTOR="TRUE"
+            ;;
+        d)
+            DTOR="TRUE"
             ;;
         :)
             echo "Option -${OPTARG} requires an argument."
@@ -50,5 +52,5 @@ shift $(($OPTIND-1))
 NAME=$1
 BASE_NAME=$2
 
-php "$HOME/.config/csk/class.hpp.php" "${NAME}" "${BASE_NAME}" "0.0.1" | tee "${NAME}.hpp"
-php "$HOME/.config/csk/class.cpp.php" "${NAME}" "${BASE_NAME}" "0.0.1" | tee "${NAME}.cpp"
+php "$HOME/.config/csk/class.hpp.php" "${NAME}" "${BASE_NAME}" "${DTOR}" "${CCTOR}" "0.0.1" | tee "${NAME}.hpp"
+php "$HOME/.config/csk/class.cpp.php" "${NAME}" "${BASE_NAME}" "${DTOR}" "${CCTOR}" "0.0.1" | tee "${NAME}.cpp"
