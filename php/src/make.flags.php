@@ -13,7 +13,7 @@
 CXX=g++
 CXXFLAGS=-Wall -std=c++17
 CXXEXTRA=-fPIC
-APP_NAME=<?php echo "$APPNAME\n" ?>
+APP_NAME=<?= "$APPNAME\n" ?>
 BLD=build
 OBJ=build
 SRC=src

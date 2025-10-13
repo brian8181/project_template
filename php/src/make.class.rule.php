@@ -10,5 +10,5 @@
     # make rule
     ?>
 
-$(BLD)/<?php echo $CLASSNAME ?>.o: $(SRC)/<?php echo $CLASSNAME ?>.cpp
-    $(CXX) $(CXXFLAGS) -c $(SRC)/<?php echo $CLASSNAME ?>.cpp -o $(BLD)/<?php echo $CLASSNAME ?>.o
+$(BLD)/<?= $CLASSNAME ?>.o: $(SRC)/<?= $CLASSNAME ?>.cpp
+    $(CXX) $(CXXFLAGS) -c $(SRC)/<?= $CLASSNAME ?>.cpp -o $(BLD)/<?= $CLASSNAME ?>.o

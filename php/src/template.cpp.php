@@ -11,4 +11,4 @@
 	$INFO="auto generated with ccsk, create class skeleton";
 	include 'cstyle_file_header.php';
     ?>
-#include "<?php echo "$NAME"; ?>.hpp"
+#include "<?= "$NAME"; ?>.hpp"

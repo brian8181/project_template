@@ -6,21 +6,21 @@
 	*  @version 0.0.1
 	*/
     ?>
-all: ././$(BLD)/<?php echo $APPNAME ?> ./$(BLD)/lib<?php echo $APPNAME ?>.so ./$(BLD)/lib<?php echo $APPNAME ?>.a
+all: ././$(BLD)/<?= $APPNAME ?> ./$(BLD)/lib<?= $APPNAME ?>.so ./$(BLD)/lib<?= $APPNAME ?>.a
 
-./$(BLD)/<?php echo $APPNAME ?>: ./$(SRC)/<?php echo $APPNAME ?>.o main.cpp
-    $(CXX) $(CXXFLAGS) -c ./$(SRC)/<?php echo $APPNAME ?>.o <?php echo $DEPENDS ?>.o -o ./$(BLD)/<?php echo $APPNAME ?>
+./$(BLD)/<?= $APPNAME ?>: ./$(SRC)/<?= $APPNAME ?>.o main.cpp
+    $(CXX) $(CXXFLAGS) -c ./$(SRC)/<?= $APPNAME ?>.o <?= $DEPENDS ?>.o -o ./$(BLD)/<?= $APPNAME ?>
 
-./$(BLD)/<?php echo $APPNAME ?>_test: ./$(SRC)/<?php echo $APPNAME ?>_test.o
-    $(CXX) $(CXXFLAGS) -c ./$(SRC)/<?php echo $APPNAME ?>_test.o main.o -o ./$(BLD)/<?php echo $APPNAME ?>_test
+./$(BLD)/<?= $APPNAME ?>_test: ./$(SRC)/<?= $APPNAME ?>_test.o
+    $(CXX) $(CXXFLAGS) -c ./$(SRC)/<?= $APPNAME ?>_test.o main.o -o ./$(BLD)/<?= $APPNAME ?>_test
 
-./$(BLD)/lib<?php echo $APPNAME ?>.so: ./$(BLD)/<?php echo $APPNAME ?>.o
-	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared ./$(BLD)/<?php echo $APPNAME ?>.o -o ./$(BLD)/lib<?php echo $APPNAME ?>.so
-	-chmod 755 ./$(BLD)/lib<?php echo $APPNAME ?>.so
+./$(BLD)/lib<?= $APPNAME ?>.so: ./$(BLD)/<?= $APPNAME ?>.o
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared ./$(BLD)/<?= $APPNAME ?>.o -o ./$(BLD)/lib<?= $APPNAME ?>.so
+	-chmod 755 ./$(BLD)/lib<?= $APPNAME ?>.so
 
-./$(BLD)/lib<?php echo $APPNAME ?>.a: ./$(BLD)/<?php echo $APPNAME ?>.o
-	-ar rvs ./$(BLD)/lib<?php echo $APPNAME ?>.a ./$(BLD)/<?php echo $APPNAME ?>.o
-	-chmod 755 ./$(BLD)/lib<?php echo $APPNAME ?>.a
+./$(BLD)/lib<?= $APPNAME ?>.a: ./$(BLD)/<?= $APPNAME ?>.o
+	-ar rvs ./$(BLD)/lib<?= $APPNAME ?>.a ./$(BLD)/<?= $APPNAME ?>.o
+	-chmod 755 ./$(BLD)/lib<?= $APPNAME ?>.a
 
 ./$(OBJ)/%.o: ././$(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o ./$(SRC)/$@ ./$(OBJ)/$<

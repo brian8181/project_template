@@ -13,12 +13,12 @@
 	$INFO="auto generated with ccsk, create class skeleton";
 	include 'cstyle_file_header.php';
     ?>
-#include "<?php echo "$NAME"; ?>.hpp"
+#include "<?= "$NAME"; ?>.hpp"
 
 /**
  * @brief : default ctor
  */
-<?php echo "$NAME::$NAME"; ?>()
+<?= "$NAME::$NAME"; ?>()
 {
 
 }
@@ -27,7 +27,7 @@
 /**
   * @brief : copy ctor
   */
-<?php echo "$NAME::$NAME"; ?>( const <?php echo "$NAME"; ?>& src )
+<?= "$NAME::$NAME"; ?>( const <?= "$NAME"; ?>& src )
 {
 
 }
@@ -37,7 +37,7 @@
 /**
   * @brief : destructor
   */
-<?php echo "$NAME::~$NAME"; ?>()
+<?= "$NAME::~$NAME"; ?>()
 {
 
 }

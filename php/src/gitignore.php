@@ -9,9 +9,9 @@
     $DATE=$argv[2];
 	$VERSION="0.0.1";
     ?>
-# @name     <?php echo "$APPNAME\n"; ?>
+# @name     <?= "$APPNAME\n"; ?>
 # @file:    makefile
-# @date:    <?php echo "$DATE\n"; ?>
-# @version: <?php echo "$VERSION\n"; ?>
+# @date:    <?= "$DATE\n"; ?>
+# @version: <?= "$VERSION\n"; ?>
 
 build/*

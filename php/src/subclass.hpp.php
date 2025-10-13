@@ -14,19 +14,19 @@
 
 	include 'cstyle_file_header.php'
     ?>
-#ifndef _<?php echo "$NAME"; ?>_HPP_
-#define _<?php echo "$NAME"; ?>_HPP_
+#ifndef _<?= "$NAME"; ?>_HPP_
+#define _<?= "$NAME"; ?>_HPP_
 
 /**
-  * @brief class <?php echo "$NAME\n"; ?>
+  * @brief class <?= "$NAME\n"; ?>
   */
-class <?php echo "$NAME : public $BASE_NAME\n"; ?>
+class <?= "$NAME : public $BASE_NAME\n"; ?>
 {
 public:
-	<?php echo "$NAME"; ?>();
-	<?php echo "$NAME"; ?>( const <?php echo "$NAME"; ?>& src );
-	virtual ~<?php echo "$NAME"; ?>();
-	bool operator<( const <?php echo "$NAME"; ?>& that );
+	<?= "$NAME"; ?>();
+	<?= "$NAME"; ?>( const <?= "$NAME"; ?>& src );
+	virtual ~<?= "$NAME"; ?>();
+	bool operator<( const <?= "$NAME"; ?>& that );
 
 	/**
 	<?php

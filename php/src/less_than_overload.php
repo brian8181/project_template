@@ -1,6 +1,6 @@
 <php? # lessthan operator overload  ?>
 
-bool <?php echo $CLASSNAME ?>::operator<( const <?php echo $CLASSNAME ?>& that)
+bool <?= $CLASSNAME ?>::operator<( const <?= $CLASSNAME ?>& that)
 {
     return false;
 }

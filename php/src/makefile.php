@@ -9,10 +9,10 @@
     $DATE=$argv[2];
 	$VERSION=$argv[3];
     ?>
-# @name     <?php echo "$APPNAME\n"; ?>
+# @name     <?= "$APPNAME\n"; ?>
 # @file:    makefile
-# @date:    <?php echo "$DATE\n"; ?>
-# @version: <?php echo "$VERSION\n"; ?>
+# @date:    <?= "$DATE\n"; ?>
+# @version: <?= "$VERSION\n"; ?>
 
 # g++ warnings
 #-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Werror -Wundef
@@ -25,7 +25,7 @@
 
 SHELL:=bash
 
-APP=<?php echo "$APPNAME\n"; ?>
+APP=<?= "$APPNAME\n"; ?>
 CXX=g++
 CXXFLAGS=-Wall -std=c++20 -fPIC -DNDEBUG
 CXXEXTRA=-Wno-template-body
@@ -53,23 +53,23 @@ else
 	LDFLAGS += -lfmt -lcppunit
 endif
 
-all: $(BLD)/<?php echo $APPNAME; ?> $(BLD)/lib<?php echo $APPNAME; ?>.so $(BLD)/lib<?php echo $APPNAME; ?>.a
+all: $(BLD)/<?= $APPNAME; ?> $(BLD)/lib<?= $APPNAME; ?>.so $(BLD)/lib<?= $APPNAME; ?>.a
 
-$(BLD)/<?php echo $APPNAME; ?>: $(OBJ)/main.o $(OBJ)/<?php echo $APPNAME; ?>.o
-	 $(CXX) $(CXXFLAGS) $(OBJ)/main.o $(OBJ)/<?php echo $APPNAME; ?>.o -o $(BLD)/<?php echo $APPNAME; ?>
+$(BLD)/<?= $APPNAME; ?>: $(OBJ)/main.o $(OBJ)/<?= $APPNAME; ?>.o
+	 $(CXX) $(CXXFLAGS) $(OBJ)/main.o $(OBJ)/<?= $APPNAME; ?>.o -o $(BLD)/<?= $APPNAME; ?>
 
-$(BLD)/lib<?php echo $APPNAME; ?>.so: $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o
-	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o -o $(BLD)/lib<?php echo $APPNAME; ?>.so
-	-chmod 755 $(BLD)/lib<?php echo $APPNAME; ?>.so
+$(BLD)/lib<?= $APPNAME; ?>.so: $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o -o $(BLD)/lib<?= $APPNAME; ?>.so
+	-chmod 755 $(BLD)/lib<?= $APPNAME; ?>.so
 
-$(BLD)/lib<?php echo $APPNAME; ?>.a: $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o
-	-ar rvs $(BLD)/lib<?php echo $APPNAME; ?>.a $(OBJ)/main.o $(BLD)/<?php echo $APPNAME; ?>.o
-	-chmod 755 $(BLD)/lib<?php echo $APPNAME; ?>.a
+$(BLD)/lib<?= $APPNAME; ?>.a: $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o
+	-ar rvs $(BLD)/lib<?= $APPNAME; ?>.a $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o
+	-chmod 755 $(BLD)/lib<?= $APPNAME; ?>.a
 
-$(OBJ)/<?php echo $APPNAME; ?>.o: $(SRC)/<?php echo $APPNAME; ?>.cpp
-	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?php echo $APPNAME; ?>.cpp -o $(OBJ)/<?php echo $APPNAME; ?>.o
+$(OBJ)/<?= $APPNAME; ?>.o: $(SRC)/<?= $APPNAME; ?>.cpp
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?= $APPNAME; ?>.cpp -o $(OBJ)/<?= $APPNAME; ?>.o
 
-# rules <?php echo '<?php echo "\nTEST\n ?>' ?>
+# rules <?= '<?= "\nTEST\n ?>' ?>
 
 $(OBJ)/%.o: ./$(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
@@ -81,10 +81,10 @@ $(OBJ)/%.o: ./$(SRC)/%.cpp
 rebuild: clean all
 
 install:
-	cp ./$(BLD)/<?php echo $APPNAME; ?> ./$(prefix)/bin/<?php echo $APPNAME; ?>
+	cp ./$(BLD)/<?= $APPNAME; ?> ./$(prefix)/bin/<?= $APPNAME; ?>
 
 uninstall:
-	-rm ./$(prefix)/bin/<?php echo $APPNAME; ?>
+	-rm ./$(prefix)/bin/<?= $APPNAME; ?>
 
 clean:
 	@ECHO "removing files ..."
@@ -93,13 +93,13 @@ clean:
 
 help:
 	@echo
-	@echo  'Project: <?php echo "$APPNAME; : $VERSION : $DATE" ?> simple "<?php echo $APPNAME; ?>" framework.'
+	@echo  'Project: <?= "$APPNAME; : $VERSION : $DATE" ?> simple "<?= $APPNAME; ?>" framework.'
 	@echo
 	@echo  '    make [-f] [target]'
 	@echo
 	@echo  '   -Make Targets ...'
 	@echo
 	@echo  '*        all                                     - build all'
-	@echo  '*        $(BLD)/<?php echo $APPNAME; ?>:         - re/build <?php echo $APPNAME; ?>'
-	@echo  '*        $(BLD)/<?php echo $APPNAME; ?>_utest:   - re/build <?php echo $APPNAME; ?>_utest, unit testing'
+	@echo  '*        $(BLD)/<?= $APPNAME; ?>:         - re/build <?= $APPNAME; ?>'
+	@echo  '*        $(BLD)/<?= $APPNAME; ?>_utest:   - re/build <?= $APPNAME; ?>_utest, unit testing'
 	@echo  '*        clean                                   - remove most generated files but keep the config'

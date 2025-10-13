@@ -20,8 +20,8 @@
     $NAME=$argv[1];
     ?>
 /**
- * @file    <?php echo "${NAME}.hpp\n"; ?>
- * @version <?php echo "${VERSION}\n"; ?>
- * @date    <?php echo date(DATE_RFC2822) . "\n"; ?>
- * @info    <?php echo "...\n"; ?>
+ * @file    <?= "${NAME}.hpp\n"; ?>
+ * @version <?= "${VERSION}\n"; ?>
+ * @date    <?= date(DATE_RFC2822) . "\n"; ?>
+ * @info    <?= "...\n"; ?>
  */

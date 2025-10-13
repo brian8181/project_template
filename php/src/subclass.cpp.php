@@ -14,24 +14,24 @@
 
 	include 'cstyle_file_header.php';
     ?>
-#include "<?php echo "$NAME"; ?>.hpp"
+#include "<?= "$NAME"; ?>.hpp"
 
-<?php echo "$NAME::$NAME"; ?>()
+<?= "$NAME::$NAME"; ?>()
 {
 
 }
 
-<?php echo "$NAME::$NAME"; ?>( const <?php echo "$NAME"; ?>& src )
+<?= "$NAME::$NAME"; ?>( const <?= "$NAME"; ?>& src )
 {
 
 }
 
-<?php echo "$NAME::~$NAME"; ?>()
+<?= "$NAME::~$NAME"; ?>()
 {
 
 }
 
-bool <?php echo "$NAME"; ?>::operator<( const <?php echo "$NAME"; ?>& that )
+bool <?= "$NAME"; ?>::operator<( const <?= "$NAME"; ?>& that )
 {
 
 }
