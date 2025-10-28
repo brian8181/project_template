@@ -71,10 +71,14 @@ $(OBJ)/<?= $APPNAME; ?>.o: $(SRC)/<?= $APPNAME; ?>.cpp
 
 # rules <?= '<?= "\nTEST\n ?>' ?>
 
+# copy header to build dir
+$(BLD)/%.hpp: $(SRC)/%.hpp
+	-cp $^ $@
+
 $(OBJ)/%.o: ./$(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-#CCSK_RULE#
+#<?php '<?php echo "rule\n"; include "make.class.rule.php" ?>' ?>
 
 .PHONY: all clean install unintsall rebuild help
 

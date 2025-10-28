@@ -1,0 +1,6 @@
+# @name     aaa
+# @file:    makefile
+# @date:    Thu, Oct 16, 2025  4:30:23 PM
+# @version: 0.0.1
+
+build/*

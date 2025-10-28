@@ -1,0 +1,45 @@
+
+# @name     aaa
+# @file:    CMakeLists.txt
+# @date:    Thu, 16 Oct 2025 21:30:23 +0000
+# @version: 0.0.1
+
+cmake_minimum_required(VERSION 3.28.3)
+project(scanner)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+#set(BUILD_SHARED_LIBS YES)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "CYGWIN")
+    message(STATUS "Building under Cygwin, defining CYGWIN macro")
+    add_definitions(-DCYGWIN)
+endif()
+
+add_executable(aaa
+    src/aaa.cpp
+    src/main.cpp
+)
+
+
+add_library(aaa_a STATIC
+    src/aaa.cpp
+
+)
+
+#[=[
+    # Add Library
+    add_library(targetName [STATIC | SHARED | MODULE]
+    [EXCLUDE_FROM_ALL]
+    source1 [source2 ...]
+)
+]=]`
+
+#[=[
+install(TARGETS MyApp AlgoRuntime AlgoSDK
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
+]=]
