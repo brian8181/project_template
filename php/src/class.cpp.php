@@ -9,6 +9,8 @@
   $NAME=$argv[1];
   $DTOR=$argv[3];
   $CCTOR=$argv[4];
+  $DCTOR=$argv[5];
+  $IMP_DEFAULTS=$argv[6];
   $VERSION="0.0.1";
 	$INFO="auto generated with ccsk, create class skeleton";
 	include 'cstyle_file_header.php';
@@ -18,27 +20,18 @@
 /**
  * @brief : default ctor
  */
-<?= "$NAME::$NAME"; ?>()
-{
-
-}
+<?= "$NAME::$NAME"; ?>() = default;
 
 <?php if($CCTOR == "TRUE"): ?>
 /**
   * @brief : copy ctor
   */
-<?= "$NAME::$NAME"; ?>( const <?= "$NAME"; ?>& src )
-{
-
-}
+<?= "$NAME::$NAME"; ?>( const <?= "$NAME"; ?>& src ) = default;
 <?php endif ?>
 
 <?php if($DTOR == "TRUE"): ?>
 /**
   * @brief : destructor
   */
-<?= "$NAME::~$NAME"; ?>()
-{
-
-}
+<?= "$NAME::~$NAME"; ?>() = default;
 <?php endif ?>
