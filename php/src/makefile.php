@@ -53,21 +53,22 @@ else
 	LDFLAGS += -lfmt -lcppunit
 endif
 
-all: $(BLD)/<?= $APPNAME; ?> $(BLD)/lib<?= $APPNAME; ?>.so $(BLD)/lib<?= $APPNAME; ?>.a
+all: $(BLD)/<?= $APPNAME ?> $(BLD)/lib<?= $APPNAME ?>.so $(BLD)/lib<?= $APPNAME ?>.a
 
-$(BLD)/<?= $APPNAME; ?>: $(OBJ)/main.o $(OBJ)/<?= $APPNAME; ?>.o
-	 $(CXX) $(CXXFLAGS) $(OBJ)/main.o $(OBJ)/<?= $APPNAME; ?>.o -o $(BLD)/<?= $APPNAME; ?>
+$(BLD)/<?= $APPNAME ?>: $(OBJ)/main.o $(OBJ)/<?= $APPNAME ?>.o
+	 $(CXX) $(CXXFLAGS) $(OBJ)/main.o $(OBJ)/<?= $APPNAME ?>.o -o $(BLD)/<?= $APPNAME ?>
 
-$(BLD)/lib<?= $APPNAME; ?>.so: $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o
-	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o -o $(BLD)/lib<?= $APPNAME; ?>.so
-	-chmod 755 $(BLD)/lib<?= $APPNAME; ?>.so
 
-$(BLD)/lib<?= $APPNAME; ?>.a: $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o
-	-ar rvs $(BLD)/lib<?= $APPNAME; ?>.a $(OBJ)/main.o $(BLD)/<?= $APPNAME; ?>.o
-	-chmod 755 $(BLD)/lib<?= $APPNAME; ?>.a
+$(BLD)/lib<?= $APPNAME ?>.so: $(OBJ)/main.o $(BLD)/<?= $APPNAME ?>.o
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) --shared $(OBJ)/main.o $(BLD)/<?= $APPNAME ?>.o -o $(BLD)/lib<?= $APPNAME ?>.so
+	-chmod 755 $(BLD)/lib<?= $APPNAME ?>.so
 
-$(OBJ)/<?= $APPNAME; ?>.o: $(SRC)/<?= $APPNAME; ?>.cpp
-	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?= $APPNAME; ?>.cpp -o $(OBJ)/<?= $APPNAME; ?>.o
+$(BLD)/lib<?= $APPNAME ?>.a: $(OBJ)/main.o $(BLD)/<?= $APPNAME ?>.o
+	-ar rvs $(BLD)/lib<?= $APPNAME ?>.a $(OBJ)/main.o $(BLD)/<?= $APPNAME ?>.o
+	-chmod 755 $(BLD)/lib<?= $APPNAME ?>.a
+
+$(OBJ)/<?= $APPNAME ?>.o: $(SRC)/<?= $APPNAME ?>.cpp
+	$(CXX) $(CXXFLAGS) $(CXXEXTRA) -c $(SRC)/<?= $APPNAME ?>.cpp -o $(OBJ)/<?= $APPNAME ?>.o
 
 # rules <?= '<?= "\nTEST\n ?>' ?>
 
@@ -85,10 +86,10 @@ $(OBJ)/%.o: ./$(SRC)/%.cpp
 rebuild: clean all
 
 install:
-	cp ./$(BLD)/<?= $APPNAME; ?> ./$(prefix)/bin/<?= $APPNAME; ?>
+	cp ./$(BLD)/<?= $APPNAME ?> ./$(prefix)/bin/<?= $APPNAME ?>
 
 uninstall:
-	-rm ./$(prefix)/bin/<?= $APPNAME; ?>
+	-rm ./$(prefix)/bin/<?= $APPNAME ?>
 
 clean:
 	@ECHO "removing files ..."
@@ -97,13 +98,13 @@ clean:
 
 help:
 	@echo
-	@echo  'Project: <?= "$APPNAME; : $VERSION : $DATE" ?> simple "<?= $APPNAME; ?>" framework.'
+	@echo  'Project: <?= "$APPNAME : $VERSION : $DATE" ?> simple "<?= $APPNAME ?>" framework.'
 	@echo
 	@echo  '    make [-f] [target]'
 	@echo
 	@echo  '   -Make Targets ...'
 	@echo
 	@echo  '*        all                                     - build all'
-	@echo  '*        $(BLD)/<?= $APPNAME; ?>:         - re/build <?= $APPNAME; ?>'
-	@echo  '*        $(BLD)/<?= $APPNAME; ?>_utest:   - re/build <?= $APPNAME; ?>_utest, unit testing'
+	@echo  '*        $(BLD)/<?= $APPNAME ?>:         - re/build <?= $APPNAME ?>'
+	@echo  '*        $(BLD)/<?= $APPNAME ?>_utest:   - re/build <?= $APPNAME ?>_utest, unit testing'
 	@echo  '*        clean                                   - remove most generated files but keep the config'

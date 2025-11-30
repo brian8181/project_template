@@ -64,6 +64,8 @@ touch "${NAME}.hpp" "${NAME}.cpp" "${NAME}_test.hpp" "${NAME}_test.cpp"
 php "${HOME}"/.config/csk/main.cpp.php "${NAME}" "$(date)" > main.cpp
 php "${HOME}"/.config/csk/app.hpp.php "${NAME}" "$(date)" > "${NAME}.hpp"
 php "${HOME}"/.config/csk/app.cpp.php "${NAME}" "$(date)" > "${NAME}.cpp"
+php "${HOME}"/.config/csk/app_test.hpp.php "${NAME}_test" "$(date)" > "${NAME}_test.hpp"
+php "${HOME}"/.config/csk/app_test.cpp.php "${NAME}_test" "$(date)" > "${NAME}_test.cpp"
 php "${HOME}"/.config/csk/bash_color.hpp.php "${NAME}" "$(date)" > bash_color.hpp
 php "${HOME}"/.config/csk/config.hpp.php "${NAME}" "$(date)" > config.hpp
 popd
