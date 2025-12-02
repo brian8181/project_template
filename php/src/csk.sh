@@ -16,8 +16,9 @@ DEBUG=
 
 CMAKE=
 CPPUNIT=
+SIMPLE=FALSE
 
-OPTSTRING="vht"
+OPTSTRING="vhts"
 while getopts ${OPTSTRING} opt; do
     case ${opt} in
         v)
@@ -34,6 +35,9 @@ while getopts ${OPTSTRING} opt; do
             ;;
         c)
             CMAKE="TRUE"
+            ;;
+        s)
+            SIMPLE="TRUE"
             ;;
         :)
             echo "Option -${OPTARG} requires an argument."
@@ -61,7 +65,7 @@ php $HOME/.config/csk/CMakeLists.txt.php "${NAME}" > CMakeLists.txt
 
 pushd ./src
 touch "${NAME}.hpp" "${NAME}.cpp" "${NAME}_test.hpp" "${NAME}_test.cpp"
-php "${HOME}"/.config/csk/main.cpp.php "${NAME}" "$(date)" > main.cpp
+php "${HOME}"/.config/csk/main.cpp.php "${NAME}" "$(date)" "${SIMPLE}" > main.cpp
 php "${HOME}"/.config/csk/app.hpp.php "${NAME}" "$(date)" > "${NAME}.hpp"
 php "${HOME}"/.config/csk/app.cpp.php "${NAME}" "$(date)" > "${NAME}.cpp"
 php "${HOME}"/.config/csk/app_test.hpp.php "${NAME}_test" "$(date)" > "${NAME}_test.hpp"

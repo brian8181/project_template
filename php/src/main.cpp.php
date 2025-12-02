@@ -8,12 +8,14 @@
     $NAME="main.cpp";
 	$APPNAME=$argv[1];
     $DATE=$argv[2];
+	$SIMPLE=$argv[3];
 	$VERSION="version 0.0.1";
     include "cstyle_file_header.php"
 	?>
 #include <iostream>
-#include <cstring>
 #include <string>
+<?php if($SIMPLE != "TRUE"): ?>
+#include <cstring>
 #include <unistd.h>         /* for STDIN_FILENO */
 #include <sys/select.h>     /* for pselect   */
 #include <string>
@@ -46,6 +48,7 @@ int stdin_ready (int filedes)
         return select(filedes + 1, &set, NULL, NULL, &timeout);
 #endif
 }
+<?php endif ?>
 
 /**
  * @brief main function
@@ -55,6 +58,9 @@ int stdin_ready (int filedes)
  */
 int main(int argc, char* argv[])
 {
+<?php if($SIMPLE == "TRUE"): ?>
+	std::cout << "Hello World" << std::endl;
+<?php else : ?>
 	try
 	{
 		char* argv_cpy[sizeof(char*) * (argc+1)];
@@ -79,4 +85,5 @@ int main(int argc, char* argv[])
 		std::cout << ex.what() << std::endl;
 		std::exit(-1);
 	}
+<?php endif ?>
 }
