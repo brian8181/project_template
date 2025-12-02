@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 {
 <?php if($SIMPLE == "TRUE"): ?>
 	std::cout << "Hello World" << std::endl;
-<?php else : ?>
+<?php else: ?>
 	try
 	{
 		char* argv_cpy[sizeof(char*) * (argc+1)];
