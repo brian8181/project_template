@@ -1,0 +1,44 @@
+# @name     abc
+# @file:    makefile
+# @date:    Mon, Dec  1, 2025  7:48:55 PM
+# @version: version 0.0.1
+
+SHELL:=bash
+APP=abc
+CXX=g++
+CXXFLAGS=-Wall -std=c++20 -fPIC -DNDEBUG
+SRC?=src
+BLD?=build
+OBJ?=build
+
+all: $(BLD)/abc
+
+$(BLD)/abc: $(OBJ)/main.o
+	 $(CXX) $(CXXFLAGS) $(OBJ)/main.o -o $(BLD)/abc
+
+$(OBJ)/%.o: ./$(SRC)/%.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+.PHONY: all clean install unintsall rebuild help
+
+rebuild: clean all
+
+install:
+	cp ./$(BLD)/abc ./$(prefix)/bin/abc
+uninstall:
+	-rm ./$(prefix)/bin/abc
+clean:
+	-rm -f $(OBJ)/*
+	-rm -f $(BLD)/*
+
+help:
+	@echo
+	@echo  'Project: abc : version 0.0.1 : Mon, Dec  1, 2025  7:48:55 PM simple "abc" framework.'
+	@echo
+	@echo  '    make [-f] [target]'
+	@echo
+	@echo  '   -Make Targets ...'
+	@echo
+	@echo  '*        all                                     - build all'
+	@echo  '*        $(BLD)/abc:         - re/build abc'
+	@echo  '*        clean                                   - remove most generated files but keep the config'
